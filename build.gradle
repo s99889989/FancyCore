@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+}
+
+group 'com.daxton'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'spigotmc-repo'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+    maven {
+        name = 'ProtocolLib'
+        url = "https://repo.dmulloy2.net/repository/public/"
+    }
+    maven {
+        name = 'PlaceholderAPI'
+        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+    }
+    maven {
+        name = 'HolographicDisplays'
+        url = 'https://repo.codemc.io/repository/maven-public/'
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    compileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
+    compileOnly group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.7.0";
+    compileOnly 'me.clip:placeholderapi:2.10.9'
+    compileOnly 'com.gmail.filoghost.holographicdisplays:holographicdisplays-api:2.4.8'
+
+    compileOnly fileTree(dir: 'lib', include: ['spigot-1.17.1.jar'])
+}
+
+processResources {
+    filteringCharset = "UTF-8"
+    expand(project.properties)
+    inputs.property("version", version)
+}
+
+compileJava.options.encoding = 'UTF-8'

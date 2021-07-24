@@ -4,5 +4,5 @@ import org.bukkit.event.inventory.ClickType;
 
 public interface GuiAction {
 
-    public void execute(ClickType clickType);
+    public void execute(ClickType clickType, int slot);
 }

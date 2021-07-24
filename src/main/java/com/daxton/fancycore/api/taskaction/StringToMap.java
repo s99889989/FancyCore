@@ -3,11 +3,21 @@ package com.daxton.fancycore.api.taskaction;
 import com.daxton.fancycore.api.other.CountWords;
 import com.daxton.fancycore.api.other.StringSplit;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class StringToMap {
+
+    //丟入動作字串列表 轉成 動作Map列表
+    public static List<Map<String, String>> toActiomMapList(List<String> actionStringList){
+        List<Map<String, String>> actionMapList = new ArrayList<>();
+        for(String actionString : actionStringList){
+            actionMapList.add(toActionMap(actionString));
+        }
+        return actionMapList;
+    }
 
     //把動作字串轉成，動作Map
     public static Map<String, String> toActionMap(String inputString){

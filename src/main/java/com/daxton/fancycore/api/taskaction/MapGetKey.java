@@ -236,7 +236,7 @@ public class MapGetKey {
         return output;
     }
 
-    /**粒子顏色**/
+    //粒子顏色
     public Particle.DustOptions getParticleColor(String[] key, String defaultKey){
         BigInteger bigint = new BigInteger(defaultKey, 16);
         int numb = bigint.intValue();
@@ -257,7 +257,7 @@ public class MapGetKey {
         return output;
     }
 
-    /**顏色**/
+    //顏色
     public ChatColor getChatColor(String[] key, String defaultKey){
         ChatColor output = Enum.valueOf(ChatColor.class ,defaultKey);
         String inputString = getString(key,null);
@@ -272,7 +272,7 @@ public class MapGetKey {
         return output;
     }
 
-    /**聲音的分類**/
+    //聲音的分類
     public SoundCategory getSoundCategory(String[] key, String defaultKey){
         SoundCategory output = Enum.valueOf(SoundCategory.class ,defaultKey);
         String inputString = getString(key,null);
@@ -287,7 +287,7 @@ public class MapGetKey {
         return output;
     }
 
-    //藥水的類型**/
+    //藥水的類型
     public PotionEffectType getPotionEffectType(String[] key, PotionEffectType defaultKey){
         PotionEffectType output = PotionEffectType.INCREASE_DAMAGE;
 
@@ -307,7 +307,7 @@ public class MapGetKey {
         return output;
     }
 
-    /**根據動作名稱 返回動作列表**/
+    //根據動作名稱 返回動作列表
     public List<Map<String, String>> getActionMapList(String[] key, String def){
         List<Map<String, String>> customLineConfigList = new ArrayList<>();
         String inputString = getString(key,def);

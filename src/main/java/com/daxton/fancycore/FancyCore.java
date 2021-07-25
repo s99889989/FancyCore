@@ -4,6 +4,8 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.daxton.fancycore.config.FileConfig;
 import com.daxton.fancycore.listener.PlayerListener;
 import com.daxton.fancycore.protocol.ProtocolMap;
+import com.daxton.fancycore.task.Reload;
+import com.daxton.fancycore.task.Start;
 import com.gmail.filoghost.holographicdisplays.api.Hologram;
 import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import org.bukkit.Bukkit;
@@ -26,15 +28,13 @@ public class FancyCore extends JavaPlugin{
             fancyCore.onDisable();
             return;
         }
-        //建立設定檔
-        FileConfig.execute();
+
         //玩家監聽
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), fancyCore);
-        //ProtocolLib
-        ProtocolMap.protocolManager = ProtocolLibrary.getProtocolManager();
-
-
-
+        //只在開服時執行的任務
+        Start.execute();
+        //重新讀取的一些任務
+        Reload.execute();
     }
 
     @Override

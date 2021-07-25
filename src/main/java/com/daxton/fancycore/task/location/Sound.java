@@ -2,6 +2,7 @@ package com.daxton.fancycore.task.location;
 
 import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.aims.location.GetLocation;
+import com.daxton.fancycore.api.task.FancyAction;
 import com.daxton.fancycore.api.taskaction.MapGetKey;
 import com.daxton.fancycore.api.taskaction.StringToMap;
 import org.bukkit.Location;
@@ -10,9 +11,9 @@ import org.bukkit.entity.LivingEntity;
 
 import java.util.Map;
 
-public class Sound {
+public class Sound implements FancyAction {
 
-    public static void execute(LivingEntity self, LivingEntity target, Map<String, String> action_Map, String taskID, Location inputLocation){
+    public void execute(LivingEntity self, LivingEntity target, Map<String, String> action_Map, Location inputLocation, String taskID){
         MapGetKey actionMapHandle = new MapGetKey(action_Map, self, target);
         //聲音名稱
         String sound = actionMapHandle.getString(new String[]{"sound","s"},"");

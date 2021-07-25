@@ -1,14 +1,16 @@
 package com.daxton.fancycore.task.meta;
 
+import com.daxton.fancycore.api.task.FancyAction;
 import com.daxton.fancycore.api.taskaction.MapGetKey;
+import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 
 import java.util.List;
 import java.util.Map;
 
-public class Action {
+public class Action implements FancyAction {
 
-    public Action(LivingEntity self, LivingEntity target, Map<String, String> action_Map, String inTaskID){
+    public void execute(LivingEntity self, LivingEntity target, Map<String, String> action_Map, Location inputLocation, String inTaskID){
         MapGetKey actionMapHandle = new MapGetKey(action_Map, self, target);
         //動作列表
         List<Map<String, String>> action_Map_List = actionMapHandle.getActionMapList(new String[]{"a","action"}, null);

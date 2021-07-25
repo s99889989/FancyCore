@@ -1,14 +1,15 @@
 package com.daxton.fancycore.task.location;
 
+import com.daxton.fancycore.api.task.FancyAction;
 import com.daxton.fancycore.api.taskaction.MapGetKey;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 
 import java.util.Map;
 
-public class Holographic {
+public class Holographic implements FancyAction {
 
-    public static void execute(LivingEntity self, LivingEntity target, Map<String, String> action_Map, String taskID, Location inputLocation){
+    public void execute(LivingEntity self, LivingEntity target, Map<String, String> action_Map, Location inputLocation, String taskID){
         MapGetKey actionMapHandle = new MapGetKey(action_Map, self, target);
         //標記名稱
         String mark = actionMapHandle.getString(new String[]{"mark","mk"},"0");

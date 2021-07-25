@@ -1,7 +1,10 @@
 package com.daxton.fancycore;
 
+import com.daxton.fancycore.manager.Manager;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class DependPlugins {
 
@@ -37,6 +40,13 @@ public class DependPlugins {
             fancyCore.getLogger().severe("*** PlaceholderAPI未安裝或未啟用。 ***");
             fancyCore.getLogger().severe("*** FancyCore將被卸載。 ***");
             return false;
+        }
+
+        if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null) {
+            RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
+            if (rsp != null) {
+                Manager.econ = rsp.getProvider();
+            }
         }
 
         return true;

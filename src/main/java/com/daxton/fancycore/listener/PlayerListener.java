@@ -1,5 +1,6 @@
 package com.daxton.fancycore.listener;
 
+import com.daxton.fancycore.api.entity.BukkitAttributeSet;
 import com.daxton.fancycore.api.gui.GUI;
 import com.daxton.fancycore.api.gui.GUISlotItem;
 import org.bukkit.entity.Player;
@@ -16,7 +17,7 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
         String uuidString = player.getUniqueId().toString();
         GUI.on_Gui.put(uuidString, false);
-
+        BukkitAttributeSet.removeAllAttribute(player);
     }
 
     //當使用背包時

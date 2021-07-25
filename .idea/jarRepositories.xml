@@ -41,5 +41,10 @@
       <option name="name" value="PlaceholderAPI" />
       <option name="url" value="https://repo.extendedclip.com/content/repositories/placeholderapi/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="Vault" />
+      <option name="name" value="Vault" />
+      <option name="url" value="https://jitpack.io" />
+    </remote-repository>
   </component>
 </project>

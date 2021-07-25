@@ -8,8 +8,8 @@ import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.comphenix.protocol.wrappers.WrappedDataWatcher;
 import com.daxton.fancycore.nms.v1_17_R1.ArmorStand;
 import com.daxton.fancycore.protocol.ProtocolMap;
-
-
+import net.minecraft.core.Vector3f;
+import net.minecraft.network.protocol.game.PacketPlayOutEntityMetadata;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
@@ -20,18 +20,17 @@ import org.bukkit.util.Vector;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
-public class GuiseEntity {
+public class ArmorStandEntity {
 
     private int entityID;
     private Location location;
     private UUID uuid;
-    private EntityType entityType;
 
-    public static GuiseEntity createGuise(Location location, String entityTypeName){
-        return new GuiseEntity(location, entityTypeName);
+    public static ArmorStandEntity createGuise(Location location){
+        return new ArmorStandEntity(location);
     }
     //建立目標
-    public GuiseEntity(Location inputLocation, String entityTypeName){
+    public ArmorStandEntity(Location inputLocation){
         PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.SPAWN_ENTITY);
         packet.getModifier().writeDefaults();
         int entityID = (int)(Math.random() * Integer.MAX_VALUE);
@@ -41,15 +40,7 @@ public class GuiseEntity {
         UUID uuid = UUID.randomUUID();
         packet.getUUIDs().write(0, uuid);
 
-        try {
-            EntityType entityType1 = Enum.valueOf(EntityType.class ,entityTypeName.toUpperCase());
-            packet.getEntityTypeModifier().write(0, entityType1);
-            entityType = entityType1;
-        }catch (Exception exception){
-            packet.getEntityTypeModifier().write(0, EntityType.ARMOR_STAND);
-            entityType = EntityType.ARMOR_STAND;
-        }
-
+        packet.getEntityTypeModifier().write(0, EntityType.ARMOR_STAND);
 
         packet.getDoubles().write(0, inputLocation.getX());
         packet.getDoubles().write(1, inputLocation.getY());
@@ -141,9 +132,6 @@ public class GuiseEntity {
         packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
         sendPack(packet);
     }
-
-
-
     //改變目標生物向量
     public void velocity(Vector vector){
         PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.ENTITY_VELOCITY);
@@ -173,21 +161,22 @@ public class GuiseEntity {
         sendPack(packet);
     }
 
-    public void setItem(){
-        PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.ENTITY_METADATA);
-        packet.getModifier().writeDefaults();
-        packet.getIntegers().write(0, entityID);
-        WrappedDataWatcher watcher = new WrappedDataWatcher();
-
-        //WrappedDataWatcher.Serializer serializer = WrappedDataWatcher.Registry.get(EnumItemSlot.class);
-
-        packet.getWatchableCollectionModifier().write(8, watcher.getWatchableObjects());
-        sendPack(packet);
-    }
-
     //調整盔甲架角度
     public void setArmorStandAngle(String type, float x, float y, float z){
         PacketContainer packet = ArmorStand.setArmorStandAngle(this.entityID, type, x, y, z);
+        sendPack(packet);
+    }
+    //改為小盔甲架
+    public void setArmorStandSmall(boolean small){
+        PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.ENTITY_METADATA);
+        packet.getIntegers().write(0, entityID);
+
+        WrappedDataWatcher watcher = new WrappedDataWatcher();
+        WrappedDataWatcher.Serializer serializer = WrappedDataWatcher.Registry.get(Byte.class);
+        //PacketPlayOutEntityMetadata packetPlayOutEntityMetadata;
+        watcher.setObject(0, serializer, (byte) (0x20));
+
+        packet.getWatchableCollectionModifier().write(0, watcher.getWatchableObjects());
         sendPack(packet);
     }
 
@@ -236,11 +225,4 @@ public class GuiseEntity {
         return location;
     }
 
-    public EntityType getEntityType() {
-        return entityType;
-    }
-
-    public int getEntityID() {
-        return entityID;
-    }
 }

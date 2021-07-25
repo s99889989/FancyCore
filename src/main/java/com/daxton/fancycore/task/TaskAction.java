@@ -1,6 +1,7 @@
 package com.daxton.fancycore.task;
 
 import com.daxton.fancycore.api.taskaction.MapGetKey;
+import com.daxton.fancycore.manager.TaskActionManager;
 import com.daxton.fancycore.task.location.Sound;
 import com.daxton.fancycore.task.player.Title;
 import org.bukkit.Location;
@@ -14,14 +15,18 @@ public class TaskAction {
         MapGetKey actionMapHandle = new MapGetKey(action_Map, self, target);
 
         String judgMent = actionMapHandle.getString(new String[]{"ActionType"}, "");
+        if(TaskActionManager.task_Action_Map.get(judgMent.toLowerCase()) != null){
+            TaskActionManager.task_Action_Map.get(judgMent.toLowerCase()).execute(self, target, action_Map, inputLocation, taskID);
+        }
 
-        if(judgMent.equalsIgnoreCase("sound")){
-            Sound.execute(self, target, action_Map, taskID, inputLocation);
-            return;
-        }
-        if(judgMent.equalsIgnoreCase("title")){
-            Title.execute(self, target, action_Map, taskID);
-        }
+//
+//        if(judgMent.equalsIgnoreCase("sound")){
+//            Sound.execute(self, target, action_Map, inputLocation, taskID);
+//            return;
+//        }
+//        if(judgMent.equalsIgnoreCase("title")){
+//            Title.execute(self, target, action_Map, inputLocation, taskID);
+//        }
 
     }
 

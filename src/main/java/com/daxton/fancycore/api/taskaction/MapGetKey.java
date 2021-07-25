@@ -1,6 +1,6 @@
 package com.daxton.fancycore.api.taskaction;
 
-import com.daxton.fancycore.manager.TaskAction;
+import com.daxton.fancycore.manager.TaskActionManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -314,8 +314,8 @@ public class MapGetKey {
 
         if(inputString != null){
             //CustomDisplay.getCustomDisplay().getLogger().info("Action: "+inputString);
-            if(TaskAction.action_SubAction_Map.get(inputString) != null){
-                customLineConfigList = TaskAction.action_SubAction_Map.get(inputString);
+            if(TaskActionManager.action_SubAction_Map.get(inputString) != null){
+                customLineConfigList = TaskActionManager.action_SubAction_Map.get(inputString);
             }
         }
 

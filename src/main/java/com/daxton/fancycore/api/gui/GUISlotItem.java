@@ -75,7 +75,7 @@ public class GUISlotItem{
     }
     //確定設置的位置是否不超過指定大小
     public boolean checkInventorySize(int place, int size){
-        return size < place && place >=0;
+        return place < size && place >= 0;
     }
 
     //清除所有物品

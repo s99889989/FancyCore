@@ -38,7 +38,8 @@ public class Title implements FancyAction {
         String title = actionMapHandle.getString(new String[]{"title","t"},"");
 
         String subTitle = actionMapHandle.getString(new String[]{"subtitle","s"},"");
-        if(self instanceof Player player){
+        if(self instanceof Player){
+            Player player = (Player) self;
             sendTitle(player, title, subTitle, fadeIn, duration, fadeOut);
         }
 

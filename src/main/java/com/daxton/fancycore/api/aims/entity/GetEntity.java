@@ -58,13 +58,15 @@ public class GetEntity {
                 break;
             case "server":
                 fancyCore.getServer().getWorlds().forEach(world -> world.getEntities().forEach(entity -> {
-                    if(entity instanceof LivingEntity livingEntity){
+                    if(entity instanceof LivingEntity){
+                        LivingEntity livingEntity = (LivingEntity) entity;
                         targetList.add(livingEntity);
                     }
                 }));
             case "selfinworld":
                 self.getWorld().getEntities().forEach(entity -> {
-                    if(entity instanceof LivingEntity livingEntity){
+                    if(entity instanceof LivingEntity){
+                        LivingEntity livingEntity = (LivingEntity) entity;
                         targetList.add(livingEntity);
                     }
                 });

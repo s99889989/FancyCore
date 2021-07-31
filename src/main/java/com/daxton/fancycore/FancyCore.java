@@ -1,18 +1,16 @@
 package com.daxton.fancycore;
 
-import com.comphenix.protocol.ProtocolLibrary;
-import com.daxton.fancycore.config.FileConfig;
+import com.daxton.fancycore.command.MainCommand;
+import com.daxton.fancycore.command.TabCommand;
 import com.daxton.fancycore.listener.PlayerListener;
-import com.daxton.fancycore.protocol.ProtocolMap;
 import com.daxton.fancycore.task.Reload;
 import com.daxton.fancycore.task.Start;
-import com.gmail.filoghost.holographicdisplays.api.Hologram;
-import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
+import java.util.Objects;
 import java.util.logging.Level;
 
 public class FancyCore extends JavaPlugin{
@@ -28,13 +26,13 @@ public class FancyCore extends JavaPlugin{
             fancyCore.onDisable();
             return;
         }
-
+        //指令
+        Objects.requireNonNull(Bukkit.getPluginCommand("fancycore")).setExecutor(new MainCommand());
+        Objects.requireNonNull(Bukkit.getPluginCommand("fancycore")).setTabCompleter(new TabCommand());
         //玩家監聽
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), fancyCore);
         //只在開服時執行的任務
         Start.execute();
-        //重新讀取的一些任務
-        Reload.execute();
     }
 
     @Override

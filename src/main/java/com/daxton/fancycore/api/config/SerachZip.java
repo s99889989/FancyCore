@@ -19,7 +19,7 @@ public class SerachZip {
         while ((ze = zin.getNextEntry()) != null) {
             if (!ze.isDirectory()) {
                 long size = ze.getSize();
-                if(ze.getName().contains(".yml") && !(ze.getName().contains("plugin"))){
+                if(ze.getName().contains(".yml") && !(ze.getName().equals("plugin.yml")) && !(ze.getName().equals("bungee.yml"))){
                     stringList.add(ze.getName());
                 }
                 if (size > 0) {

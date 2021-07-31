@@ -16,29 +16,21 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
         String uuidString = player.getUniqueId().toString();
-        GUI.on_Gui.put(uuidString, false);
         BukkitAttributeSet.removeAllAttribute(player);
     }
 
-    //當使用背包時
-    @EventHandler
+    @EventHandler//當使用背包時
     public void onInventoryClick(InventoryClickEvent event){
         if(!(event.getWhoClicked() instanceof Player)){
             return;
         }
-        Player player = (Player) event.getWhoClicked();
-        String uuidString = player.getUniqueId().toString();
-        if(GUI.on_Gui.get(uuidString)){
-            GUISlotItem.onInventoryClick(event);
-        }
+        GUISlotItem.onInventoryClick(event);
     }
 
-    //關閉背包
-    @EventHandler
+    @EventHandler//關閉背包
     public void onInventoryClose(InventoryCloseEvent event){
         Player player = (Player) event.getPlayer();
         String uuidString = player.getUniqueId().toString();
-        GUI.on_Gui.put(uuidString, false);
         GUISlotItem.onInventoryClose(event);
     }
 

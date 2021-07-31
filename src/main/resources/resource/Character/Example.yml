@@ -1,0 +1,54 @@
+#攻擊數字起始高度(以對方身高+0.5)
+#Attack number starting height (based on opponent's height +0.5)
+attack_number_height:
+  message:
+  - content[<cd_target_base_height>+0.5]
+  - math[fc=Arith]
+
+
+#自己攻擊的傷害數字
+#Self-attack damage number
+attack_number:
+  message:
+  - content[<cd_self_base_attack_number>]
+  - math [fc=Dec;m=#]
+  - Conver[function=ConverHead;m=9>䀉,8>䀈,7>䀇,6>䀆,5>䀅,4>䀄,3>䀃,2>䀂,1>䀁,0>䀀]
+  - Conver[function=ConverUnits;m=9>䀝,8>䀜,7>䀛,6>䀚,5>䀙,4>䀘,3>䀗,2>䀖,1>䀕,0>䀔]
+  - Conver[function=Contain;m=9>䀓,8>䀒,7>䀑,6>䀐,5>䀏,4>䀎,3>䀍,2>䀌,1>䀋,0>䀊]
+
+
+#自己攻擊的傷害數字(爆擊)
+#Self-attack damage number (Critical strike)
+attack_number_crit:
+  message:
+  - content[<cd_self_base_attack_number>]
+  - math [fc=Dec;m=#]
+  - Conver[function=ConverHead;m=9>䀽䀧,8>䀽䀦,7>䀽䀥,6>䀽䀤,5>䀽䀣,4>䀽䀢,3>䀽䀡,2>䀽䀠,1>䀽䀟,0>䀽䀞]
+  - Conver[function=ConverUnits;m=9>䀱,8>䀰,7>䀯,6>䀮,5>䀭,4>䀬,3>䀫,2>䀪,1>䀩,0>䀨]
+  - Conver[function=Contain;m=9>䀻,8>䀺,7>䀹,6>䀸,5>䀷,4>䀶,3>䀵,2>䀴,1>䀳,0>䀲]
+
+
+#自己攻擊的傷害數字(Miss)
+#Self-attack damage number (Miss)
+attack_number_miss:
+  message:
+  - content[<cd_self_base_attack_number>]
+  - Conver[function=Contain;m=Miss>䀿]
+
+
+#玩家名稱
+gui_self_name:
+  message:
+  - content[<cd_self_base_name>]
+
+gui_self_base_nowhealth:
+  message:
+  - content[<cd_self_base_nowhealth>]
+  - math[fc=Dec;m=0.0]
+
+gui_self_base_maxhealth:
+  message:
+  - content[<cd_self_base_maxhealth>]
+
+
+######################################

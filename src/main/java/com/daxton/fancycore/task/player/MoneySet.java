@@ -4,7 +4,7 @@ import com.daxton.fancycore.api.aims.entity.GetEntity;
 import com.daxton.fancycore.api.task.FancyAction;
 import com.daxton.fancycore.api.taskaction.MapGetKey;
 import com.daxton.fancycore.api.taskaction.StringToMap;
-import com.daxton.fancycore.manager.Manager;
+import com.daxton.fancycore.manager.OtherManager;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class MoneySet implements FancyAction {
 
     public void execute(LivingEntity self, LivingEntity target, Map<String, String> action_Map, Location inputLocation, String taskID){
-        if(Manager.econ == null){
+        if(OtherManager.econ == null){
             return;
         }
         MapGetKey actionMapHandle = new MapGetKey(action_Map, self, target);
@@ -31,9 +31,9 @@ public class MoneySet implements FancyAction {
             if(livingEntity instanceof Player){
                 Player player = (Player) livingEntity;
                 if(amount >= 0){
-                    Manager.econ.depositPlayer(player, amount);
+                    OtherManager.econ.depositPlayer(player, amount);
                 }else {
-                    Manager.econ.withdrawPlayer(player, amount);
+                    OtherManager.econ.withdrawPlayer(player, amount);
                 }
 
             }

@@ -1,7 +1,7 @@
 name: FancyCore
 version: ${version}
 main: com.daxton.fancycore.FancyCore
-api-version: 1.17
+api-version: 1.13
 prefix: FancyCore
 softdepend: [HolographicDisplays, PlaceholderAPI, ProtocolLib]
 authors: [ s99889989 ]

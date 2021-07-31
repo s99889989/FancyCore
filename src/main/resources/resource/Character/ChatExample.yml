@@ -1,0 +1,16 @@
+#玩家名稱
+chat_name:
+  message:
+  - content[%player_name%]
+
+chat_nowhealth:
+  message:
+  - content[%player_health%]
+  - math[fc=Dec;m=0.0]
+
+chat_maxhealth:
+  message:
+  - content[%player_max_health%]
+  - math[fc=Dec;m=0.0]
+
+######################################

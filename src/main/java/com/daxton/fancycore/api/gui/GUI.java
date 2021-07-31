@@ -7,7 +7,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,11 +17,12 @@ public class GUI extends GUISlotItem {
     //使用玩家UUID字串，判斷是否為GUI
     public static Map<String, Boolean> on_Gui = new HashMap<>();
     //使用玩家UUID字串，把GUI儲存到Map
-    public static Map<String, GUI> gui_Map = new HashMap<>();
-
+    public static Map<String, GUI> guiID_gui_Map = new HashMap<>();
+    public static Map<String, List<String>> uuid_GuiID_Map = new HashMap<>();
     //按鍵動作
     private GuiCloseAction guiCloseAction;
 
+    private Player player;
     //GUI標題
     private String title;
 
@@ -28,7 +31,23 @@ public class GUI extends GUISlotItem {
         inventory = Bukkit.createInventory(null, 9 , "");
     }
     //建立自訂GUI，大小為9 18 27 36 45 54
-    public GUI(int size, String title){
+    public GUI(Player player, int size, String title){
+        this.player = player;
+
+        String uuidString = player.getUniqueId().toString();
+        int guiIDInt = (int)(Math.random() * Integer.MAX_VALUE);
+        if(uuid_GuiID_Map.get(uuidString) == null){
+            List<String> s = new ArrayList<>();
+            s.add(String.valueOf(guiIDInt));
+            uuid_GuiID_Map.put(uuidString, s);
+            guiID_gui_Map.put(String.valueOf(guiIDInt), this);
+        }else {
+            List<String> s = uuid_GuiID_Map.get(uuidString);
+            s.add(String.valueOf(guiIDInt));
+            uuid_GuiID_Map.put(uuidString, s);
+            guiID_gui_Map.put(String.valueOf(guiIDInt), this);
+        }
+
         this.title = title;
         inventory = Bukkit.createInventory(null, size , title);
     }
@@ -55,9 +74,15 @@ public class GUI extends GUISlotItem {
     }
 
     //指定玩家打開GUI
-    public void open(Player player){
+    public void open(){
         player.openInventory(inventory);
         GUI.on_Gui.put(player.getUniqueId().toString(), true);
+    }
+
+    public void close(){
+        if(player != null){
+            player.closeInventory();
+        }
     }
 
     //-----------------------------------------------------------------------------------------------//

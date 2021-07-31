@@ -5,12 +5,14 @@ import org.bukkit.entity.LivingEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Radius {
 
     //獲得自身圓半徑目標，並設置是否包含自己
     public static List<LivingEntity> getSelfRadiusLivingEntities(LivingEntity self, double radius, boolean containSelf) {
         List<Entity> targetEntityList = self.getNearbyEntities(radius, radius, radius);
+
         double sX = self.getLocation().getX();
         double sY = self.getLocation().getY();
         double sZ = self.getLocation().getZ();

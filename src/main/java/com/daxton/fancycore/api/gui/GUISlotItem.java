@@ -2,6 +2,7 @@ package com.daxton.fancycore.api.gui;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
@@ -31,6 +32,9 @@ public class GUISlotItem{
         if(checkInventorySize(place-1, 54)){
             itme_Move.put(place-1, !move);
         }
+    }
+    public void setMoveAll(boolean move){
+        allMove = !move;
     }
     //在指定位置放置物品，並設置是否可以移動，vertical為1~6，horizontal為1~9
     public void setItem(ItemStack itemStack, boolean move, int vertical, int horizontal){
@@ -136,17 +140,25 @@ public class GUISlotItem{
     public static void onInventoryClick(InventoryClickEvent event){
 
         Player player = (Player) event.getWhoClicked();
-
+        String uuidString = player.getUniqueId().toString();
         ClickType clickType = event.getClick();
-        int slot = event.getSlot();
-        GUI gui = GUI.gui_Map.get(player.getUniqueId().toString());
-        event.setCancelled(gui.allMove);
-        if(gui.itme_Move.get(slot) != null){
-            event.setCancelled(gui.itme_Move.get(slot));
+        InventoryAction action = event.getAction();
+        int slot = event.getRawSlot();
+        //FancyCore.fancyCore.getLogger().info(slot+"");
+        if(GUI.uuid_GuiID_Map.get(uuidString) != null){
+            GUI.uuid_GuiID_Map.get(uuidString).forEach(guiID -> {
+                GUI gui = GUI.guiID_gui_Map.get(guiID);
+                event.setCancelled(gui.allMove);
+                if(gui.itme_Move.get(slot) != null){
+                    event.setCancelled(gui.itme_Move.get(slot));
+                }
+                if(gui.action_Map.get(slot) != null){
+                    gui.action_Map.get(slot).execute(clickType, action, slot);
+                }
+            });
+
         }
-        if(gui.action_Map.get(slot) != null){
-            gui.action_Map.get(slot).execute(clickType, slot);
-        }
+
 
     }
 
@@ -155,13 +167,14 @@ public class GUISlotItem{
         Player player = (Player) event.getPlayer();
 
         String uuidString = player.getUniqueId().toString();
-        if(GUI.gui_Map.get(uuidString) != null){
-            GUI gui = GUI.gui_Map.get(uuidString);
-            if(gui.getCloseAction() != null){
-                gui.getCloseAction().execute();
-            }
+        if(GUI.uuid_GuiID_Map.get(uuidString) != null){
+            GUI.uuid_GuiID_Map.get(uuidString).forEach(guiID -> {
+                GUI gui = GUI.guiID_gui_Map.get(guiID);
+                if(gui.getCloseAction() != null){
+                    gui.getCloseAction().execute();
+                }
+            });
         }
-
 
     }
 

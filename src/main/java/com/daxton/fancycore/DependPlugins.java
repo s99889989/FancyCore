@@ -1,6 +1,7 @@
 package com.daxton.fancycore;
 
-import com.daxton.fancycore.manager.Manager;
+import com.daxton.fancycore.listener.PackListener;
+import com.daxton.fancycore.manager.OtherManager;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -14,6 +15,7 @@ public class DependPlugins {
 
         if (Bukkit.getServer().getPluginManager().getPlugin("ProtocolLib") != null && Bukkit.getPluginManager().isPluginEnabled("ProtocolLib")){
             fancyCore.getLogger().info(ChatColor.GREEN+"Loaded ProtocolLib");
+            //Bukkit.getPluginManager().registerEvents(new PackListener(),FancyCore.fancyCore);
         }else {
             fancyCore.getLogger().severe("*** ProtocolLib is not installed or not enabled. ***");
             fancyCore.getLogger().severe("*** FancyCore will be disabled. ***");
@@ -45,7 +47,7 @@ public class DependPlugins {
         if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null) {
             RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
             if (rsp != null) {
-                Manager.econ = rsp.getProvider();
+                OtherManager.econ = rsp.getProvider();
             }
         }
 

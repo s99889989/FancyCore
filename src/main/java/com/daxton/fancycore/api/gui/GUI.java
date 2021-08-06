@@ -7,49 +7,38 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class GUI extends GUISlotItem {
-    //使用玩家UUID字串，判斷是否為GUI
-    public static Map<String, Boolean> on_Gui = new HashMap<>();
+
     //使用玩家UUID字串，把GUI儲存到Map
     public static Map<String, GUI> guiID_gui_Map = new HashMap<>();
-    public static Map<String, List<String>> uuid_GuiID_Map = new HashMap<>();
+    //public static Map<String, List<String>> uuid_GuiID_Map = new HashMap<>();
     //按鍵動作
     private GuiCloseAction guiCloseAction;
-
+    //玩家
     private Player player;
     //GUI標題
     private String title;
+    //開關狀態
+    private boolean open = false;
 
-    //建立預設GUI
-    public GUI(){
-        inventory = Bukkit.createInventory(null, 9 , "");
+    //建立自訂GUI，大小為9 18 27 36 45 54
+    public static GUI createGui(Player player, int size, String title){
+        return new GUI(player, size, title);
     }
+
     //建立自訂GUI，大小為9 18 27 36 45 54
     public GUI(Player player, int size, String title){
         this.player = player;
 
         String uuidString = player.getUniqueId().toString();
-        int guiIDInt = (int)(Math.random() * Integer.MAX_VALUE);
-        if(uuid_GuiID_Map.get(uuidString) == null){
-            List<String> s = new ArrayList<>();
-            s.add(String.valueOf(guiIDInt));
-            uuid_GuiID_Map.put(uuidString, s);
-            guiID_gui_Map.put(String.valueOf(guiIDInt), this);
-        }else {
-            List<String> s = uuid_GuiID_Map.get(uuidString);
-            s.add(String.valueOf(guiIDInt));
-            uuid_GuiID_Map.put(uuidString, s);
-            guiID_gui_Map.put(String.valueOf(guiIDInt), this);
-        }
 
         this.title = title;
         inventory = Bukkit.createInventory(null, size , title);
+
+        guiID_gui_Map.put(uuidString, this);
     }
     //修改GUI標題
     public void setTitle(String title){
@@ -74,9 +63,12 @@ public class GUI extends GUISlotItem {
     }
 
     //指定玩家打開GUI
-    public void open(){
+    public void open(GUI gui){
+        String uuidString = player.getUniqueId().toString();
+        guiID_gui_Map.put(uuidString, gui);
         player.openInventory(inventory);
-        GUI.on_Gui.put(player.getUniqueId().toString(), true);
+        open = true;
+        //GUI.on_Gui.put(player.getUniqueId().toString(), true);
     }
 
     public void close(){
@@ -109,6 +101,19 @@ public class GUI extends GUISlotItem {
             place =54;
         action_Map.put(place-1, guiAction);
     }
+    //指定範範圍的空位置，插入動作，
+    public void addAction(GuiAction guiAction, int head, int tail, List<Integer> ignore){
+        if(tail > head){
+            if( checkInventorySize(head-1, inventory.getSize()) && checkInventorySize(tail-1, inventory.getSize()) ){
+                for(int i = head; i < tail+1 ; i++){
+                    if(getAction(i) == null && !ignore.contains(i)){
+                        setAction(guiAction, i);
+                        break;
+                    }
+                }
+            }
+        }
+    }
     //移除指定位置動作，vertical為1~6，horizontal為1~9
     public void removeAction(int vertical, int horizontal){
         action_Map.remove(itemLocation(vertical, horizontal, 54));
@@ -134,6 +139,11 @@ public class GUI extends GUISlotItem {
         return action_Map.get(place-1);
     }
 
+    public void setOpen(boolean open) {
+        this.open = open;
+    }
 
-
+    public boolean isOpen() {
+        return open;
+    }
 }

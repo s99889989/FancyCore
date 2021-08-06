@@ -1,6 +1,8 @@
 package com.daxton.fancycore.nms;
 
+import com.daxton.fancycore.manager.PlayerManager;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 public class NMSVersion {
 
@@ -9,9 +11,63 @@ public class NMSVersion {
         String v = Bukkit.getServer().getClass().getPackage().getName();
         return v.substring(v.lastIndexOf('.') + 1);
     }
-    //目前版本大於判定版本
-    public static boolean upNMSVersion(String version){
+    //目前版本大於判定版本1.16
+    public static boolean compareNMSVersion(String version){
         return getMinecraftVersionSize(getMinecraftVersion()) >= getMinecraftVersionSize(version);
+    }
+    //判斷客戶端本本是否大於某版本
+    public static boolean compareClientVersion(Player player, String version){
+        boolean out = false;
+        String uuidString = player.getUniqueId().toString();
+        if(PlayerManager.player_Version_Map.get(uuidString) != null){
+            String clientVersion = PlayerManager.player_Version_Map.get(uuidString);
+            out = getMinecraftVersionSize(clientVersion) >= getMinecraftVersionSize(version);
+        }
+        return out;
+    }
+
+    //依據封包名稱判斷客戶端版本
+    public static String clientVersion(int pack){
+        switch(pack){
+            case 393:
+                return "1.13";
+            case 401:
+                return "1.13.1";
+            case 404:
+                return "1.13.2";
+            case 477:
+                return "1.14";
+            case 480:
+                return "1.14.1";
+            case 485:
+                return "1.14.2";
+            case 490:
+                return "1.14.3";
+            case 498:
+                return "1.14.4";
+            case 573:
+                return "1.15";
+            case 575:
+                return "1.15.1";
+            case 578:
+                return "1.15.2";
+            case 735:
+                return "1.16";
+            case 736:
+                return "1.16.1";
+            case 751:
+                return "1.16.2";
+            case 753:
+                return "1.16.3";
+            case 754:
+                return "1.16.5";
+            case 755:
+                return "1.17";
+            case 756:
+                return "1.17.1";
+            default:
+                return "";
+        }
     }
 
     public static int getMinecraftVersionSize(String nms){
@@ -38,24 +94,44 @@ public class NMSVersion {
                 return 10;
             case "1.11.2":
                 return 11;
-            case "1.12.2":
+            case "1.12":
                 return 12;
-            case "1.13":
+            case "1.12.1":
                 return 13;
-            case "1.13.2":
+            case "1.12.2":
                 return 14;
-            case "1.14.4":
+            case "1.13":
                 return 15;
-            case "1.15.2":
+            case "1.13.1":
                 return 16;
-            case "1.16.1":
+            case "1.13.2":
                 return 17;
-            case "1.16.3":
+            case "1.14":
                 return 18;
-            case "1.16.5":
+            case "1.14.1":
                 return 19;
-            case "1.17":
+            case "1.14.2":
                 return 20;
+            case "1.14.3":
+                return 21;
+            case "1.14.4":
+                return 22;
+            case "1.15":
+                return 23;
+            case "1.15.2":
+                return 24;
+            case "1.16":
+                return 25;
+            case "1.16.1":
+                return 26;
+            case "1.16.3":
+                return 27;
+            case "1.16.5":
+                return 28;
+            case "1.17":
+                return 29;
+            case "1.17.1":
+                return 30;
         }
         throw new IllegalArgumentException(nms + " isn't a know version");
     }

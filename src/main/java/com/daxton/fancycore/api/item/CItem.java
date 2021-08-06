@@ -1,6 +1,9 @@
 package com.daxton.fancycore.api.item;
 
 import com.daxton.fancycore.FancyCore;
+import com.destroystokyo.paper.profile.PlayerProfile;
+import com.destroystokyo.paper.profile.ProfileProperty;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
@@ -163,35 +166,30 @@ public class CItem {
     }
     //設定物品的頭值
     public void setHeadValue(String headValue){
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        FancyCore fancyItems = FancyCore.fancyCore;
+        FancyCore fancyCore = FancyCore.fancyCore;
         Material material = itemStack.getType();
-
+        SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
         if(material == Material.PLAYER_HEAD){
-            SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
-            if(headValue != null){
-                OfflinePlayer targetPlayer = fancyItems.getServer().getOfflinePlayer(headValue);
+            if(headValue.length() < 50){
+                OfflinePlayer targetPlayer = fancyCore.getServer().getOfflinePlayer(headValue);
                 assert skullMeta != null;
                 skullMeta.setOwningPlayer(targetPlayer);
                 itemStack.setItemMeta(skullMeta);
+            }else {
+                try {
+                    PlayerProfile playerProfile = Bukkit.createProfile(UUID.randomUUID(), null);
+                    playerProfile.getProperties().add(new ProfileProperty("textures", headValue));
+                    skullMeta.setPlayerProfile(playerProfile);
+                    itemStack.setItemMeta(skullMeta);
+                } catch (Exception exception) {
+                    fancyCore.getLogger().info("頭的值只能在paper伺服器使用。");
+                    fancyCore.getLogger().info("The value of the header can only be used on the paper server.");
+                }
             }
+
         }
-//        if(headValue.length() < 50){
-//            OfflinePlayer targetPlayer = fancyItems.getServer().getOfflinePlayer(headValue);
-//            skullMeta.setOwningPlayer(targetPlayer);
-//            newItemStack.setItemMeta(skullMeta);
-//        }else {
-//            try {
-//                PlayerProfile playerProfile = Bukkit.createProfile(UUID.randomUUID(), null);
-//                playerProfile.getProperties().add(new ProfileProperty("textures", headValue));
-//                skullMeta.setPlayerProfile(playerProfile);
-//                newItemStack.setItemMeta(skullMeta);
-//            } catch (Exception exception) {
-//                fancyItems.getLogger().info("頭的值只能在paper伺服器使用。");
-//                fancyItems.getLogger().info("The value of the header can only be used on the paper server.");
-//            }
-//        }
-        itemStack.setItemMeta(itemMeta);
+
+        itemStack.setItemMeta(skullMeta);
     }
     //設定物品的右鍵CD
     public void setCoolDownRightClick(int coolDown){

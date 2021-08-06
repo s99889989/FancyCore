@@ -1,5 +1,6 @@
 package com.daxton.fancycore;
 
+import com.daxton.fancycore.listener.MythicMobListener;
 import com.daxton.fancycore.listener.PackListener;
 import com.daxton.fancycore.manager.OtherManager;
 import net.milkbowl.vault.economy.Economy;
@@ -50,7 +51,10 @@ public class DependPlugins {
                 OtherManager.econ = rsp.getProvider();
             }
         }
-
+        if (Bukkit.getServer().getPluginManager().getPlugin("MythicMobs") != null) {
+            fancyCore.getLogger().info(ChatColor.GREEN+"Loaded MythicMobs");
+            Bukkit.getPluginManager().registerEvents(new MythicMobListener(), fancyCore);
+        }
         return true;
     }
 

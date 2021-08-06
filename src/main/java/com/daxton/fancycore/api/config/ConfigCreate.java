@@ -12,28 +12,25 @@ public class ConfigCreate {
 
     //執行建立設定檔
     public static void execute(Plugin plugin){
-        String pluginPatch = plugin.getClass().getResource("").getPath();
-        pluginPatch = pluginPatch.substring(pluginPatch.indexOf("plugins/"), pluginPatch.indexOf(".jar!"));
-        File testFile = new File(pluginPatch +".jar");
         try {
-            List<String> testList = SerachZip.findYML(testFile.toString());
+            List<String> testList = SerachZip.findFile(getPluginJarName(plugin) +".jar", "resource/", "", true);
             for(String patch : testList){
+                //FancyCore.fancyCore.getLogger().info(patch);
                 //建立.yml設定檔
-                ConfigCreate.create(plugin, patch);
+                //ConfigCreate.create(plugin, patch);
+                String savePath = patch.replace("resource/", "");
+                FileCopy.resourceCopy(plugin, patch, savePath, false);
             }
         }catch (Exception exception){
             //
         }
-
-
     }
-
-    //建立.yml設定檔
-    public static void create(Plugin plugin, String filePatch){
-        File file = new File(plugin.getDataFolder(), filePatch.replace("resource/",""));
-        if(!file.exists()){
-            fancyCore.saveResource(plugin, filePatch, filePatch.replace("resource/",""), false);
-        }
+    //獲取插件.jar名稱
+    public static String getPluginJarName(Plugin plugin){
+        String out;
+        String pluginPatch = plugin.getClass().getResource("").getPath();
+        out = pluginPatch.substring(pluginPatch.indexOf("plugins/"), pluginPatch.indexOf(".jar!"));
+        return out;
     }
 
 

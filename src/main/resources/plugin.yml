@@ -3,10 +3,10 @@ version: ${version}
 main: com.daxton.fancycore.FancyCore
 api-version: 1.13
 prefix: FancyCore
-softdepend: [HolographicDisplays, PlaceholderAPI, ProtocolLib]
+softdepend: [HolographicDisplays, PlaceholderAPI, ProtocolLib, ProtocolSupport]
 authors: [ s99889989 ]
 description: FancyCore
 commands:
   fancycore:
     description: Basic instructions.
-    aliases: fc
+    aliases: fcore

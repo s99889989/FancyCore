@@ -28,7 +28,10 @@ public class GuiButtom {
         if(itemConfig.contains(itemID+".CustomModelData")){
             GuiButtomSet.setCustomModelData(itemConfig, itemID, newItemStack);
         }
-
+        //設定物品的頭值
+        if(itemConfig.contains(itemID+".HeadValue")){
+            GuiButtomSet.setHeadValue(itemConfig, itemID, newItemStack);
+        }
         return newItemStack;
     }
 

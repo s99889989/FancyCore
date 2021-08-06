@@ -14,3 +14,11 @@ chat_maxhealth:
   - math[fc=Dec;m=0.0]
 
 ######################################
+#把自己血量10分比轉成特定字
+#Convert 10 points of your own HP into a specific word.
+chat_self_health_proportion_10:
+  message:
+    - content[<cd_self_base_nowhealth>/<cd_self_base_maxhealth>*10]
+    - math[fc=Arith]
+    - math [fc=Dec;m=#]
+    - Conver[function=ExSame;m=10>䀎,9>䀍,8>䀌,7>䀋,6>䀊,5>䀉,4>䀈,3>䀇,2>䀆,1>䀅,0>䀄]

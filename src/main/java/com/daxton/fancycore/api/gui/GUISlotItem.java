@@ -9,6 +9,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -52,18 +53,21 @@ public class GUISlotItem{
         }
     }
     //指定範範圍的空位置，插入物品，
-    public void addItem(ItemStack itemStack, boolean move, int head, int tail){
+    public void addItem(ItemStack itemStack, boolean move, int head, int tail, List<Integer> ignore){
         if(tail > head){
             if( checkInventorySize(head-1, inventory.getSize()) && checkInventorySize(tail-1, inventory.getSize()) ){
-                for(int i = head-1; i < tail ; i++){
-                    if(inventory.getItem(i) == null){
-                        inventory.setItem(i, itemStack);
+                for(int i = head; i < tail+1 ; i++){
+                    if(inventory.getItem(i-1) == null && !ignore.contains(i)){
+                        inventory.setItem(i-1, itemStack);
+                        itme_Move.put(i-1, !move);
                         break;
                     }
                 }
             }
         }
     }
+
+
     //移除指定位置物品，vertical為1~6，horizontal為1~9
     public void removeItem(boolean move, int vertical, int horizontal){
         if(checkInventorySize(itemLocation(vertical, horizontal, inventory.getSize()), inventory.getSize())){
@@ -90,8 +94,9 @@ public class GUISlotItem{
     public void clearFrom(int head, int tail){
         if(tail > head){
             if( checkInventorySize(head-1, inventory.getSize()) && checkInventorySize(tail-1, inventory.getSize()) ){
-                for(int i = head-1; i < tail ; i++){
-                    inventory.setItem(i, null);
+                for(int i = head; i < tail+1 ; i++){
+                    inventory.setItem(i-1, null);
+                    action_Map.remove(i-1);
                 }
             }
         }
@@ -144,10 +149,10 @@ public class GUISlotItem{
         ClickType clickType = event.getClick();
         InventoryAction action = event.getAction();
         int slot = event.getRawSlot();
-        //FancyCore.fancyCore.getLogger().info(slot+"");
-        if(GUI.uuid_GuiID_Map.get(uuidString) != null){
-            GUI.uuid_GuiID_Map.get(uuidString).forEach(guiID -> {
-                GUI gui = GUI.guiID_gui_Map.get(guiID);
+
+        if(GUI.guiID_gui_Map.get(uuidString) != null){
+            GUI gui = GUI.guiID_gui_Map.get(uuidString);
+            if(gui.isOpen()){
                 event.setCancelled(gui.allMove);
                 if(gui.itme_Move.get(slot) != null){
                     event.setCancelled(gui.itme_Move.get(slot));
@@ -155,10 +160,8 @@ public class GUISlotItem{
                 if(gui.action_Map.get(slot) != null){
                     gui.action_Map.get(slot).execute(clickType, action, slot);
                 }
-            });
-
+            }
         }
-
 
     }
 
@@ -167,14 +170,11 @@ public class GUISlotItem{
         Player player = (Player) event.getPlayer();
 
         String uuidString = player.getUniqueId().toString();
-        if(GUI.uuid_GuiID_Map.get(uuidString) != null){
-            GUI.uuid_GuiID_Map.get(uuidString).forEach(guiID -> {
-                GUI gui = GUI.guiID_gui_Map.get(guiID);
-                if(gui.getCloseAction() != null){
-                    gui.getCloseAction().execute();
-                }
-            });
+        if(GUI.guiID_gui_Map.get(uuidString) != null){
+            GUI gui = GUI.guiID_gui_Map.get(uuidString);
+            gui.setOpen(false);
         }
+
 
     }
 

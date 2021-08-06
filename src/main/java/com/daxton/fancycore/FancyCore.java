@@ -2,6 +2,9 @@ package com.daxton.fancycore;
 
 import com.daxton.fancycore.command.MainCommand;
 import com.daxton.fancycore.command.TabCommand;
+import com.daxton.fancycore.listener.AttackListener;
+import com.daxton.fancycore.listener.AttackedListener;
+import com.daxton.fancycore.listener.InventoryListener;
 import com.daxton.fancycore.listener.PlayerListener;
 import com.daxton.fancycore.task.Reload;
 import com.daxton.fancycore.task.Start;
@@ -31,6 +34,9 @@ public class FancyCore extends JavaPlugin{
         Objects.requireNonNull(Bukkit.getPluginCommand("fancycore")).setTabCompleter(new TabCommand());
         //玩家監聽
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), fancyCore);
+        Bukkit.getPluginManager().registerEvents(new InventoryListener(), fancyCore);
+        Bukkit.getPluginManager().registerEvents(new AttackListener(), fancyCore);
+        Bukkit.getPluginManager().registerEvents(new AttackedListener(), fancyCore);
         //只在開服時執行的任務
         Start.execute();
     }
@@ -39,50 +45,6 @@ public class FancyCore extends JavaPlugin{
     public void onDisable() {
         fancyCore.getLogger().info("FancyCore uninstall");
         fancyCore.getLogger().info("FancyCore 卸載");
-    }
-
-    //修改saveResource的存檔位置，因為位置是讀取jar內的，所以要去除resource/**/
-    public void saveResource(Plugin plugin, String resourcePath, String savePath, boolean replace) {
-        if (resourcePath == null || resourcePath.equals("")) {
-            return;
-        }
-
-        resourcePath = resourcePath.replace('\\', '/');
-
-        String res = savePath;
-
-        InputStream in = plugin.getResource(resourcePath);
-
-        if (in == null) {
-            return;
-        }
-
-        File outFile = new File(plugin.getDataFolder(), res);
-
-        int lastIndex = res.lastIndexOf('/');
-        File outDir = new File(plugin.getDataFolder(), res.substring(0, lastIndex >= 0 ? lastIndex : 0));
-
-        if (!outDir.exists()) {
-            outDir.mkdirs();
-        }
-
-        try {
-            if (!outFile.exists() || replace) {
-                File outFileF = new File(plugin.getDataFolder(), res);
-                OutputStream out = new FileOutputStream(outFileF);
-                byte[] buf = new byte[1024];
-                int len;
-                while ((len = in.read(buf)) > 0) {
-                    out.write(buf, 0, len);
-                }
-                out.close();
-                in.close();
-            } else {
-                super.getLogger().log(Level.WARNING, "Could not save " + outFile.getName() + " to " + outFile + " because " + outFile.getName() + " already exists.");
-            }
-        } catch (IOException ex) {
-            super.getLogger().log(Level.SEVERE, "Could not save " + outFile.getName() + " to " + outFile, ex);
-        }
     }
 
 }

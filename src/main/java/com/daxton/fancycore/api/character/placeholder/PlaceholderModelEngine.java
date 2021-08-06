@@ -13,18 +13,18 @@ public class PlaceholderModelEngine {
         String outputString = "0";
         String uuidString = entity.getUniqueId().toString();
         String key = inputString.replace(" ","").replace("<cd_modelengine_","");
-        if(MobManager.modelengine_Map.get(uuidString) != null){
+        if(MobManager.model_Engine_Map.get(uuidString) != null){
             if(inputString.contains("<cd_modelengine_id")){
-                outputString = MobManager.modelengine_Map.get(uuidString);
+                outputString = MobManager.model_Engine_Map.get(uuidString);
             }
             if(inputString.contains("<cd_modelengine_eye_hight")){
-                outputString = MobManager.modelengine_Map.get(uuidString+"eyeHight");
+                outputString = MobManager.model_Engine_Map.get(uuidString+"eyeHight");
             }
             if(inputString.contains("<cd_modelengine_hit_hight")){
-                outputString = MobManager.modelengine_Map.get(uuidString+"hitBoxHight");
+                outputString = MobManager.model_Engine_Map.get(uuidString+"hitBoxHight");
             }
             if(inputString.contains("<cd_modelengine_hit_width")){
-                outputString = MobManager.modelengine_Map.get(uuidString+"hitBoxWidth");
+                outputString = MobManager.model_Engine_Map.get(uuidString+"hitBoxWidth");
             }
             //cd.getLogger().info(MobManager.modelengine_Map.get(uuidString));
         }else {

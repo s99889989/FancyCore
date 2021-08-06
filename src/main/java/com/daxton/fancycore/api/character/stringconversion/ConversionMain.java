@@ -16,7 +16,8 @@ public class ConversionMain {
         String outputString = "";
         if(inputString != null){
             //顏色代碼轉換
-            inputString = ConversionMessage.valueOf(inputString);
+            //inputString = ConversionMessage.valueOf(inputString);
+            inputString = ConversionColor.translateHexColorCodes("\\{#", "\\}", inputString);
 
             if(inputString.contains("&")){
                 int num = CountWords.count(inputString, "&");

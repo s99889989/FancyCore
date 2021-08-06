@@ -83,7 +83,7 @@ public class PackEntity {
     //刪除目標生物
     public static void delete(int entityID){
         PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.ENTITY_DESTROY);
-        if(NMSVersion.upNMSVersion("1.17")){
+        if(NMSVersion.compareNMSVersion("1.17")){
             List<Integer> intList = new ArrayList<>();
             intList.add(entityID);
             packet.getIntLists().write(0, intList);

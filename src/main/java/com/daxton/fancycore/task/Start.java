@@ -2,7 +2,7 @@ package com.daxton.fancycore.task;
 
 import com.comphenix.protocol.ProtocolLibrary;
 import com.daxton.fancycore.api.character.stringconversion.KeyMap;
-import com.daxton.fancycore.api.entity.mob.MobConfig;
+import com.daxton.fancycore.api.hook.MythicMob.MobConfig;
 import com.daxton.fancycore.config.FileConfig;
 import com.daxton.fancycore.manager.OtherManager;
 import com.daxton.fancycore.manager.TaskActionManager;
@@ -10,6 +10,7 @@ import com.daxton.fancycore.manager.ProtocolMap;
 import com.daxton.fancycore.task.location.Sound;
 import com.daxton.fancycore.task.player.Title;
 import discord4j.core.DiscordClientBuilder;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class Start {
@@ -40,6 +41,7 @@ public class Start {
         //設置轉換字串
         KeyMap.setConversionKey();
         //
+
     }
 
 }

@@ -1,7 +1,9 @@
 package com.daxton.fancycore.api.aims.location;
 
+import com.daxton.fancycore.FancyCore;
+import com.daxton.fancycore.api.aims.entity.one.LookTarget;
 import com.daxton.fancycore.api.aims.vector.LocationVector;
-import com.daxton.fancycore.api.taskaction.MapGetKey;
+import com.daxton.fancycore.other.taskaction.MapGetKey;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -17,8 +19,14 @@ public class GetLocation {
         MapGetKey mapGetKey = new MapGetKey(targetMap);
         //瞄準目標
         String targetKey = mapGetKey.getString(new String[]{"targettype"},"null");
+
         //距離
         double distance = mapGetKey.getDouble(new String[]{"distance","d"},0);
+
+        if(target == null){
+            target = LookTarget.getLivingTarget(self, distance);
+        }
+
         //座標向量偏移
         String[] vecAdds = mapGetKey.getStringList(new String[]{"VectorAdd","va"},new String[]{"null","true","true","0","0","0"},"\\|",6);
         String directionT = vecAdds[0];
@@ -54,31 +62,14 @@ public class GetLocation {
         String worldName = mapGetKey.getString(new String[]{"wn","worldname"},"self");
         Location location = null;
         switch (targetKey){
-            case "locself":
-                if(directionT.toLowerCase().contains("target") && target != null){
-                    location = LocationVector.getDirectionLoction(self.getLocation(), target.getLocation(), targetPitch, targetYaw, addPitch, addYaw, addDistance).add(addX, addY, addZ);
-                }else {
-                    location = LocationVector.getDirectionLoction(self.getLocation(), self.getLocation(), targetPitch, targetYaw, addPitch, addYaw, addDistance).add(addX, addY, addZ);
-                }
-                break;
             case "loctarget":
                 if(target != null){
-                    if(directionT.toLowerCase().contains("target")){
-                        location = LocationVector.getDirectionLoction(target.getLocation(), target.getLocation(), targetPitch, targetYaw, addPitch, addYaw, addDistance).add(addX, addY, addZ);
-                    }else {
-                        location = LocationVector.getDirectionLoction(target.getLocation(), self.getLocation(), targetPitch, targetYaw, addPitch, addYaw, addDistance).add(addX, addY, addZ);
-                    }
+                    location = target.getLocation().add(addX, addY, addZ);
                 }
                 break;
             case "locadd":
                 if(locationInput != null){
-                    if(directionT.toLowerCase().contains("target") && target != null){
-                        location = LocationVector.getDirectionLoction(locationInput, target.getLocation(), targetPitch, targetYaw, addPitch, addYaw, addDistance).add(addX, addY, addZ);
-                    }else if(directionT.toLowerCase().contains("self")){
-                        location = LocationVector.getDirectionLoction(locationInput, self.getLocation(), targetPitch, targetYaw, addPitch, addYaw, addDistance).add(addX, addY, addZ);
-                    }else {
-                        location = locationInput.add(addX, addY, addZ);
-                    }
+                    location = locationInput.add(addX, addY, addZ);
                 }
                 break;
             case "locworld":
@@ -87,8 +78,22 @@ public class GetLocation {
                 }else {
                     location = new Location(Bukkit.getWorld(worldName), addX, addY, addZ);
                 }
+                break;
+            case "locself":
 
+            default:
+                location = self.getLocation().add(addX, addY, addZ);
+                break;
         }
+
+        if(location != null && !directionT.equals("null")){
+            if(directionT.toLowerCase().contains("target") && target != null){
+                location = LocationVector.getDirectionLoction(location, target.getLocation(), targetPitch, targetYaw, addPitch, addYaw, addDistance);
+            }else {
+                location = LocationVector.getDirectionLoction(location, self.getLocation(), targetPitch, targetYaw, addPitch, addYaw, addDistance);
+            }
+        }
+
 
         //定點是否要在方塊上。
         boolean onblock = mapGetKey.getBoolean(new String[]{"onblock","ob"}, false);

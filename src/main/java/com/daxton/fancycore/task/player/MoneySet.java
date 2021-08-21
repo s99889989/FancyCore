@@ -1,9 +1,9 @@
 package com.daxton.fancycore.task.player;
 
 import com.daxton.fancycore.api.aims.entity.GetEntity;
-import com.daxton.fancycore.api.task.FancyAction;
-import com.daxton.fancycore.api.taskaction.MapGetKey;
-import com.daxton.fancycore.api.taskaction.StringToMap;
+import com.daxton.fancycore.other.task.FancyAction;
+import com.daxton.fancycore.other.taskaction.MapGetKey;
+import com.daxton.fancycore.other.taskaction.StringToMap;
 import com.daxton.fancycore.manager.OtherManager;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;

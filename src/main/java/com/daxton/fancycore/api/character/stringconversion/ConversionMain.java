@@ -11,13 +11,15 @@ public class ConversionMain {
 
     }
 
-    public static String valueOf(LivingEntity self, LivingEntity target, String inputString){
+    public static String valueOf(LivingEntity self, LivingEntity target, String inputString, boolean changeColor){
 
         String outputString = "";
         if(inputString != null){
             //顏色代碼轉換
             //inputString = ConversionMessage.valueOf(inputString);
-            inputString = ConversionColor.translateHexColorCodes("\\{#", "\\}", inputString);
+            if(changeColor){
+                inputString = ConversionColor.translateHexColorCodes("\\{#", "\\}", inputString);
+            }
 
             if(inputString.contains("&")){
                 int num = CountWords.count(inputString, "&");

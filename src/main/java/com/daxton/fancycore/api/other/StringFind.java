@@ -26,7 +26,7 @@ public class StringFind {
         return lastString;
     }
 
-    /**丟入整個自訂字 返回自訂字目標**/
+    //丟入整個自訂字 返回自訂字目標
     public static String getTarget(String string){
         String lastString = "";
         List<String> stringList = StringSplit.toList(string,"[]");

@@ -1,8 +1,11 @@
 package com.daxton.fancycore.nms;
 
-import com.daxton.fancycore.manager.PlayerManager;
+import com.daxton.fancycore.manager.PlayerManagerCore;
+import com.daxton.fancycore.other.playerdata.PlayerDataFancy;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 public class NMSVersion {
 
@@ -18,11 +21,11 @@ public class NMSVersion {
     //判斷客戶端本本是否大於某版本
     public static boolean compareClientVersion(Player player, String version){
         boolean out = false;
-        String uuidString = player.getUniqueId().toString();
-        if(PlayerManager.player_Version_Map.get(uuidString) != null){
-            String clientVersion = PlayerManager.player_Version_Map.get(uuidString);
-            out = getMinecraftVersionSize(clientVersion) >= getMinecraftVersionSize(version);
-        }
+        UUID uuid = player.getUniqueId();
+        PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(uuid);
+
+        out = getMinecraftVersionSize(playerDataFancy.client_version) >= getMinecraftVersionSize(version);
+
         return out;
     }
 

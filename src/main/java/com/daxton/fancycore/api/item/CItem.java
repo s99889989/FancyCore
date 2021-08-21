@@ -3,6 +3,8 @@ package com.daxton.fancycore.api.item;
 import com.daxton.fancycore.FancyCore;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -19,6 +21,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -176,20 +179,21 @@ public class CItem {
                 skullMeta.setOwningPlayer(targetPlayer);
                 itemStack.setItemMeta(skullMeta);
             }else {
+                GameProfile profile = new GameProfile(UUID.randomUUID(), "");
+                profile.getProperties().put("textures", new Property("textures", headValue));
+                Field profileField;
                 try {
-                    PlayerProfile playerProfile = Bukkit.createProfile(UUID.randomUUID(), null);
-                    playerProfile.getProperties().add(new ProfileProperty("textures", headValue));
-                    skullMeta.setPlayerProfile(playerProfile);
-                    itemStack.setItemMeta(skullMeta);
-                } catch (Exception exception) {
-                    fancyCore.getLogger().info("頭的值只能在paper伺服器使用。");
-                    fancyCore.getLogger().info("The value of the header can only be used on the paper server.");
+                    profileField = skullMeta.getClass().getDeclaredField("profile");
+                    profileField.setAccessible(true);
+                    profileField.set(skullMeta, profile);
+                } catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
+                    e.printStackTrace();
                 }
+                itemStack.setItemMeta(skullMeta);
             }
 
         }
 
-        itemStack.setItemMeta(skullMeta);
     }
     //設定物品的右鍵CD
     public void setCoolDownRightClick(int coolDown){

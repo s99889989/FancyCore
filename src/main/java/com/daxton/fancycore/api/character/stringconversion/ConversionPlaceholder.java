@@ -22,15 +22,15 @@ public class ConversionPlaceholder {
                 int head = inputString.indexOf("<");
                 int tail = inputString.indexOf(">");
                 if(inputString.contains("<") && inputString.contains(">")){
-                    if(inputString.substring(head,tail+1).toLowerCase().contains("<cd_other_")){
+                    if(inputString.substring(head,tail+1).toLowerCase().contains("<fc_other_")){
                         inputString = inputString.replace(inputString.substring(head,tail+1), PlaceholderOther.getOther(inputString.substring(head,tail+1)));
                         continue;
                     }
-                    if(inputString.substring(head,tail+1).toLowerCase().contains("<cd_self_")){
+                    if(inputString.substring(head,tail+1).toLowerCase().contains("<fc_self_")){
                         inputString = inputString.replace(inputString.substring(head,tail+1), PlaceholderSelf.valueOf(self,target,inputString.substring(head,tail+1)));
                         continue;
                     }
-                    if(target != null && inputString.substring(head,tail+1).toLowerCase().contains("<cd_target_")){
+                    if(target != null && inputString.substring(head,tail+1).toLowerCase().contains("<fc_target_")){
                         inputString = inputString.replace(inputString.substring(head,tail+1), PlaceholderTarget.valueOf(target,inputString.substring(head,tail+1)));
                         continue;
                     }

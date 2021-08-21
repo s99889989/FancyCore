@@ -1,10 +1,9 @@
 package com.daxton.fancycore.task.location;
 
-import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.aims.location.GetLocation;
-import com.daxton.fancycore.api.task.FancyAction;
-import com.daxton.fancycore.api.taskaction.MapGetKey;
-import com.daxton.fancycore.api.taskaction.StringToMap;
+import com.daxton.fancycore.other.task.FancyAction;
+import com.daxton.fancycore.other.taskaction.MapGetKey;
+import com.daxton.fancycore.other.taskaction.StringToMap;
 import org.bukkit.Location;
 import org.bukkit.SoundCategory;
 import org.bukkit.entity.LivingEntity;
@@ -27,6 +26,7 @@ public class Sound implements FancyAction {
         String targetString = actionMapHandle.getString(new String[]{"targetkey"}, "");
         Map<String, String> targetMap = StringToMap.toTargetMap(targetString);
         Location location = GetLocation.getOne(self, target, targetMap, inputLocation);
+        //發出聲音
         location.getWorld().playSound(location, sound, category, volume, pitch);
     }
 

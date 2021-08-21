@@ -3,7 +3,7 @@ package com.daxton.fancycore.nms;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedDataWatcher;
-import com.daxton.fancycore.api.task.PackEntity;
+import com.daxton.fancycore.other.task.PackEntity;
 import com.daxton.fancycore.manager.ProtocolMap;
 
 public class ArmorStandOther {
@@ -44,19 +44,36 @@ public class ArmorStandOther {
         PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.ENTITY_METADATA);
         packet.getModifier().writeDefaults();
         packet.getIntegers().write(0, entityID);
-        WrappedDataWatcher metadata = new WrappedDataWatcher();
-        metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), (byte) (0x00));
-        packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
+        if(NMSVersion.compareNMSVersion("1.17")){
+            WrappedDataWatcher metadata = new WrappedDataWatcher();
+            metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), (byte) (0x00));
+            packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
+        }else {
+            WrappedDataWatcher watcher = new WrappedDataWatcher();
+            WrappedDataWatcher.Serializer serializer = WrappedDataWatcher.Registry.get(Byte.class);
+            watcher.setObject(14, serializer, (byte) (0x00));
+        }
+
         PackEntity.sendPack(packet);
     }
     //標記
     public static void marker(int entityID){
         PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.ENTITY_METADATA);
+
         packet.getModifier().writeDefaults();
         packet.getIntegers().write(0, entityID);
-        WrappedDataWatcher metadata = new WrappedDataWatcher();
-        metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), (byte) (0x10));
-        packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
+
+        if(NMSVersion.compareNMSVersion("1.17")){
+            WrappedDataWatcher metadata = new WrappedDataWatcher();
+            metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), (byte) (0x10));
+            packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
+        }else {
+            WrappedDataWatcher watcher = new WrappedDataWatcher();
+            WrappedDataWatcher.Serializer serializer = WrappedDataWatcher.Registry.get(Byte.class);
+            watcher.setObject(14, serializer, (byte) (0x10));
+            packet.getWatchableCollectionModifier().write(0, watcher.getWatchableObjects());
+        }
+
         PackEntity.sendPack(packet);
     }
     //沒有底板
@@ -64,9 +81,17 @@ public class ArmorStandOther {
         PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.ENTITY_METADATA);
         packet.getModifier().writeDefaults();
         packet.getIntegers().write(0, entityID);
-        WrappedDataWatcher metadata = new WrappedDataWatcher();
-        metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), (byte) (0x08));
-        packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
+        if(NMSVersion.compareNMSVersion("1.17")){
+            WrappedDataWatcher metadata = new WrappedDataWatcher();
+            metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), (byte) (0x08));
+            packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
+        }else {
+            WrappedDataWatcher watcher = new WrappedDataWatcher();
+            WrappedDataWatcher.Serializer serializer = WrappedDataWatcher.Registry.get(Byte.class);
+            watcher.setObject(14, serializer, (byte) (0x08));
+            packet.getWatchableCollectionModifier().write(0, watcher.getWatchableObjects());
+        }
+
         PackEntity.sendPack(packet);
     }
     //有手臂
@@ -74,9 +99,17 @@ public class ArmorStandOther {
         PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.ENTITY_METADATA);
         packet.getModifier().writeDefaults();
         packet.getIntegers().write(0, entityID);
-        WrappedDataWatcher metadata = new WrappedDataWatcher();
-        metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), (byte) (0x04));
-        packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
+        if(NMSVersion.compareNMSVersion("1.17")){
+            WrappedDataWatcher metadata = new WrappedDataWatcher();
+            metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), (byte) (0x04));
+            packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
+        }else {
+            WrappedDataWatcher watcher = new WrappedDataWatcher();
+            WrappedDataWatcher.Serializer serializer = WrappedDataWatcher.Registry.get(Byte.class);
+            watcher.setObject(14, serializer, (byte) (0x04));
+            packet.getWatchableCollectionModifier().write(0, watcher.getWatchableObjects());
+        }
+
         PackEntity.sendPack(packet);
     }
     //小盔甲架
@@ -84,9 +117,42 @@ public class ArmorStandOther {
         PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.ENTITY_METADATA);
         packet.getModifier().writeDefaults();
         packet.getIntegers().write(0, entityID);
-        WrappedDataWatcher metadata = new WrappedDataWatcher();
-        metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), (byte) (0x01));
-        packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
+        if(NMSVersion.compareNMSVersion("1.17")){
+            WrappedDataWatcher metadata = new WrappedDataWatcher();
+            metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), (byte) (0x01));
+            packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
+        }else {
+            WrappedDataWatcher watcher = new WrappedDataWatcher();
+            WrappedDataWatcher.Serializer serializer = WrappedDataWatcher.Registry.get(Byte.class);
+            watcher.setObject(14, serializer, (byte) (0x01));
+            packet.getWatchableCollectionModifier().write(0, watcher.getWatchableObjects());
+        }
+        PackEntity.sendPack(packet);
+    }
+
+    public static void holographic(int entityID, boolean marker){
+        PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.ENTITY_METADATA);
+        packet.getModifier().writeDefaults();
+        packet.getIntegers().write(0, entityID);
+
+        byte all =  (byte) 0x01 | 0x08;
+
+        if(marker){
+            all =  (byte) 0x01 | 0x08 | 0x10;
+        }
+
+        if(NMSVersion.compareNMSVersion("1.17")){
+            WrappedDataWatcher metadata = new WrappedDataWatcher();
+            metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), all);
+            metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(0, WrappedDataWatcher.Registry.get(Byte.class)), (byte) (0x20));
+            packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
+        }else {
+            WrappedDataWatcher watcher = new WrappedDataWatcher();
+            WrappedDataWatcher.Serializer serializer = WrappedDataWatcher.Registry.get(Byte.class);
+            watcher.setObject(14, serializer, all);
+            watcher.setObject(0, serializer, (byte) (0x20));
+            packet.getWatchableCollectionModifier().write(0, watcher.getWatchableObjects());
+        }
         PackEntity.sendPack(packet);
     }
 

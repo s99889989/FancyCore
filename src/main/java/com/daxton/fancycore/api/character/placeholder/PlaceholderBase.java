@@ -1,123 +1,96 @@
 package com.daxton.fancycore.api.character.placeholder;
 
 
-import com.daxton.fancycore.FancyCore;
+import com.daxton.fancycore.manager.PlayerManagerCore;
+import com.daxton.fancycore.other.playerdata.PlayerDataFancy;
 import org.bukkit.entity.LivingEntity;
+
+import java.util.UUID;
 
 import static org.bukkit.attribute.Attribute.GENERIC_MAX_HEALTH;
 
 public class PlaceholderBase {
 
 
-
+    //基礎
     public PlaceholderBase(){
 
     }
 
     public static String valueOf(LivingEntity entity,LivingEntity target, String inputString){
 
-        String outputString = "";
-        String uuidString = entity.getUniqueId().toString();
-        String tUUIDString = "";
-        if(target != null){
-            tUUIDString = target.getUniqueId().toString();
+        //名稱
+        if(inputString.toLowerCase().contains("<fc_base_name")){
+            return entity.getName();
         }
-        if(inputString.toLowerCase().contains("<cd_base_name")){
-            outputString = entity.getName();
+        //UUID
+        if(inputString.toLowerCase().contains("<fc_base_uuid")){
+            return entity.getUniqueId().toString();
         }
-        if(inputString.toLowerCase().contains("<cd_base_uuid")){
-            outputString = entity.getUniqueId().toString();
+        //身高
+        if(inputString.toLowerCase().contains("<fc_base_height")){
+            return String.valueOf(entity.getHeight());
         }
-        if(inputString.toLowerCase().contains("<cd_base_height")){
-            outputString = String.valueOf(entity.getHeight());
+        //目前血量
+        if(inputString.toLowerCase().contains("<fc_base_nowhealth")){
+            return String.valueOf(entity.getHealth());
         }
-        if(inputString.toLowerCase().contains("<cd_base_nowhealth")){
-            outputString = String.valueOf(entity.getHealth());
+        //最高血量
+        if(inputString.toLowerCase().contains("<fc_base_maxhealth")){
+            return String.valueOf(entity.getAttribute(GENERIC_MAX_HEALTH).getValue());
+        }
+        //實體類型
+        if(inputString.toLowerCase().contains("<fc_base_type")){
+            return entity.getType().toString();
+        }
+        //生態域
+        if(inputString.toLowerCase().contains("<fc_base_biome")){
+            return entity.getLocation().getBlock().getBiome().toString();
+        }
+        //世界
+        if(inputString.toLowerCase().contains("<fc_base_world")){
+            return entity.getWorld().toString();
+        }
+        //座標X
+        if(inputString.toLowerCase().contains("<fc_base_loc_x")){
+            return String.valueOf(entity.getLocation().getX());
+        }
+        //座標Y
+        if(inputString.toLowerCase().contains("<fc_base_loc_y")){
+            return String.valueOf(entity.getLocation().getY());
+        }
+        //座標Z
+        if(inputString.toLowerCase().contains("<fc_base_loc_z")){
+            return String.valueOf(entity.getLocation().getZ());
+        }
+        //向量X
+        if(inputString.toLowerCase().contains("<fc_base_vec_x")){
+            return String.valueOf(entity.getLocation().getDirection().getX());
+        }
+        //向量Y
+        if(inputString.toLowerCase().contains("<fc_base_vec_y")){
+            return String.valueOf(entity.getLocation().getDirection().getY());
+        }
+        //向量Z
+        if(inputString.toLowerCase().contains("<fc_base_vec_z")){
+            return String.valueOf(entity.getLocation().getDirection().getZ());
+        }
+        UUID uuid = entity.getUniqueId();
+        PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(uuid);
+        if(playerDataFancy != null){
+            //攻擊傷害
+            if(inputString.toLowerCase().contains("<fc_base_attack_number")){
+                return playerDataFancy.attack_number;
+            }
+            //被攻擊傷害
+            if(inputString.toLowerCase().contains("<fc_base_damaged_number")){
+                return String.valueOf(playerDataFancy.attacked_number);
+            }
+        }
 
-        }
-        if(inputString.toLowerCase().contains("<cd_base_maxhealth")){
-            outputString = String.valueOf(entity.getAttribute(GENERIC_MAX_HEALTH).getValue());
-        }
-        if(inputString.toLowerCase().contains("<cd_base_type")){
-            outputString = entity.getType().toString();
-        }
-        if(inputString.toLowerCase().contains("<cd_base_biome")){
-            outputString = entity.getLocation().getBlock().getBiome().toString();
-        }
-        if(inputString.toLowerCase().contains("<cd_base_world")){
-            outputString = entity.getWorld().toString();
-        }
-        if(inputString.toLowerCase().contains("<cd_base_loc_x")){
-            outputString = String.valueOf(entity.getLocation().getX());
-        }
-        if(inputString.toLowerCase().contains("<cd_base_loc_y")){
-            outputString = String.valueOf(entity.getLocation().getY());
-        }
-        if(inputString.toLowerCase().contains("<cd_base_loc_z")){
-            outputString = String.valueOf(entity.getLocation().getZ());
-        }
-        if(inputString.toLowerCase().contains("<cd_base_vec_x")){
-            outputString = String.valueOf(vectorX(entity));
-        }
-        if(inputString.toLowerCase().contains("<cd_base_vec_y")){
-            outputString = String.valueOf(vectorY(entity));
-        }
-        if(inputString.toLowerCase().contains("<cd_base_vec_z")){
-            outputString = String.valueOf(vectorZ(entity));
-        }
-//        if(inputString.toLowerCase().contains("<cd_base_attack_number")){
-//            if(PlaceholderManager.getCd_Placeholder_Map().get(uuidString+"<cd_attack_number>") != null){
-//                if(target != null){
-//                    if(PlaceholderManager.cd_Attack_Number.get(uuidString+tUUIDString) != null){
-//                        outputString = PlaceholderManager.cd_Attack_Number.get(uuidString+tUUIDString);
-//                    }else {
-//                        outputString = "";
-//                    }
-//                }else {
-//                    outputString = PlaceholderManager.getCd_Placeholder_Map().get(uuidString+"<cd_attack_number>");
-//                }
-//                return outputString;
-//            }
-//
-//        }
-//        if(inputString.toLowerCase().contains("<cd_base_damaged_number")){
-//            if(PlaceholderManager.getCd_Placeholder_Map().get(uuidString+"<cd_damaged_number>") != null){
-//                outputString = PlaceholderManager.getCd_Placeholder_Map().get(uuidString+"<cd_damaged_number>");
-//            }
-//        }
 
-        return outputString;
+        return "";
     }
 
-    public static double vectorX(LivingEntity livingEntity){
-        double xVector = livingEntity.getLocation().getDirection().getX();
-        double rxVector = 0;
-        if(xVector > 0){
-            rxVector = 1;
-        }else{
-            rxVector = -1;
-        }
-        return rxVector;
-    }
-    public static double vectorY(LivingEntity livingEntity){
-        double yVector = livingEntity.getLocation().getDirection().getY();
-        double ryVector = 0;
-        if(yVector > 0){
-            ryVector = 1;
-        }else{
-            ryVector = -1;
-        }
-        return ryVector;
-    }
-    public static double vectorZ(LivingEntity livingEntity){
-        double zVector = livingEntity.getLocation().getDirection().getZ();
-        double rzVector = 0;
-        if(zVector > 0){
-            rzVector = 1;
-        }else{
-            rzVector = -1;
-        }
-        return rzVector;
-    }
 
 }

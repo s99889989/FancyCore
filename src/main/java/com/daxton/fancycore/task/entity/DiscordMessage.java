@@ -1,16 +1,14 @@
 package com.daxton.fancycore.task.entity;
 
-import com.daxton.fancycore.api.aims.entity.GetEntity;
-import com.daxton.fancycore.api.task.FancyAction;
-import com.daxton.fancycore.api.taskaction.MapGetKey;
-import com.daxton.fancycore.api.taskaction.StringToMap;
+import com.daxton.fancycore.other.task.FancyAction;
+import com.daxton.fancycore.other.taskaction.MapGetKey;
+import com.daxton.fancycore.other.taskaction.StringToMap;
 import com.daxton.fancycore.manager.OtherManager;
 import discord4j.common.util.Snowflake;
 import discord4j.core.object.entity.channel.TextChannel;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 
-import java.util.List;
 import java.util.Map;
 
 public class DiscordMessage implements FancyAction {

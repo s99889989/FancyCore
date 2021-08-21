@@ -1,7 +1,7 @@
 package com.daxton.fancycore.task.meta;
 
-import com.daxton.fancycore.api.task.FancyAction;
-import com.daxton.fancycore.api.taskaction.MapGetKey;
+import com.daxton.fancycore.other.task.FancyAction;
+import com.daxton.fancycore.other.taskaction.MapGetKey;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 

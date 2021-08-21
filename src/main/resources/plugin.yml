@@ -3,9 +3,9 @@ version: ${version}
 main: com.daxton.fancycore.FancyCore
 api-version: 1.13
 prefix: FancyCore
-softdepend: [HolographicDisplays, PlaceholderAPI, ProtocolLib, ProtocolSupport]
+softdepend: [ProtocolLib, PlaceholderAPI, Vault, ProtocolSupport, LightAPI]
 authors: [ s99889989 ]
-description: FancyCore
+description: The core function of the Fancy plugin.
 commands:
   fancycore:
     description: Basic instructions.

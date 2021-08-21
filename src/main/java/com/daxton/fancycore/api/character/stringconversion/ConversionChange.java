@@ -61,7 +61,7 @@ public class ConversionChange {
 
                         if(containallKeyList2[1].contains("&")){
 
-                            outputString = ConversionMain.valueOf(self,target,containallKeyList2[1]);
+                            outputString = ConversionMain.valueOf(self,target,containallKeyList2[1], true);
 
                         }else {
                             outputString = containallKeyList2[1];

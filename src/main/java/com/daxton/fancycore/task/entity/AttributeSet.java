@@ -2,10 +2,10 @@ package com.daxton.fancycore.task.entity;
 
 import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.aims.entity.GetEntity;
-import com.daxton.fancycore.api.entity.BukkitAttributeSet;
-import com.daxton.fancycore.api.task.FancyAction;
-import com.daxton.fancycore.api.taskaction.MapGetKey;
-import com.daxton.fancycore.api.taskaction.StringToMap;
+import com.daxton.fancycore.other.entity.BukkitAttributeSet;
+import com.daxton.fancycore.other.task.FancyAction;
+import com.daxton.fancycore.other.taskaction.MapGetKey;
+import com.daxton.fancycore.other.taskaction.StringToMap;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;

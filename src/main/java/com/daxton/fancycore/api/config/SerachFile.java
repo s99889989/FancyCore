@@ -1,10 +1,7 @@
 package com.daxton.fancycore.api.config;
 
-import org.bukkit.plugin.Plugin;
-
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class SerachFile {
 
@@ -58,6 +55,8 @@ public class SerachFile {
         }else{
             File[] subFiles = root.listFiles();
             assert subFiles != null;
+            //List<File> fileList = Arrays.asList(subFiles);
+            Arrays.sort(subFiles, new WindowsExplorerStringComparator());
             for(File f : subFiles){
                 String runOut = f.getAbsolutePath();
                 files.addAll(pathNameList(runOut, startKey, endKey, containKey));

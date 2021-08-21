@@ -1,16 +1,45 @@
 package com.daxton.fancycore.task.player;
 
-import com.daxton.fancycore.api.task.FancyAction;
-import com.daxton.fancycore.api.taskaction.MapGetKey;
+import com.daxton.fancycore.api.aims.entity.GetEntity;
+import com.daxton.fancycore.other.task.FancyAction;
+import com.daxton.fancycore.other.taskaction.MapGetKey;
+import com.daxton.fancycore.other.taskaction.StringToMap;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 
+import java.util.List;
 import java.util.Map;
 
 public class Level implements FancyAction {
 
     public void execute(LivingEntity self, LivingEntity target, Map<String, String> action_Map, Location inputLocation, String taskID){
         MapGetKey actionMapHandle = new MapGetKey(action_Map, self, target);
+
+        String function = actionMapHandle.getString(new String[]{"function","fc"},"add");
+
+        int amount = actionMapHandle.getInt(new String[]{"amount","a"},1);
+
+        //目標
+        String targetString = actionMapHandle.getString(new String[]{"targetkey"}, "");
+        Map<String, String> targetMap = StringToMap.toTargetMap(targetString);
+        List<LivingEntity> targetList = GetEntity.get(self, target, targetMap);
+
+        targetList.forEach(livingEntity -> {
+            if(livingEntity instanceof Player){
+                Player player = (Player) livingEntity;
+                if(function.equalsIgnoreCase("set")){
+                    //設定原版等級
+                    player.setLevel(amount);
+                }else {
+                    //增加原版等級
+                    player.giveExpLevels(amount);
+                }
+
+            }
+
+        });
+
     }
 
 }

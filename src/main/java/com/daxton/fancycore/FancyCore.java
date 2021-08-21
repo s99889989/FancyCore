@@ -2,19 +2,18 @@ package com.daxton.fancycore;
 
 import com.daxton.fancycore.command.MainCommand;
 import com.daxton.fancycore.command.TabCommand;
-import com.daxton.fancycore.listener.AttackListener;
+import com.daxton.fancycore.config.FileConfig;
+import com.daxton.fancycore.listener.attack.AttackListener;
 import com.daxton.fancycore.listener.AttackedListener;
 import com.daxton.fancycore.listener.InventoryListener;
 import com.daxton.fancycore.listener.PlayerListener;
-import com.daxton.fancycore.task.Reload;
-import com.daxton.fancycore.task.Start;
+import com.daxton.fancycore.task.server.Start;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.*;
 import java.util.Objects;
-import java.util.logging.Level;
+
+import static com.daxton.fancycore.config.FileConfig.languageConfig;
 
 public class FancyCore extends JavaPlugin{
 
@@ -23,10 +22,12 @@ public class FancyCore extends JavaPlugin{
     @Override
     public void onEnable() {
         fancyCore = this;
+        //建立設定檔
+        FileConfig.execute();
         //前置插件
         if(!DependPlugins.depend()){
             fancyCore.setEnabled(false);
-            fancyCore.onDisable();
+           // fancyCore.onDisable();
             return;
         }
         //指令
@@ -43,8 +44,7 @@ public class FancyCore extends JavaPlugin{
 
     @Override
     public void onDisable() {
-        fancyCore.getLogger().info("FancyCore uninstall");
-        fancyCore.getLogger().info("FancyCore 卸載");
+        fancyCore.getLogger().info(languageConfig.getString("LogMessage.Disable"));
     }
 
 }

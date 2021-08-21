@@ -31,7 +31,7 @@ public class DigitConversion {
         return r;
     }
 
-    /**位數字的轉換2**/
+    //位數字的轉換2**/
     public static String NumberChange2(String string,String content){
 
         String[] stl2 = content.split(",");

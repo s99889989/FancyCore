@@ -3,7 +3,7 @@ package com.daxton.fancycore.nms.v1_13_R1;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedDataWatcher;
-import com.daxton.fancycore.api.task.PackEntity;
+import com.daxton.fancycore.other.task.PackEntity;
 import net.minecraft.server.v1_13_R1.Vector3f;
 import org.bukkit.util.EulerAngle;
 

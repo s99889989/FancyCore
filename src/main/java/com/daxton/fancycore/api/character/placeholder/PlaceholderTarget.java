@@ -1,5 +1,6 @@
 package com.daxton.fancycore.api.character.placeholder;
 
+import com.daxton.fancymobs.api.placeholder.FancyMobsPlaceholder;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
@@ -11,42 +12,33 @@ public class PlaceholderTarget {
     }
 
     public static String valueOf(LivingEntity entity, String inputString){
-        String outputString = "0";
+
         String key = inputString.replace("_target","").replace(">","");
 
         if(entity instanceof Player){
-            if(key.toLowerCase().contains("<cd_base_")){
-                outputString = PlaceholderBase.valueOf(entity,null,key);
+            if(key.toLowerCase().contains("<fc_base_")){
+                return PlaceholderBase.valueOf(entity,null,key);
             }
-//            if(key.toLowerCase().contains("<cd_player_")){
-//                outputString = PlaceholderPlayer.valueOf(entity,key);
-//            }
-//            if(key.toLowerCase().contains("<cd_class_")){
-//                outputString = PlaceholderClass.valueOf(entity,key);
-//            }
-
-            if(key.toLowerCase().contains("<cd_attribute_")){
-                outputString = PlaceholderAttributes.valueOf(entity, key);
+            if(key.toLowerCase().contains("<fc_player_")){
+                return PlaceholderPlayer.valueOf(entity,key);
+            }
+            if(key.toLowerCase().contains("<fc_attribute_")){
+                return PlaceholderAttributes.valueOf(entity, key);
             }
         }else {
 
-            if(key.toLowerCase().contains("<cd_base_")){
-                outputString = PlaceholderBase.valueOf(entity,null,key);
+            if(key.toLowerCase().contains("<fc_base_")){
+                return PlaceholderBase.valueOf(entity,null,key);
             }
-//            if(key.toLowerCase().contains("<cd_mythic_")){
-//                outputString = PlaceholderMythic.valueOf(entity,key);
-//            }
-//            if(key.toLowerCase().contains("<cd_modelengine_")){
-//                outputString = PlaceholderModelEngine.valueOf(entity,key);
-//            }
-//            if(key.toLowerCase().contains("<cd_attribute_")){
-//                outputString = PlaceholderAttributes.valueOf(entity, key);
-//            }
-
-
+            if(key.toLowerCase().contains("<fc_mythic_")){
+                return FancyMobsPlaceholder.valueOf(entity,key);
+            }
+            if(key.toLowerCase().contains("<fc_attribute_")){
+                return PlaceholderAttributes.valueOf(entity, key);
+            }
 
         }
-        return outputString;
+        return "0";
     }
 
 }

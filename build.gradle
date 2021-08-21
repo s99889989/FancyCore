@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.daxton'
-version '1.1.3'
+version '1.1.7'
 
 repositories {
     mavenCentral()
@@ -40,6 +40,11 @@ repositories {
         name = 'MythicMobs'
         url = 'https://mvn.lumine.io/repository/maven-public/'
     }
+    maven {
+        name = 'LightAPI-fork'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+
 }
 
 dependencies {
@@ -50,12 +55,17 @@ dependencies {
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
     compileOnly group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.7.0";
     compileOnly 'me.clip:placeholderapi:2.10.9'
-    compileOnly 'com.gmail.filoghost.holographicdisplays:holographicdisplays-api:2.4.8'
+    //compileOnly 'com.gmail.filoghost.holographicdisplays:holographicdisplays-api:2.4.8'
     compileOnly "com.github.MilkBowl:VaultAPI:1.7"
     compileOnly "io.lumine.xikage:MythicMobs:4.9.1"
+    compileOnly 'io.github.qveshn:LightAPI-fork:3.4.6-SNAPSHOT'
+
 
     implementation 'com.discord4j:discord4j-core:3.1.7'
 
+    compileOnly fileTree(dir: 'lib', include: ['FMythicLib-1.1.2-173.jar'])
+
+    compileOnly fileTree(dir: 'lib', include: ['FancyMobs-1.1.jar'])
     compileOnly fileTree(dir: 'lib', include: ['ProtocolSupport.jar'])
     compileOnly fileTree(dir: 'lib', include: ['spigot-1.13-D.jar'])
     compileOnly fileTree(dir: 'lib', include: ['spigot-1.13.2-D.jar'])
@@ -71,7 +81,7 @@ shadowJar {
     relocate 'io.netty', 'com.discord4j.shaded.io.netty'
     relocate 'com.fasterxml', 'com.discord4j.shaded.com.fasterxml'
 }
-build.dependsOn shadowJar
+//build.dependsOn shadowJar
 
 processResources {
     filteringCharset = "UTF-8"

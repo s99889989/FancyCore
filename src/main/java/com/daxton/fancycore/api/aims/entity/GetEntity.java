@@ -4,7 +4,7 @@ import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.aims.entity.many.Line;
 import com.daxton.fancycore.api.aims.entity.many.Radius;
 import com.daxton.fancycore.api.aims.entity.one.LookTarget;
-import com.daxton.fancycore.api.taskaction.MapGetKey;
+import com.daxton.fancycore.other.taskaction.MapGetKey;
 import org.bukkit.entity.LivingEntity;
 
 import java.util.ArrayList;
@@ -48,11 +48,6 @@ public class GetEntity {
                 List<LivingEntity> livingEntityList3 = Line.getMulti(self,radius,0.2, false);
                 targetList.addAll(livingEntityList3);
                 break;
-            case "target":
-                if(target != null){
-                    targetList.add(target);
-                }
-                break;
             case "self":
                 targetList.add(self);
                 break;
@@ -71,10 +66,28 @@ public class GetEntity {
                     }
                 });
                 break;
-
+            case "target":
+            default:
+                if(target != null){
+                    targetList.add(target);
+                }
         }
 
-        return targetList;
+        //篩選目標
+        List<LivingEntity> targetFiltList = new ArrayList<>();
+
+        if(!filters.equals("null")){
+            for(LivingEntity livingEntity : targetList){
+                if(Filter.valueOf(livingEntity, filters)){
+                    targetFiltList.add(livingEntity);
+                }
+            }
+        }else {
+            targetFiltList = targetList;
+        }
+
+
+        return targetFiltList;
     }
 
 }

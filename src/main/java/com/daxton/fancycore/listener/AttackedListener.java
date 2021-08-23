@@ -2,6 +2,8 @@ package com.daxton.fancycore.listener;
 
 import com.daxton.fancycore.manager.PlayerManagerCore;
 import com.daxton.fancycore.other.playerdata.PlayerDataFancy;
+import net.citizensnpcs.api.CitizensAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,6 +19,11 @@ public class AttackedListener implements Listener {
 	public void onPhysicalDamage(EntityDamageByEntityEvent event){
 		Entity attacker = event.getDamager();
 		Entity attacked = event.getEntity();
+		if(Bukkit.getServer().getPluginManager().getPlugin("Citizens") !=null){
+			if(CitizensAPI.getNPCRegistry().isNPC(attacked)){
+				return;
+			}
+		}
 		if(!(attacked instanceof Player)){
 			return;
 		}

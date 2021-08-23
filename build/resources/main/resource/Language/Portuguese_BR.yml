@@ -1,0 +1,14 @@
+LogMessage:
+  Reload: '§aLeia novamente o arquivo de configuração.'
+  Disable: '§4Desinstalação do FancyCore.'
+  LoadProtocolLib: '§aProtocolLib carregado.'
+  UnLoadProtocolLib:
+    - '§4*** ProtocolLib não está instalado ou não está habilitado. ***'
+    - '§4*** FancyCore será desativado. ***'
+  LoadPlaceholderAPI: '§aPlaceholderAPI carregado.'
+  UnLoadPlaceholderAPI:
+    - '§4*** PlaceholderAPI não está instalado ou não está habilitado. ***'
+    - '§4*** FancyCore will será desativado. ***'
+  LoadVault: '§aVault carregado.'
+OpMessage:
+  Reload: '§e[FancyCore] §aLeia novamente o arquivo de configuração.'

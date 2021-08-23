@@ -1,0 +1,17 @@
+LogMessage:
+  Reload: '§aRe-read the configuration file.'
+  Disable: '§4FancyCore uninstall.'
+  LoadProtocolLib: '§aLoaded ProtocolLib.'
+  UnLoadProtocolLib:
+    - '§4*** ProtocolLib is not installed or not enabled. ***'
+    - '§4*** FancyCore will be disabled. ***'
+  LoadPlaceholderAPI: '§aLoaded PlaceholderAPI.'
+  UnLoadPlaceholderAPI:
+    - '§4*** PlaceholderAPI is not installed or not enabled. ***'
+    - '§4*** FancyCore will be disabled. ***'
+  LoadVault: '§aLoaded Vault.'
+OpMessage:
+  Reload: '§e[FancyCore] §aRe-read the configuration file.'
+
+
+

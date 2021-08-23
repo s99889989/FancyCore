@@ -13,7 +13,7 @@ public class PlayerDataFancy {
 
 	public Player player;
 	//玩家攻擊數字
-	public String attack_number;
+	public String attack_number = "";
 	//玩家被攻擊數字
 	public double attacked_number;
 

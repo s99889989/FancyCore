@@ -1,9 +1,13 @@
 package com.daxton.fancycore.listener.attack;
 
 
+import com.daxton.fancycore.api.aims.entity.Convert;
 import com.daxton.fancycore.manager.PlayerManagerCore;
 import com.daxton.fancycore.other.playerdata.PlayerDataFancy;
+import net.citizensnpcs.api.CitizensAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -16,10 +20,14 @@ public class AttackListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)//攻擊
 	public void onPhysicalDamage(EntityDamageByEntityEvent event){
-		Entity attacker = event.getDamager();
+		Entity attacker = Convert.convertEntity(event.getDamager());
 		Entity attacked = event.getEntity();
-
-		if(!(attacker instanceof Player)){
+		if(Bukkit.getServer().getPluginManager().getPlugin("Citizens") !=null){
+			if(CitizensAPI.getNPCRegistry().isNPC(event.getEntity())){
+				return;
+			}
+		}
+		if(!(attacked instanceof LivingEntity) || !(attacker instanceof Player)){
 			return;
 		}
 		Player killer = (Player) attacker;
@@ -33,8 +41,6 @@ public class AttackListener implements Listener {
 		}else {
 			playerDataFancy.attack_number = String.valueOf(damagedNumber);
 		}
-
-
 
 	}
 

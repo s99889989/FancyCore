@@ -1,0 +1,335 @@
+com/daxton/fancycore/nms/v1_17_R1/ItemToBaseComponent.java
+ com.daxton.fancycore.nms.v1_17_R1.ItemToBaseComponent
+com/daxton/fancycore/api/config/ConfigLoad.java
+ com.daxton.fancycore.api.config.ConfigLoad
+com/daxton/fancycore/api/other/Arithmetic.java
+ com.daxton.fancycore.api.other.Arithmetic
+ com.daxton.fancycore.api.other.Arithmetic$1
+com/daxton/fancycore/nms/v1_16_R2/ArmorStand.java
+ com.daxton.fancycore.nms.v1_16_R2.ArmorStand
+com/daxton/fancycore/command/MainCommand.java
+ com.daxton.fancycore.command.MainCommand
+com/daxton/fancycore/task/server/Start.java
+ com.daxton.fancycore.task.server.Start
+com/daxton/fancycore/api/character/conversion/ColorConversion.java
+ com.daxton.fancycore.api.character.conversion.ColorConversion
+com/daxton/fancycore/api/character/stringconversion/ConversionCustom.java
+ com.daxton.fancycore.api.character.stringconversion.ConversionCustom
+com/daxton/fancycore/api/character/stringconversion/ConversionColor.java
+ com.daxton.fancycore.api.character.stringconversion.ConversionColor
+com/daxton/fancycore/nms/v1_16_R1/ItemToBaseComponent.java
+ com.daxton.fancycore.nms.v1_16_R1.ItemToBaseComponent
+com/daxton/fancycore/manager/PlayerManagerCore.java
+ com.daxton.fancycore.manager.PlayerManagerCore
+com/daxton/fancycore/task/location/MessageFloat.java
+ com.daxton.fancycore.task.location.MessageFloat
+com/daxton/fancycore/other/hologram/FHologramsAPI.java
+ com.daxton.fancycore.other.hologram.FHologramsAPI
+com/daxton/fancycore/task/entity/InvisibleSet.java
+ com.daxton.fancycore.task.entity.InvisibleSet
+ com.daxton.fancycore.task.entity.InvisibleSet$1
+com/daxton/fancycore/task/player/Experience.java
+ com.daxton.fancycore.task.player.Experience
+com/daxton/fancycore/Test.java
+ com.daxton.fancycore.Test
+com/daxton/fancycore/nms/v1_16_R2/ItemDropMetadata.java
+ com.daxton.fancycore.nms.v1_16_R2.ItemDropMetadata
+com/daxton/fancycore/api/gui/GuiButtomSet.java
+ com.daxton.fancycore.api.gui.GuiButtomSet
+com/daxton/fancycore/hook/Vault/Currency.java
+ com.daxton.fancycore.hook.Vault.Currency
+com/daxton/fancycore/api/aims/entity/one/LookTarget.java
+ com.daxton.fancycore.api.aims.entity.one.LookTarget
+com/daxton/fancycore/api/character/stringconversion/ConversionMessage.java
+ com.daxton.fancycore.api.character.stringconversion.ConversionMessage
+com/daxton/fancycore/task/entity/GlowSet.java
+ com.daxton.fancycore.task.entity.GlowSet
+com/daxton/fancycore/api/character/placeholder/PlaceholderSelf.java
+ com.daxton.fancycore.api.character.placeholder.PlaceholderSelf
+com/daxton/fancycore/task/entity/PotionEffect.java
+ com.daxton.fancycore.task.entity.PotionEffect
+com/daxton/fancycore/nms/ItemBaseComponent.java
+ com.daxton.fancycore.nms.ItemBaseComponent
+com/daxton/fancycore/nms/v1_16_R1/ItemDropMetadata.java
+ com.daxton.fancycore.nms.v1_16_R1.ItemDropMetadata
+com/daxton/fancycore/api/aims/entity/Convert.java
+ com.daxton.fancycore.api.aims.entity.Convert
+com/daxton/fancycore/api/number/Random.java
+ com.daxton.fancycore.api.number.Random
+com/daxton/fancycore/nms/v1_16_R3/ItemDropMetadata.java
+ com.daxton.fancycore.nms.v1_16_R3.ItemDropMetadata
+com/daxton/fancycore/other/task/PackPlayer.java
+ com.daxton.fancycore.other.task.PackPlayer
+com/daxton/fancycore/FancyCore.java
+ com.daxton.fancycore.FancyCore
+com/daxton/fancycore/other/hologram/TextHol.java
+ com.daxton.fancycore.other.hologram.TextHol
+com/daxton/fancycore/other/task/guise/GuiseEntityAPI.java
+ com.daxton.fancycore.other.task.guise.GuiseEntityAPI
+com/daxton/fancycore/other/task/PackEntity.java
+ com.daxton.fancycore.other.task.PackEntity
+com/daxton/fancycore/nms/v1_17_R1/ArmorStand.java
+ com.daxton.fancycore.nms.v1_17_R1.ArmorStand
+com/daxton/fancycore/task/entity/MythicAction.java
+ com.daxton.fancycore.task.entity.MythicAction
+com/daxton/fancycore/task/player/BossBarSend.java
+ com.daxton.fancycore.task.player.BossBarSend
+com/daxton/fancycore/task/player/MoneySet.java
+ com.daxton.fancycore.task.player.MoneySet
+com/daxton/fancycore/api/aims/entity/GetEntity.java
+ com.daxton.fancycore.api.aims.entity.GetEntity
+com/daxton/fancycore/listener/AttackedListener.java
+ com.daxton.fancycore.listener.AttackedListener
+com/daxton/fancycore/manager/ProtocolMap.java
+ com.daxton.fancycore.manager.ProtocolMap
+com/daxton/fancycore/task/location/BlockSet.java
+ com.daxton.fancycore.task.location.BlockSet
+com/daxton/fancycore/api/aims/entity/judgment/Range.java
+ com.daxton.fancycore.api.aims.entity.judgment.Range
+com/daxton/fancycore/api/aims/entity/many/Line.java
+ com.daxton.fancycore.api.aims.entity.many.Line
+com/daxton/fancycore/api/character/stringconversion/ConversionPlaceholderAPI.java
+ com.daxton.fancycore.api.character.stringconversion.ConversionPlaceholderAPI
+com/daxton/fancycore/nms/v1_13_R1/ItemDropMetadata.java
+ com.daxton.fancycore.nms.v1_13_R1.ItemDropMetadata
+com/daxton/fancycore/task/entity/Heal.java
+ com.daxton.fancycore.task.entity.Heal
+com/daxton/fancycore/task/meta/ClearAction.java
+ com.daxton.fancycore.task.meta.ClearAction
+com/daxton/fancycore/nms/v1_13_R2/ArmorStand.java
+ com.daxton.fancycore.nms.v1_13_R2.ArmorStand
+com/daxton/fancycore/gui/MainOpen.java
+ com.daxton.fancycore.gui.MainOpen
+com/daxton/fancycore/api/other/StringSplit.java
+ com.daxton.fancycore.api.other.StringSplit
+com/daxton/fancycore/task/player/Title.java
+ com.daxton.fancycore.task.player.Title
+com/daxton/fancycore/api/item/ItemSet.java
+ com.daxton.fancycore.api.item.ItemSet
+com/daxton/fancycore/other/hologram/FHologram.java
+ com.daxton.fancycore.other.hologram.FHologram
+com/daxton/fancycore/nms/v1_15_R1/ItemDropMetadata.java
+ com.daxton.fancycore.nms.v1_15_R1.ItemDropMetadata
+com/daxton/fancycore/api/character/stringconversion/ConversionMath.java
+ com.daxton.fancycore.api.character.stringconversion.ConversionMath
+com/daxton/fancycore/api/other/RandonSet.java
+ com.daxton.fancycore.api.other.RandonSet
+com/daxton/fancycore/task/entity/Message.java
+ com.daxton.fancycore.task.entity.Message
+com/daxton/fancycore/other/entity/BukkitAttributeSet.java
+ com.daxton.fancycore.other.entity.BukkitAttributeSet
+com/daxton/fancycore/api/item/CItem.java
+ com.daxton.fancycore.api.item.CItem
+com/daxton/fancycore/task/entity/Teleport.java
+ com.daxton.fancycore.task.entity.Teleport
+com/daxton/fancycore/api/gui/GuiCloseAction.java
+ com.daxton.fancycore.api.gui.GuiCloseAction
+com/daxton/fancycore/api/config/WindowsExplorerStringComparator.java
+ com.daxton.fancycore.api.config.WindowsExplorerStringComparator
+com/daxton/fancycore/api/character/stringconversion/KeyMap.java
+ com.daxton.fancycore.api.character.stringconversion.KeyMap
+com/daxton/fancycore/api/aims/other/ThreeDLocation.java
+ com.daxton.fancycore.api.aims.other.ThreeDLocation
+com/daxton/fancycore/api/character/placeholder/PlaceholderOther.java
+ com.daxton.fancycore.api.character.placeholder.PlaceholderOther
+com/daxton/fancycore/other/task/CopyClipboard.java
+ com.daxton.fancycore.other.task.CopyClipboard
+com/daxton/fancycore/api/other/CountWords.java
+ com.daxton.fancycore.api.other.CountWords
+com/daxton/fancycore/api/other/DigitConversion.java
+ com.daxton.fancycore.api.other.DigitConversion
+com/daxton/fancycore/api/config/FileCopy.java
+ com.daxton.fancycore.api.config.FileCopy
+com/daxton/fancycore/api/aims/other/EulerAngles.java
+ com.daxton.fancycore.api.aims.other.EulerAngles
+com/daxton/fancycore/api/config/SerachFile.java
+ com.daxton.fancycore.api.config.SerachFile
+com/daxton/fancycore/task/entity/Damage.java
+ com.daxton.fancycore.task.entity.Damage
+com/daxton/fancycore/api/character/stringconversion/ConversionChange.java
+ com.daxton.fancycore.api.character.stringconversion.ConversionChange
+com/daxton/fancycore/other/hologram/FString.java
+ com.daxton.fancycore.other.hologram.FString
+com/daxton/fancycore/api/aims/other/Quaternion.java
+ com.daxton.fancycore.api.aims.other.Quaternion
+com/daxton/fancycore/nms/ArmorStandOther.java
+ com.daxton.fancycore.nms.ArmorStandOther
+com/daxton/fancycore/task/location/ModelEngineSet.java
+ com.daxton.fancycore.task.location.ModelEngineSet
+com/daxton/fancycore/nms/v1_13_R1/ItemToBaseComponent.java
+ com.daxton.fancycore.nms.v1_13_R1.ItemToBaseComponent
+com/daxton/fancycore/other/taskaction/MapGetKey.java
+ com.daxton.fancycore.other.taskaction.MapGetKey
+com/daxton/fancycore/task/entity/NameSet.java
+ com.daxton.fancycore.task.entity.NameSet
+com/daxton/fancycore/nms/v1_13_R2/ItemToBaseComponent.java
+ com.daxton.fancycore.nms.v1_13_R2.ItemToBaseComponent
+com/daxton/fancycore/task/TaskAction.java
+ com.daxton.fancycore.task.TaskAction
+com/daxton/fancycore/nms/ItemDropMetadata.java
+ com.daxton.fancycore.nms.ItemDropMetadata
+com/daxton/fancycore/task/location/Sound.java
+ com.daxton.fancycore.task.location.Sound
+com/daxton/fancycore/task/condition/HealthChange.java
+ com.daxton.fancycore.task.condition.HealthChange
+com/daxton/fancycore/task/meta/SwitchAction.java
+ com.daxton.fancycore.task.meta.SwitchAction
+com/daxton/fancycore/task/condition/Contains.java
+ com.daxton.fancycore.task.condition.Contains
+com/daxton/fancycore/api/character/stringconversion/ConversionPlaceholder.java
+ com.daxton.fancycore.api.character.stringconversion.ConversionPlaceholder
+com/daxton/fancycore/nms/v1_13_R1/ArmorStand.java
+ com.daxton.fancycore.nms.v1_13_R1.ArmorStand
+com/daxton/fancycore/api/gui/GuiButtom.java
+ com.daxton.fancycore.api.gui.GuiButtom
+com/daxton/fancycore/other/taskaction/StringToMap.java
+ com.daxton.fancycore.other.taskaction.StringToMap
+com/daxton/fancycore/task/entity/LoggerMessage.java
+ com.daxton.fancycore.task.entity.LoggerMessage
+com/daxton/fancycore/api/judgment/NumberJudgment.java
+ com.daxton.fancycore.api.judgment.NumberJudgment
+com/daxton/fancycore/task/meta/StartAction.java
+ com.daxton.fancycore.task.meta.StartAction
+ com.daxton.fancycore.task.meta.StartAction$1
+ com.daxton.fancycore.task.meta.StartAction$2
+ com.daxton.fancycore.task.meta.StartAction$3
+com/daxton/fancycore/api/character/stringconversion/ConversionMain.java
+ com.daxton.fancycore.api.character.stringconversion.ConversionMain
+com/daxton/fancycore/nms/v1_14_R1/ItemDropMetadata.java
+ com.daxton.fancycore.nms.v1_14_R1.ItemDropMetadata
+com/daxton/fancycore/task/entity/DiscordMessage.java
+ com.daxton.fancycore.task.entity.DiscordMessage
+com/daxton/fancycore/api/aims/entity/many/Radius.java
+ com.daxton.fancycore.api.aims.entity.many.Radius
+com/daxton/fancycore/nms/v1_16_R3/EntityJson.java
+ com.daxton.fancycore.nms.v1_16_R3.EntityJson
+com/daxton/fancycore/nms/v1_15_R1/ItemToBaseComponent.java
+ com.daxton.fancycore.nms.v1_15_R1.ItemToBaseComponent
+com/daxton/fancycore/api/config/SearchConfigMap.java
+ com.daxton.fancycore.api.config.SearchConfigMap
+com/daxton/fancycore/task/meta/run/FixedPoint.java
+ com.daxton.fancycore.task.meta.run.FixedPoint
+com/daxton/fancycore/task/entity/Move.java
+ com.daxton.fancycore.task.entity.Move
+com/daxton/fancycore/api/character/placeholder/PlaceholderAttributes.java
+ com.daxton.fancycore.api.character.placeholder.PlaceholderAttributes
+com/daxton/fancycore/task/entity/AttributeSet.java
+ com.daxton.fancycore.task.entity.AttributeSet
+ com.daxton.fancycore.task.entity.AttributeSet$1
+com/daxton/fancycore/task/player/Level.java
+ com.daxton.fancycore.task.player.Level
+com/daxton/fancycore/api/character/conversion/StringConversion.java
+ com.daxton.fancycore.api.character.conversion.StringConversion
+com/daxton/fancycore/nms/v1_14_R1/ItemToBaseComponent.java
+ com.daxton.fancycore.nms.v1_14_R1.ItemToBaseComponent
+com/daxton/fancycore/config/FileConfig.java
+ com.daxton.fancycore.config.FileConfig
+com/daxton/fancycore/task/meta/Action.java
+ com.daxton.fancycore.task.meta.Action
+ com.daxton.fancycore.task.meta.Action$1
+com/daxton/fancycore/api/aims/entity/Filter.java
+ com.daxton.fancycore.api.aims.entity.Filter
+com/daxton/fancycore/api/config/SerachZip.java
+ com.daxton.fancycore.api.config.SerachZip
+com/daxton/fancycore/api/gui/GuiAction.java
+ com.daxton.fancycore.api.gui.GuiAction
+com/daxton/fancycore/api/aims/location/one/Look.java
+ com.daxton.fancycore.api.aims.location.one.Look
+com/daxton/fancycore/listener/attack/AttackListener.java
+ com.daxton.fancycore.listener.attack.AttackListener
+com/daxton/fancycore/api/character/conversion/NumberConversion.java
+ com.daxton.fancycore.api.character.conversion.NumberConversion
+com/daxton/fancycore/nms/v1_17_R1/ItemDropMetadata.java
+ com.daxton.fancycore.nms.v1_17_R1.ItemDropMetadata
+com/daxton/fancycore/nms/v1_16_R3/ArmorStand.java
+ com.daxton.fancycore.nms.v1_16_R3.ArmorStand
+com/daxton/fancycore/task/condition/Equals.java
+ com.daxton.fancycore.task.condition.Equals
+com/daxton/fancycore/api/item/ItemKeySearch.java
+ com.daxton.fancycore.api.item.ItemKeySearch
+com/daxton/fancycore/task/condition/Compare.java
+ com.daxton.fancycore.task.condition.Compare
+com/daxton/fancycore/other/hologram/FloatMessage.java
+ com.daxton.fancycore.other.hologram.FloatMessage
+com/daxton/fancycore/command/TabCommand.java
+ com.daxton.fancycore.command.TabCommand
+com/daxton/fancycore/DependPlugins.java
+ com.daxton.fancycore.DependPlugins
+com/daxton/fancycore/api/aims/vector/PathDeviation.java
+ com.daxton.fancycore.api.aims.vector.PathDeviation
+com/daxton/fancycore/task/location/LightSet.java
+ com.daxton.fancycore.task.location.LightSet
+ com.daxton.fancycore.task.location.LightSet$1
+com/daxton/fancycore/api/other/StringFind.java
+ com.daxton.fancycore.api.other.StringFind
+com/daxton/fancycore/task/server/Reload.java
+ com.daxton.fancycore.task.server.Reload
+com/daxton/fancycore/manager/TaskActionManager.java
+ com.daxton.fancycore.manager.TaskActionManager
+com/daxton/fancycore/other/task/guise/GuiseEntity.java
+ com.daxton.fancycore.other.task.guise.GuiseEntity
+com/daxton/fancycore/api/aims/location/GetLocation.java
+ com.daxton.fancycore.api.aims.location.GetLocation
+com/daxton/fancycore/nms/v1_13_R2/ItemDropMetadata.java
+ com.daxton.fancycore.nms.v1_13_R2.ItemDropMetadata
+com/daxton/fancycore/api/config/ConfigCreate.java
+ com.daxton.fancycore.api.config.ConfigCreate
+com/daxton/fancycore/nms/v1_14_R1/ArmorStand.java
+ com.daxton.fancycore.nms.v1_14_R1.ArmorStand
+com/daxton/fancycore/manager/OtherManager.java
+ com.daxton.fancycore.manager.OtherManager
+com/daxton/fancycore/task/meta/run/Loop.java
+ com.daxton.fancycore.task.meta.run.Loop
+com/daxton/fancycore/api/config/SearchConfigFile.java
+ com.daxton.fancycore.api.config.SearchConfigFile
+com/daxton/fancycore/api/character/placeholder/PlaceholderTarget.java
+ com.daxton.fancycore.api.character.placeholder.PlaceholderTarget
+com/daxton/fancycore/nms/v1_16_R3/ItemToBaseComponent.java
+ com.daxton.fancycore.nms.v1_16_R3.ItemToBaseComponent
+com/daxton/fancycore/other/task/FancyAction.java
+ com.daxton.fancycore.other.task.FancyAction
+com/daxton/fancycore/task/condition/Break.java
+ com.daxton.fancycore.task.condition.Break
+com/daxton/fancycore/hook/ProtocolSupport/SetClientVersion.java
+ com.daxton.fancycore.hook.ProtocolSupport.SetClientVersion
+com/daxton/fancycore/task/meta/run/OrbitalAction.java
+ com.daxton.fancycore.task.meta.run.OrbitalAction
+com/daxton/fancycore/nms/v1_16_R1/ArmorStand.java
+ com.daxton.fancycore.nms.v1_16_R1.ArmorStand
+com/daxton/fancycore/task/player/Command.java
+ com.daxton.fancycore.task.player.Command
+com/daxton/fancycore/api/other/NimitNumber.java
+ com.daxton.fancycore.api.other.NimitNumber
+com/daxton/fancycore/nms/v1_15_R1/ArmorStand.java
+ com.daxton.fancycore.nms.v1_15_R1.ArmorStand
+com/daxton/fancycore/nms/v1_16_R2/ItemToBaseComponent.java
+ com.daxton.fancycore.nms.v1_16_R2.ItemToBaseComponent
+com/daxton/fancycore/api/aims/vector/LocationVector.java
+ com.daxton.fancycore.api.aims.vector.LocationVector
+com/daxton/fancycore/task/player/ActionBar.java
+ com.daxton.fancycore.task.player.ActionBar
+com/daxton/fancycore/nms/NMSVersion.java
+ com.daxton.fancycore.nms.NMSVersion
+com/daxton/fancycore/api/character/placeholder/PlaceholderBase.java
+ com.daxton.fancycore.api.character.placeholder.PlaceholderBase
+com/daxton/fancycore/listener/attack/MythicLibListener.java
+ com.daxton.fancycore.listener.attack.MythicLibListener
+com/daxton/fancycore/listener/PlayerListener.java
+ com.daxton.fancycore.listener.PlayerListener
+com/daxton/fancycore/other/playerdata/PlayerDataFancy.java
+ com.daxton.fancycore.other.playerdata.PlayerDataFancy
+com/daxton/fancycore/listener/PackListener.java
+ com.daxton.fancycore.listener.PackListener
+ com.daxton.fancycore.listener.PackListener$1
+com/daxton/fancycore/api/character/placeholder/PlaceholderPlayer.java
+ com.daxton.fancycore.api.character.placeholder.PlaceholderPlayer
+com/daxton/fancycore/task/location/ParticlesSend.java
+ com.daxton.fancycore.task.location.ParticlesSend
+com/daxton/fancycore/task/player/CustomInventory.java
+ com.daxton.fancycore.task.player.CustomInventory
+com/daxton/fancycore/api/gui/GUI.java
+ com.daxton.fancycore.api.gui.GUI
+com/daxton/fancycore/api/gui/GUISlotItem.java
+ com.daxton.fancycore.api.gui.GUISlotItem
+com/daxton/fancycore/listener/InventoryListener.java
+ com.daxton.fancycore.listener.InventoryListener

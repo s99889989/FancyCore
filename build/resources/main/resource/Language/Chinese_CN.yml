@@ -1,0 +1,14 @@
+LogMessage:
+  Reload: '§a重新读取设定档。'
+  Disable: '§4FancyCore 卸载。'
+  LoadProtocolLib: '§aProtocolLib 已加载。'
+  UnLoadProtocolLib:
+    - '§4*** ProtocolLib未安装或未启用。 ***'
+    - '§4*** FancyCore将被卸载。 ***'
+  LoadPlaceholderAPI: '§aPlaceholderAPI 已加载。'
+  UnLoadPlaceholderAPI:
+    - '§4*** PlaceholderAPI未安装或未启用。 ***'
+    - '§4*** FancyCore将被卸载。 ***'
+  LoadVault: '§aVault 已加载。'
+OpMessage:
+  Reload: '§e[FancyCore] §a重新读取设定档。'

@@ -1,5 +1,6 @@
 package com.daxton.fancycore.api.gui;
 
+import com.daxton.fancycore.FancyCore;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -93,20 +94,21 @@ public class GUI extends GUISlotItem {
     public void setAction(GuiAction guiAction, int vertical, int horizontal){
         action_Map.put(itemLocation(vertical, horizontal, 54), guiAction);
     }
-    //在指定格數使用動作，位置為1~54。
+    //在指定格數使用動作，位置為1~81。
     public void setAction(GuiAction guiAction, int place){
         if(place < 1)
             place = 1;
-        if(place > 54)
-            place =54;
+        if(place > 90)
+            place = 90;
         action_Map.put(place-1, guiAction);
     }
     //指定範範圍的空位置，插入動作，
     public void addAction(GuiAction guiAction, int head, int tail, List<Integer> ignore){
         if(tail > head){
-            if( checkInventorySize(head-1, inventory.getSize()) && checkInventorySize(tail-1, inventory.getSize()) ){
+            if( checkInventorySize(head-1, inventory.getSize()+36) && checkInventorySize(tail-1, inventory.getSize()+36) ){
                 for(int i = head; i < tail+1 ; i++){
                     if(getAction(i) == null && !ignore.contains(i)){
+                        //FancyCore.fancyCore.getLogger().info("XX: "+i);
                         setAction(guiAction, i);
                         break;
                     }
@@ -134,8 +136,8 @@ public class GUI extends GUISlotItem {
     public GuiAction getAction(int place){
         if(place < 1)
             place = 1;
-        if(place > 54)
-            place =54;
+        if(place > 90)
+            place = 90;
         return action_Map.get(place-1);
     }
 

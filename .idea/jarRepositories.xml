@@ -56,5 +56,10 @@
       <option name="name" value="MythicMobs" />
       <option name="url" value="https://mvn.lumine.io/repository/maven-public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="Citizens" />
+      <option name="name" value="Citizens" />
+      <option name="url" value="http://repo.citizensnpcs.co/" />
+    </remote-repository>
   </component>
 </project>

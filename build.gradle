@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.daxton'
-version '1.1.7'
+version '1.1.8'
 
 repositories {
     mavenCentral()
@@ -44,7 +44,10 @@ repositories {
         name = 'LightAPI-fork'
         url = 'https://oss.sonatype.org/content/groups/public/'
     }
-
+    maven {
+        name = 'Citizens'
+        url = 'http://repo.citizensnpcs.co/'
+    }
 }
 
 dependencies {
@@ -59,7 +62,7 @@ dependencies {
     compileOnly "com.github.MilkBowl:VaultAPI:1.7"
     compileOnly "io.lumine.xikage:MythicMobs:4.9.1"
     compileOnly 'io.github.qveshn:LightAPI-fork:3.4.6-SNAPSHOT'
-
+    compileOnly 'net.citizensnpcs:citizensapi:2.0.20-SNAPSHOT'
 
     implementation 'com.discord4j:discord4j-core:3.1.7'
 

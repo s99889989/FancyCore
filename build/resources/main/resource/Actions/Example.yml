@@ -1,0 +1,47 @@
+#攻擊顯示傷害(向上)
+#Attack display damage (up)
+#-------------------------------------------------------------------------#
+AttackDisplayUp:
+  Action:
+    - Loop[onStart=AttackDisplayUp-Start;onTime=AttackDisplayUp-Time;onEnd=AttackDisplayUp-End;period=3;duration=20]
+AttackDisplayUp-Start:
+  Action:
+    - FloatMessage[m=&attack_number&] @LocTarget{LA=0|&attack_number_height&|0} #
+AttackDisplayUp-Time:
+  Action:
+    - FloatMessage[teleport=true] @LocAdd{LA=0|0.1|0}
+AttackDisplayUp-End:
+  Action:
+    - FloatMessage[delete=true]
+
+#攻擊顯示傷害(向上)(爆擊)Crit
+#Attack display damage (up)(Critical)
+#-------------------------------------------------------------------------#
+AttackDisplayUpCrit:
+  Action:
+    - Loop[onStart=AttackDisplayUpCrit-Start;onTime=AttackDisplayUpCrit-Time;onEnd=AttackDisplayUpCrit-End;period=3;duration=20]
+AttackDisplayUpCrit-Start:
+  Action:
+    - FloatMessage[m=&attack_number_crit&] @LocTarget{LA=0|&attack_number_height&|0}
+AttackDisplayUpCrit-Time:
+  Action:
+    - FloatMessage[teleport=true] @LocAdd{LA=0|0.1|0}
+AttackDisplayUpCrit-End:
+  Action:
+    - FloatMessage[delete=true]
+
+#攻擊顯示傷害(向上)(失敗)
+#Attack display damage (up)(Miss)
+#-------------------------------------------------------------------------#
+AttackDisplayUpMiss:
+  Action:
+    - Loop[onStart=AttackDisplayUpMiss-Start;onTime=AttackDisplayUpMiss-Time;onEnd=AttackDisplayUpMiss-End;period=3;duration=20]
+AttackDisplayUpMiss-Start:
+  Action:
+    - FloatMessage[m=&attack_number_miss&] @LocTarget{LA=0|&attack_number_height&|0}
+AttackDisplayUpMiss-Time:
+  Action:
+    - FloatMessage[teleport=true] @LocAdd{LA=0|0.1|0}
+AttackDisplayUpMiss-End:
+  Action:
+    - FloatMessage[delete=true]

@@ -172,6 +172,9 @@ public class GUISlotItem{
         String uuidString = player.getUniqueId().toString();
         if(GUI.guiID_gui_Map.get(uuidString) != null){
             GUI gui = GUI.guiID_gui_Map.get(uuidString);
+            if(gui.getCloseAction() != null){
+                gui.getCloseAction().execute();
+            }
             gui.setOpen(false);
         }
 

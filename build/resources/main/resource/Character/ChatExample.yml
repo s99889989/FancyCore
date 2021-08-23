@@ -1,0 +1,24 @@
+#玩家名稱
+chat_name:
+  message:
+    - content[%player_name%]
+
+chat_nowhealth:
+  message:
+    - content[%player_health%]
+    - math[fc=Dec;m=0.0]
+
+chat_maxhealth:
+  message:
+    - content[%player_max_health%]
+    - math[fc=Dec;m=0.0]
+
+######################################
+#把自己血量10分比轉成特定字
+#Convert 10 points of your own HP into a specific word.
+chat_self_health_proportion_10:
+  message:
+    - content[<fc_self_base_nowhealth>/<fc_self_base_maxhealth>*10]
+    - math[fc=Arith]
+    - math [fc=Dec;m=#]
+    - Conver[function=ExSame;m=10>䁙,9>䁘,8>䁗,7>䁖,6>䁕,5>䁔,4>䁓,3>䁒,2>䁑,1>䁐]

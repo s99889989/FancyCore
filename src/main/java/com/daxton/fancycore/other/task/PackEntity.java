@@ -9,11 +9,11 @@ import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.comphenix.protocol.wrappers.WrappedDataWatcher;
 import com.daxton.fancycore.manager.ProtocolMap;
 import com.daxton.fancycore.nms.ItemDropMetadata;
+import com.daxton.fancycore.nms.NMSEntity;
 import com.daxton.fancycore.nms.NMSVersion;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+
+import org.bukkit.*;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -22,6 +22,7 @@ import org.bukkit.util.Vector;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+
 
 public class PackEntity {
 
@@ -71,16 +72,43 @@ public class PackEntity {
         packet.getModifier().writeDefaults();
         packet.getIntegers().write(0, entityID);
         packet.getUUIDs().write(0, uuid);
-//        PacketPlayOutSpawnEntityLiving packetPlayOutSpawnEntityLiving;
-//        PacketPlayOutSpawnEntity packetPlayOutSpawnEntity;
         EntityType entityType;
         try {
             entityType = Enum.valueOf(EntityType.class , entityTypeString.toUpperCase());
-            packet.getEntityTypeModifier().write(0, entityType);
         }catch (Exception exception){
             entityType = EntityType.PIG;
-            packet.getEntityTypeModifier().write(0, entityType);
         }
+
+        int entityTypeID = NMSEntity.getEntityID(entityType);
+
+        //FancyCore.fancyCore.getLogger().info("ID2: "+entityTypeID);
+        packet.getIntegers().write(1, entityTypeID);
+        packet.getDoubles().write(0, inputLocation.getX());
+        packet.getDoubles().write(1, inputLocation.getY());
+        packet.getDoubles().write(2, inputLocation.getZ());
+        if(pitch){
+            packet.getIntegers().write(4, (int) (inputLocation.getPitch() * 256.0F / 360.0F));
+        }
+        if(yaw){
+            packet.getIntegers().write(5, (int) (inputLocation.getYaw() * 256.0F / 360.0F));
+        }
+        sendPack(packet);
+
+        return entityType;
+    }
+
+    //生出該類型生命實體
+    public static EntityType livingEntitySpawn(int entityID, UUID uuid, int entityTypeID, Location inputLocation, boolean pitch, boolean yaw){
+        PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.SPAWN_ENTITY_LIVING);
+        packet.getModifier().writeDefaults();
+        packet.getIntegers().write(0, entityID);
+        packet.getUUIDs().write(0, uuid);
+
+
+        EntityType entityType = EntityType.fromId(entityTypeID);
+
+        packet.getIntegers().write(1, entityTypeID);
+
 
         packet.getDoubles().write(0, inputLocation.getX());
         packet.getDoubles().write(1, inputLocation.getY());
@@ -147,7 +175,14 @@ public class PackEntity {
         packet.getIntegerArrays().write(0, new int[]{ entityID });
         sendPack(packet);
         //PacketPlayOutMount packetPlayOutMount;
-
+    }
+    //騎乘目標
+    public static void mount(int[] entityIDArray, int targetID){
+        PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.MOUNT);
+        packet.getIntegers().write(0, targetID);
+        packet.getIntegerArrays().write(0, entityIDArray);
+        sendPack(packet);
+        //PacketPlayOutMount packetPlayOutMount;
     }
 
     //傳送目標
@@ -214,6 +249,26 @@ public class PackEntity {
         WrappedDataWatcher.Serializer serializer = WrappedDataWatcher.Registry.get(Byte.class);
         watcher.setObject(0, serializer, (byte) (0x80));
         packet.getWatchableCollectionModifier().write(0, watcher.getWatchableObjects());
+        sendPack(packet);
+    }
+
+    //沒有AI
+    public static void noAI(int entityID) {
+        PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.ENTITY_METADATA);
+        packet.getIntegers().write(0, entityID);
+        WrappedDataWatcher metadata = new WrappedDataWatcher();
+        metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), (byte) (0x01));
+        packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
+        sendPack(packet);
+    }
+
+    //設置史萊姆大小
+    public static void slimeSize(int entityID, int size) {
+        PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.ENTITY_METADATA);
+        packet.getIntegers().write(0, entityID);
+        WrappedDataWatcher metadata = new WrappedDataWatcher();
+        metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Integer.class)), size);
+        packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
         sendPack(packet);
     }
 
@@ -320,7 +375,7 @@ public class PackEntity {
     }
 
     //建立隊伍
-    public static void createTeam(LivingEntity livingEntity, ChatColor color, String teamName){
+    public static void createTeam(UUID uuid, ChatColor color, String teamName){
         PacketContainer packet = ProtocolMap.protocolManager.createPacket( PacketType.Play.Server.SCOREBOARD_TEAM );
 
         packet.getStrings().write(0, teamName);
@@ -328,8 +383,9 @@ public class PackEntity {
 
         packet.getEnumModifier(ChatColor.class, MinecraftReflection.getMinecraftClass("EnumChatFormat")).write(0, color);
         packet.getStrings().write(1, "ALWAYS");
-        packet.getSpecificModifier(Collection.class).write(0, Arrays.asList( new String[]{livingEntity.getUniqueId().toString()} ));
-
+        packet.getStrings().write(2, "never");
+        packet.getSpecificModifier(Collection.class).write(0, Arrays.asList( new String[]{uuid.toString()} ));
+        //ScoreboardTeam scoreboardTeam;
         sendPack(packet);
 
     }
@@ -351,7 +407,7 @@ public class PackEntity {
     }
 
     //將生物添加到隊伍中
-    public static void addEntity(LivingEntity livingEntity, ChatColor color, String teamName){
+    public static void addEntity(UUID uuid, ChatColor color, String teamName){
         PacketContainer packet = ProtocolMap.protocolManager.createPacket( PacketType.Play.Server.SCOREBOARD_TEAM );
 
         packet.getStrings().write(0, teamName);
@@ -359,12 +415,12 @@ public class PackEntity {
 
         packet.getEnumModifier(ChatColor.class, MinecraftReflection.getMinecraftClass("EnumChatFormat")).write(0, color);
         packet.getStrings().write(1, "ALWAYS");
-        packet.getSpecificModifier(Collection.class).write(0, Arrays.asList( new String[]{livingEntity.getUniqueId().toString()} ));
+        packet.getSpecificModifier(Collection.class).write(0, Arrays.asList( new String[]{uuid.toString()} ));
         sendPack(packet);
     }
 
     //更新隊伍訊息
-    public static void upTeam(LivingEntity livingEntity, ChatColor color, String teamName){
+    public static void upTeam(UUID uuid, ChatColor color, String teamName){
         PacketContainer packet = ProtocolMap.protocolManager.createPacket( PacketType.Play.Server.SCOREBOARD_TEAM );
 
         packet.getStrings().write(0, teamName);
@@ -372,7 +428,8 @@ public class PackEntity {
 
         packet.getEnumModifier(ChatColor.class, MinecraftReflection.getMinecraftClass("EnumChatFormat")).write(0, color);
         packet.getStrings().write(1, "ALWAYS");
-        packet.getSpecificModifier(Collection.class).write(0, Arrays.asList( new String[]{livingEntity.getUniqueId().toString()} ));
+        packet.getStrings().write(2, "never");
+        packet.getSpecificModifier(Collection.class).write(0, Arrays.asList( new String[]{uuid.toString()} ));
         sendPack(packet);
     }
 

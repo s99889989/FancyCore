@@ -30,10 +30,10 @@ public class GlowSet implements FancyAction {
 
 
 		livingEntityList.forEach(livingEntity -> {
-			PackEntity.createTeam(livingEntity, color, taskID);
+			PackEntity.createTeam(livingEntity.getUniqueId(), color, taskID);
 			PackEntity.setGlowing(livingEntity.getEntityId());
-			PackEntity.addEntity(livingEntity, color, taskID);
-			PackEntity.upTeam(livingEntity, color, taskID);
+			PackEntity.addEntity(livingEntity.getUniqueId(), color, taskID);
+			PackEntity.upTeam(livingEntity.getUniqueId(), color, taskID);
 		});
 
 	}

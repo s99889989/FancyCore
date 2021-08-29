@@ -8,7 +8,7 @@ import com.daxton.fancycore.manager.ProtocolMap;
 
 public class ArmorStandOther {
 
-    //調整盔甲架角度
+    //調整盔甲架角度(head, body, leftarm, rightarm, leftleg, rightleg)
     public static void setArmorStandAngle(int entityID, String type, double x, double y, double z){
         String nmsVersion = NMSVersion.getNMSVersion();
         switch (nmsVersion){
@@ -125,6 +125,30 @@ public class ArmorStandOther {
             WrappedDataWatcher watcher = new WrappedDataWatcher();
             WrappedDataWatcher.Serializer serializer = WrappedDataWatcher.Registry.get(Byte.class);
             watcher.setObject(14, serializer, (byte) (0x01));
+            packet.getWatchableCollectionModifier().write(0, watcher.getWatchableObjects());
+        }
+        PackEntity.sendPack(packet);
+    }
+
+    public static void equipment(int entityID, boolean small){
+        PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Server.ENTITY_METADATA);
+        packet.getModifier().writeDefaults();
+        packet.getIntegers().write(0, entityID);
+
+        byte all =  (byte) 0x04 | 0x08;
+        if(small){
+            all =  (byte) 0x01 | 0x04 | 0x08;
+        }
+        if(NMSVersion.compareNMSVersion("1.17")){
+            WrappedDataWatcher metadata = new WrappedDataWatcher();
+            metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(15, WrappedDataWatcher.Registry.get(Byte.class)), all);
+           // metadata.setObject(new WrappedDataWatcher.WrappedDataWatcherObject(0, WrappedDataWatcher.Registry.get(Byte.class)), (byte) (0x20));
+            packet.getWatchableCollectionModifier().write(0, metadata.getWatchableObjects());
+        }else {
+            WrappedDataWatcher watcher = new WrappedDataWatcher();
+            WrappedDataWatcher.Serializer serializer = WrappedDataWatcher.Registry.get(Byte.class);
+            watcher.setObject(14, serializer, all);
+            //watcher.setObject(0, serializer, (byte) (0x20));
             packet.getWatchableCollectionModifier().write(0, watcher.getWatchableObjects());
         }
         PackEntity.sendPack(packet);

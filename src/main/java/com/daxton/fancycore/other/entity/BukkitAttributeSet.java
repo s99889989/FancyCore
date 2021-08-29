@@ -43,10 +43,22 @@ public class BukkitAttributeSet {
 
     }
 
+    //移除該標籤屬性
+    public static void removeLabelAttr(LivingEntity livingEntity, String label){
+        removeAttribute(livingEntity, "GENERIC_MAX_HEALTH", label);
+        removeAttribute(livingEntity, "GENERIC_KNOCKBACK_RESISTANCE", label);
+        removeAttribute(livingEntity, "GENERIC_MOVEMENT_SPEED", label);
+        removeAttribute(livingEntity, "GENERIC_ATTACK_DAMAGE", label);
+        removeAttribute(livingEntity, "GENERIC_ATTACK_SPEED", label);
+        removeAttribute(livingEntity, "GENERIC_ARMOR", label);
+        removeAttribute(livingEntity, "GENERIC_ARMOR_TOUGHNESS", label);
+        removeAttribute(livingEntity, "GENERIC_LUCK", label);
+    }
+
     //清除該項屬性。(生命實體、屬性名稱)
     public static void removeTypeAttribute(LivingEntity livingEntity, String inherit){
         try {
-            AttributeInstance attributeInstance = livingEntity.getAttribute(Enum.valueOf(Attribute.class,inherit));
+            AttributeInstance attributeInstance = livingEntity.getAttribute(Enum.valueOf(Attribute.class, inherit));
             if(attributeInstance != null){
                 for(AttributeModifier attributeModifier : attributeInstance.getModifiers()){
                     String attrName = attributeModifier.getName();
@@ -60,7 +72,6 @@ public class BukkitAttributeSet {
         }catch (IllegalArgumentException exception){
             //
         }
-
     }
     //移除玩家身上，關於此插件有關的全部屬性
     public static void removeAllAttribute(LivingEntity livingEntity){

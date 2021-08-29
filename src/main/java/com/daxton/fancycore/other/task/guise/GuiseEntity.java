@@ -1,11 +1,14 @@
 package com.daxton.fancycore.other.task.guise;
 
 
+
 import com.daxton.fancycore.other.task.PackEntity;
 import com.daxton.fancycore.nms.ArmorStandOther;
 
 
+
 import org.bukkit.Location;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
@@ -16,9 +19,10 @@ public class GuiseEntity {
 
     private int entityID;
     private Location location;
-    private UUID uuid;
+    public UUID uuid;
     private EntityType entityType;
     private String name = "";
+    public double headRotation = 0;
 
     //建立目標
     public GuiseEntity(Location inputLocation, String entityTypeName, ItemStack itemStack, boolean living, boolean pitch, boolean yaw){
@@ -34,7 +38,22 @@ public class GuiseEntity {
         }
     }
 
-    //穿上裝備
+    //建立目標
+    public GuiseEntity(Location inputLocation, String entityTypeName, ItemStack itemStack, boolean living, boolean pitch, boolean yaw, int eID){
+        int entityID = eID;
+        UUID uuid = UUID.randomUUID();
+        this.entityID = entityID;
+        this.location = inputLocation;
+        this.uuid = uuid;
+        if(living){
+            this.entityType = PackEntity.livingEntitySpawn(entityID, uuid, entityTypeName, inputLocation, pitch, yaw);
+        }else {
+            this.entityType = PackEntity.entitySpawn(entityID, uuid, entityTypeName, inputLocation, itemStack, pitch, yaw);
+        }
+
+    }
+
+    //穿上裝備(部位:HEAD,MAINHAND,OFFHAND,CHEST,LEGS,FEET)
     public void equipment(ItemStack itemStack, String itemSlot){
         PackEntity.equipmentInvisible(this.entityID, itemStack, itemSlot, null);
     }
@@ -58,6 +77,7 @@ public class GuiseEntity {
     }
     //頭角度
     public void headRotation(double yawAdd){
+        headRotation = yawAdd;
         PackEntity.headRotation(this.entityID, yawAdd);
     }
     //修改顯示名稱
@@ -96,8 +116,16 @@ public class GuiseEntity {
     public void smallArmorStand(){
         ArmorStandOther.small(this.entityID);
     }
+    //全息用
     public void holographic(boolean marker){
         ArmorStandOther.holographic(this.entityID, marker);
+    }
+    //裝備偽裝用
+    public void equipment(){
+        ArmorStandOther.equipment(this.entityID, false);
+    }
+    public void equipment2(){
+        ArmorStandOther.equipment(this.entityID, true);
     }
     //盔甲架有手臂
     public void hasArmsArmorStand(){

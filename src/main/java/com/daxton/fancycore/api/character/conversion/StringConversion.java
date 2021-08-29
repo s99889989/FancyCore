@@ -45,6 +45,13 @@ public class StringConversion {
         return output;
     }
 
+    public static String getColorString(String inputString){
+        if(inputString.contains("&")){
+            return inputString.replace("&", "§");
+        }
+        return inputString;
+    }
+
     //轉成boolean
     public static boolean getBoolean(String inputString){
         return Boolean.parseBoolean(inputString);
@@ -221,7 +228,7 @@ public class StringConversion {
         return output;
     }
 
-    /**粒子顏色**/
+    //粒子顏色
     public static Particle.DustOptions getParticleColor(LivingEntity self, LivingEntity target, String defaultKey, String content){
         BigInteger bigint = new BigInteger(defaultKey, 16);
         int numb = bigint.intValue();
@@ -242,7 +249,7 @@ public class StringConversion {
         return output;
     }
 
-    /**顏色**/
+    //顏色
     public static ChatColor getChatColor(LivingEntity self, LivingEntity target, String defaultKey, String content){
         ChatColor output = Enum.valueOf(ChatColor.class ,defaultKey);
         String inputString = getString(self, target, content);
@@ -257,7 +264,7 @@ public class StringConversion {
         return output;
     }
 
-    /**聲音的分類**/
+    //聲音的分類
     public static SoundCategory getSoundCategory(LivingEntity self, LivingEntity target, String defaultKey, String content){
         SoundCategory output = Enum.valueOf(SoundCategory.class ,defaultKey);
         String inputString = getString(self, target, content);
@@ -272,7 +279,7 @@ public class StringConversion {
         return output;
     }
 
-    /**藥水的類型**/
+    //藥水的類型
     public static PotionEffectType getPotionEffectType(LivingEntity self, LivingEntity target, String defaultKey, String content){
         PotionEffectType output = PotionEffectType.INCREASE_DAMAGE;
 

@@ -7,11 +7,17 @@ import com.comphenix.protocol.events.*;
 import com.comphenix.protocol.injector.GamePhase;
 import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.manager.PlayerManagerCore;
+import com.daxton.fancycore.manager.ProtocolMap;
 import com.daxton.fancycore.other.playerdata.PlayerDataFancy;
+import net.minecraft.server.v1_16_R3.PacketPlayOutEntity;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.UUID;
 
 import static com.comphenix.protocol.wrappers.EnumWrappers.ChatType.GAME_INFO;
@@ -33,6 +39,23 @@ public class PackListener implements Listener {
                 PacketType packetType = event.getPacketType();
                 Player player = event.getPlayer();
 
+
+            }
+
+            //傳送目標
+            public void teleport(Location inputLocation, Player player){
+                PacketContainer packet = ProtocolMap.protocolManager.createPacket(PacketType.Play.Client.POSITION);
+                packet.getIntegers().write(0, 123456);
+
+                packet.getDoubles().write(0, inputLocation.getX());
+                packet.getDoubles().write(1, inputLocation.getY());
+                packet.getDoubles().write(2, inputLocation.getZ());
+
+                try {
+                    ProtocolMap.protocolManager.sendServerPacket( player, packet );
+                } catch ( InvocationTargetException exception ) {
+                    exception.printStackTrace();
+                }
 
             }
 

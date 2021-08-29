@@ -1,10 +1,15 @@
 package com.daxton.fancycore.listener;
 
+import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.manager.PlayerManagerCore;
 import com.daxton.fancycore.other.playerdata.PlayerDataFancy;
+import com.daxton.fancycore.other.task.PackEntity;
+import com.daxton.fancycore.other.task.guise.GuiseEntity;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -14,10 +19,13 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.UUID;
 
 public class PlayerListener implements Listener {
+
+    //public static GuiseEntity guiseEntity;
 
     @EventHandler//當玩家登入
     public void onPlayerJoin(PlayerJoinEvent event){

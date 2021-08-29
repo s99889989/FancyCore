@@ -53,18 +53,19 @@ public class GUISlotItem{
         }
     }
     //指定範範圍的空位置，插入物品，
-    public void addItem(ItemStack itemStack, boolean move, int head, int tail, List<Integer> ignore){
+    public int addItem(ItemStack itemStack, boolean move, int head, int tail, List<Integer> ignore){
         if(tail > head){
             if( checkInventorySize(head-1, inventory.getSize()) && checkInventorySize(tail-1, inventory.getSize()) ){
                 for(int i = head; i < tail+1 ; i++){
                     if(inventory.getItem(i-1) == null && !ignore.contains(i)){
                         inventory.setItem(i-1, itemStack);
                         itme_Move.put(i-1, !move);
-                        break;
+                        return i;
                     }
                 }
             }
         }
+        return 0;
     }
 
 

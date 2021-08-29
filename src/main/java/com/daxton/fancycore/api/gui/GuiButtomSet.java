@@ -44,11 +44,38 @@ public class GuiButtomSet {
         newItemStack.setItemMeta(itemMeta);
     }
 
+    //設定物品顯示名稱
+    public static void setDisplayName(LivingEntity self, LivingEntity target, FileConfiguration itemConfig, String itemID, ItemStack newItemStack, String key, String reKey){
+        String itemDisplayName = itemConfig.getString(itemID+".DisplayName");
+        itemDisplayName = ConversionMain.valueOf(self, null, itemDisplayName, true);
+        if(itemDisplayName.contains(key)){
+            itemDisplayName = itemDisplayName.replace(key, reKey);
+        }
+        ItemMeta itemMeta = newItemStack.getItemMeta();
+        itemMeta.setDisplayName(itemDisplayName);
+        newItemStack.setItemMeta(itemMeta);
+    }
+
     //設定物品Lore
     public static void setLore(LivingEntity self, LivingEntity target, FileConfiguration itemConfig, String itemID, ItemStack newItemStack){
         List<String> itemLore = itemConfig.getStringList(itemID+".Lore");
         for(int i = 0; i < itemLore.size() ; i++){
             String m = ConversionMain.valueOf(self, null, itemLore.get(i), true);
+            itemLore.set(i, m);
+        }
+        ItemMeta itemMeta = newItemStack.getItemMeta();
+        itemMeta.setLore(itemLore);
+        newItemStack.setItemMeta(itemMeta);
+    }
+
+    //設定物品Lore
+    public static void setLore(LivingEntity self, LivingEntity target, FileConfiguration itemConfig, String itemID, ItemStack newItemStack, String key, String reKey){
+        List<String> itemLore = itemConfig.getStringList(itemID+".Lore");
+        for(int i = 0; i < itemLore.size() ; i++){
+            String m = ConversionMain.valueOf(self, null, itemLore.get(i), true);
+            if(m.contains(key)){
+                m = m.replace(key, reKey);
+            }
             itemLore.set(i, m);
         }
         ItemMeta itemMeta = newItemStack.getItemMeta();

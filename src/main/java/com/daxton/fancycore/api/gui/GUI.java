@@ -1,15 +1,10 @@
 package com.daxton.fancycore.api.gui;
 
-import com.daxton.fancycore.FancyCore;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class GUI extends GUISlotItem {
 
@@ -19,7 +14,7 @@ public class GUI extends GUISlotItem {
     //按鍵動作
     private GuiCloseAction guiCloseAction;
     //玩家
-    private Player player;
+    final private Player player;
     //GUI標題
     private String title;
     //開關狀態

@@ -2,6 +2,9 @@ package com.daxton.fancycore.command;
 
 import com.daxton.fancycore.FancyCore;
 import static com.daxton.fancycore.config.FileConfig.languageConfig;
+
+import com.daxton.fancycore.api.gui2.Email;
+import com.daxton.fancycore.api.gui2.GUI2;
 import com.daxton.fancycore.gui.MainOpen;
 import com.daxton.fancycore.other.task.CopyClipboard;
 import com.daxton.fancycore.task.server.Reload;
@@ -29,6 +32,10 @@ public class MainCommand implements CommandExecutor {
 
             if(args.length == 1 && args[0].equalsIgnoreCase("gui")) {
                 MainOpen.open(player);
+            }
+
+            if(args.length == 1 && args[0].equalsIgnoreCase("gui2")) {
+                GUI2 gui2 = GUI2.GUIBuilder.getInstance().setPlayer(player).setSize(54).setTitle("測試").build();
             }
 
         }

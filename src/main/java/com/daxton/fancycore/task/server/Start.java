@@ -6,7 +6,6 @@ import com.daxton.fancycore.manager.ProtocolMap;
 
 import com.daxton.fancycore.other.taskaction.StringToMap;
 
-
 public class Start {
 
 

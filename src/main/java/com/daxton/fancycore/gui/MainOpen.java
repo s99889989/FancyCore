@@ -1,20 +1,8 @@
 package com.daxton.fancycore.gui;
 
-import com.daxton.fancycore.api.gui.GUI;
-import com.daxton.fancycore.config.FileConfig;
-import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.Inventory;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class MainOpen {
-
-	public static Map<UUID ,GUI> player_Gui_Map = new HashMap<>();
 
 
 

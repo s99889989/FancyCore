@@ -1,146 +1,220 @@
 package com.daxton.fancycore.api.gui;
 
+import com.daxton.fancycore.api.gui.button.GuiButton;
+import com.daxton.fancycore.api.gui.button.GuiChatAction;
+import com.daxton.fancycore.api.gui.button.GuiCloseAction;
+import com.daxton.fancycore.manager.PlayerManagerCore;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Inventory;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
-public class GUI extends GUISlotItem {
 
-    //使用玩家UUID字串，把GUI儲存到Map
-    public static Map<String, GUI> guiID_gui_Map = new HashMap<>();
-    //public static Map<String, List<String>> uuid_GuiID_Map = new HashMap<>();
-    //按鍵動作
-    private GuiCloseAction guiCloseAction;
-    //玩家
-    final private Player player;
-    //GUI標題
-    private String title;
-    //開關狀態
-    private boolean open = false;
+public final class GUI {
 
-    //建立自訂GUI，大小為9 18 27 36 45 54
-    public static GUI createGui(Player player, int size, String title){
-        return new GUI(player, size, title);
-    }
+	Player player;
+	int size;
+	String title;
+	Inventory inventory;
+	public GuiButton[] buttons;
+	public GuiCloseAction guiCloseAction;
+	public GuiChatAction guiChatAction;
+	boolean move;
+	boolean open;
+	boolean chat;
 
-    //建立自訂GUI，大小為9 18 27 36 45 54
-    public GUI(Player player, int size, String title){
-        this.player = player;
+	private GUI(Player player, int size, String title){
+		this.player = player;
+		this.size = size;
+		this.title = title;
+		this.inventory = Bukkit.createInventory(null, size , title);
+		buttons = new GuiButton[size+36];
+		PlayerManagerCore.player_Gui_Map.put(player.getUniqueId(), this);
+	}
+	//設置按鈕
+	public void setButton(GuiButton guiButton, int vertical, int horizontal){
+		int actual = ((vertical-1)*9)+(horizontal-1);
+		buttons[actual] = guiButton;
+		inventory.setItem(actual, guiButton.itemStack);
+	}
+	//設置按鈕
+	public void setButton(GuiButton guiButton, int place){
+		int actual = place - 1;
+		buttons[actual] = guiButton;
+		inventory.setItem(actual, guiButton.itemStack);
+	}
 
-        String uuidString = player.getUniqueId().toString();
+	public void removeButton(int vertical, int horizontal){
+		int actual = ((vertical-1)*9)+(horizontal-1);
+		buttons[actual] = null;
+		inventory.clear(actual);
+	}
 
-        this.title = title;
-        inventory = Bukkit.createInventory(null, size , title);
+	public void removeButton(int place){
+		int actual = place - 1;
+		buttons[actual] = null;
+		inventory.clear(actual);
+	}
 
-        guiID_gui_Map.put(uuidString, this);
-    }
-    //修改GUI標題
-    public void setTitle(String title){
-        this.title = title;
-        int size = inventory.getSize();
-        ItemStack[] itemStacks = inventory.getContents();
-        inventory = Bukkit.createInventory(null, size , title);
-        inventory.setContents(itemStacks);
-    }
-    //修改GUI大小，大小為9 18 27 36 45 54
-    public void setSize(int size){
-        ItemStack[] itemStacks = inventory.getContents();
-        ItemStack[] newItemStacks = new ItemStack[size];
-        for(int i = 0; i < size; i++){
-            if(i >= itemStacks.length){
-                break;
-            }
-            newItemStacks[i] = itemStacks[i];
-        }
-        inventory = Bukkit.createInventory(null, size , title);
-        inventory.setContents(newItemStacks);
-    }
+	//從指定位置開始往後清除物品，位置為1~54。
+	public void clearButtonFrom(int head, int tail){
+		if(tail > head){
+			for(int i = head; i < tail+1 ; i++){
+				int actual = i - 1;
+				buttons[actual] = null;
+				if(actual < size){
+					inventory.clear(actual);
+				}
+			}
+		}
+	}
 
-    //指定玩家打開GUI
-    public void open(GUI gui){
-        String uuidString = player.getUniqueId().toString();
-        guiID_gui_Map.put(uuidString, gui);
-        player.openInventory(inventory);
-        open = true;
-        //GUI.on_Gui.put(player.getUniqueId().toString(), true);
-    }
+	//指定範圍的空位置增加按鈕，用ignore進行過濾不需要位置
+	public void addButton(GuiButton guiButton, int head, int tail, Integer[] integers){
+		List<Integer> ignore = Arrays.asList(integers);
+		if(tail > head){
+			for(int i = head; i < tail+1 ; i++){
+				int actual = i - 1;
+				if(actual >= size){
+					break;
+				}
+				if(buttons[actual] == null && !ignore.contains(i)){
+					buttons[actual] = guiButton;
+					inventory.setItem(actual, guiButton.itemStack);
+					break;
+				}
+			}
+		}
+	}
+	//打開
+	public void open(GUI gui){
+		gui.setOpen(true);
+		PlayerManagerCore.player_Gui_Map.put(player.getUniqueId(), gui);
+		player.openInventory(inventory);
+	}
 
-    public void close(){
-        if(player != null){
-            player.closeInventory();
-        }
-    }
+	public void close(){
+		inventory.close();
+	}
 
-    //-----------------------------------------------------------------------------------------------//
-    //動作
-    //-----------------------------------------------------------------------------------------------//
-    //設置關閉GUI時的動作
-    public void setCloseAction(GuiCloseAction guiAction){
-        this.guiCloseAction = guiAction;
-    }
-    public void removeCloseAction(){ this.guiCloseAction = null; }
-    public GuiCloseAction getCloseAction(){
-        return this.guiCloseAction;
-    }
+	//設置關閉動作
+	public void setGuiCloseAction(GuiCloseAction guiCloseAction) {
+		this.guiCloseAction = guiCloseAction;
+	}
+	//設置聊天動作
+	public void setGuiChatAction(GuiChatAction guiChatAction) {
+		this.guiChatAction = guiChatAction;
+	}
 
-    //在指定格數使用動作，vertical為1~6，horizontal為1~9
-    public void setAction(GuiAction guiAction, int vertical, int horizontal){
-        action_Map.put(itemLocation(vertical, horizontal, 54), guiAction);
-    }
-    //在指定格數使用動作，位置為1~81。
-    public void setAction(GuiAction guiAction, int place){
-        if(place < 1)
-            place = 1;
-        if(place > 90)
-            place = 90;
-        action_Map.put(place-1, guiAction);
-    }
-    //指定範範圍的空位置，插入動作，
-    public void addAction(GuiAction guiAction, int head, int tail, List<Integer> ignore){
-        if(tail > head){
-            if( checkInventorySize(head-1, inventory.getSize()+36) && checkInventorySize(tail-1, inventory.getSize()+36) ){
-                for(int i = head; i < tail+1 ; i++){
-                    if(getAction(i) == null && !ignore.contains(i)){
-                        //FancyCore.fancyCore.getLogger().info("XX: "+i);
-                        setAction(guiAction, i);
-                        break;
-                    }
-                }
-            }
-        }
-    }
-    //移除指定位置動作，vertical為1~6，horizontal為1~9
-    public void removeAction(int vertical, int horizontal){
-        action_Map.remove(itemLocation(vertical, horizontal, 54));
-    }
-    //移除指定位置動作，位置為1~54。
-    public void removeAction(int place){
-        if(place < 1)
-            place = 1;
-        if(place > 54)
-            place =54;
-        action_Map.remove(place-1);
-    }
-    //獲取指定位置動作，vertical為1~6，horizontal為1~9
-    public GuiAction getAction(int vertical, int horizontal){
-        return action_Map.get(itemLocation(vertical, horizontal, 54));
-    }
-    //獲取指定位置動作，位置為1~54。
-    public GuiAction getAction(int place){
-        if(place < 1)
-            place = 1;
-        if(place > 90)
-            place = 90;
-        return action_Map.get(place-1);
-    }
+	//設置全部按鈕移動
+	public void setMove(boolean move) {
+		this.move = move;
+	}
 
-    public void setOpen(boolean open) {
-        this.open = open;
-    }
+	public void setOpen(boolean open) {
+		this.open = open;
+	}
 
-    public boolean isOpen() {
-        return open;
-    }
+	public void setChat(boolean chat) {
+		this.chat = chat;
+	}
+
+	//
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public Inventory getInventory() {
+		return inventory;
+	}
+
+	public boolean isMove() {
+		return move;
+	}
+
+	public boolean isOpen() {
+		return open;
+	}
+
+	public GuiButton getButtons(int vertical, int horizontal) {
+		int actual = ((vertical-1)*9)+(horizontal-1);
+		return buttons[actual];
+	}
+
+	public GuiButton getButtons(int place) {
+		int actual = place - 1;
+		return buttons[actual];
+	}
+
+	public GuiCloseAction getGuiCloseAction() {
+		return guiCloseAction;
+	}
+
+	public GuiChatAction getGuiChatAction() {
+		return guiChatAction;
+	}
+
+	public boolean isChat() {
+		return chat;
+	}
+
+	//---------------------------------------------------------------------------------------------------//
+
+	@Override
+	public String toString() {
+		return player.getName()+" : "+size+" : "+title;
+	}
+
+	public static class GUIBuilder{
+		Player player;
+		int size = 54;
+		String title = "";
+		boolean move = false;
+
+		private GUIBuilder(){
+
+		}
+
+		public static GUIBuilder getInstance(){
+			return new GUIBuilder();
+		}
+
+		public GUIBuilder setPlayer(Player player) {
+			this.player = player;
+			return this;
+		}
+
+		public GUIBuilder setSize(int size) {
+			this.size = size;
+			return this;
+		}
+
+		public GUIBuilder setTitle(String title) {
+			this.title = title;
+			return this;
+		}
+
+		public GUIBuilder setMove(boolean move){
+			this.move = move;
+			return this;
+		}
+
+		public GUI build(){
+			return new GUI(player, size, title);
+		}
+
+	}
+
 }
+

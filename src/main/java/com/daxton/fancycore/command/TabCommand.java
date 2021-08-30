@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class TabCommand implements TabCompleter {
 
-    private final String[] subCommands = {"reload", "itemtype"};
+    private final String[] subCommands = {"reload", "item"};
 
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, String[] args){
@@ -21,6 +21,11 @@ public class TabCommand implements TabCompleter {
 
         if (args.length == 1){
             commandList = Arrays.stream(subCommands).filter(s -> s.startsWith(args[0])).collect(Collectors.toList());
+        }
+
+        if (args.length == 2){
+            String[] itemArray = {"type", "mmoitemtype"};
+            commandList = Arrays.stream(itemArray).filter(s -> s.startsWith(args[1])).collect(Collectors.toList());
         }
 
         return commandList;

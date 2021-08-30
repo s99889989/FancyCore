@@ -3,8 +3,7 @@ package com.daxton.fancycore.command;
 import com.daxton.fancycore.FancyCore;
 import static com.daxton.fancycore.config.FileConfig.languageConfig;
 
-import com.daxton.fancycore.api.gui2.Email;
-import com.daxton.fancycore.api.gui2.GUI2;
+import com.daxton.fancycore.api.gui.item.GuiEditItem;
 import com.daxton.fancycore.gui.MainOpen;
 import com.daxton.fancycore.other.task.CopyClipboard;
 import com.daxton.fancycore.task.server.Reload;
@@ -12,6 +11,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class MainCommand implements CommandExecutor {
@@ -24,20 +24,25 @@ public class MainCommand implements CommandExecutor {
 
         if(sender instanceof Player){
             Player player = (Player) sender;
-            if(args.length == 1 && args[0].equalsIgnoreCase("itemtype")) {
-                String itemType = player.getInventory().getItemInMainHand().getType().toString();
-                player.sendMessage(itemType);
-                CopyClipboard.copy(itemType);
+            if(args.length == 2) {
+                if(args[0].equalsIgnoreCase("item")){
+                    if(args[1].equalsIgnoreCase("type")){
+                        String itemType = player.getInventory().getItemInMainHand().getType().toString();
+                        player.sendMessage(itemType);
+                        CopyClipboard.copy(itemType);
+                    }
+                    if(args[1].equalsIgnoreCase("mmoitemtype")){
+                        ItemStack itemStack = player.getInventory().getItemInMainHand();
+                        player.sendMessage(GuiEditItem.mmoItemType(itemStack));
+                    }
+                }
+
+
             }
 
             if(args.length == 1 && args[0].equalsIgnoreCase("gui")) {
                 MainOpen.open(player);
             }
-
-            if(args.length == 1 && args[0].equalsIgnoreCase("gui2")) {
-                GUI2 gui2 = GUI2.GUIBuilder.getInstance().setPlayer(player).setSize(54).setTitle("測試").build();
-            }
-
         }
 
         if(args.length == 1 && args[0].equalsIgnoreCase("reload")) {

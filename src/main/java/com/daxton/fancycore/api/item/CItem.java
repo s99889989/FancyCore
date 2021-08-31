@@ -1,11 +1,8 @@
 package com.daxton.fancycore.api.item;
 
 import com.daxton.fancycore.FancyCore;
-import com.destroystokyo.paper.profile.PlayerProfile;
-import com.destroystokyo.paper.profile.ProfileProperty;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
@@ -64,6 +61,22 @@ public class CItem {
             itemMeta.setLore(newLoreList);
             itemStack.setItemMeta(itemMeta);
         }
+    }
+    public void setLore(List<String> loreList, boolean head){
+        List<String> oldLore = itemStack.getLore();
+        List<String> newLoreList = new ArrayList<>();
+        if(oldLore != null){
+            if(head){
+                newLoreList.addAll(loreList);
+                newLoreList.addAll(oldLore);
+            }else {
+                newLoreList.addAll(oldLore);
+                newLoreList.addAll(loreList);
+            }
+        }else {
+            newLoreList.addAll(loreList);
+        }
+        itemStack.setLore(newLoreList);
     }
     //設定物品損壞Data
     public void setData(int data){
@@ -244,6 +257,7 @@ public class CItem {
         }
         itemStack.setItemMeta(itemMeta);
     }
+
     //設定物品的ID
     public void setID(String id){
         ItemMeta itemMeta = itemStack.getItemMeta();

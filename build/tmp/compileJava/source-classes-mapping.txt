@@ -27,8 +27,10 @@ com/daxton/fancycore/manager/PlayerManagerCore.java
  com.daxton.fancycore.manager.PlayerManagerCore
 com/daxton/fancycore/task/location/MessageFloat.java
  com.daxton.fancycore.task.location.MessageFloat
-com/daxton/fancycore/FancyCore.java
- com.daxton.fancycore.FancyCore
+com/daxton/fancycore/api/gui/GUI.java
+ com.daxton.fancycore.api.gui.GUI
+ com.daxton.fancycore.api.gui.GUI$1
+ com.daxton.fancycore.api.gui.GUI$GUIBuilder
 com/daxton/fancycore/other/hologram/FHologramsAPI.java
  com.daxton.fancycore.other.hologram.FHologramsAPI
 com/daxton/fancycore/task/entity/InvisibleSet.java
@@ -68,8 +70,8 @@ com/daxton/fancycore/nms/v1_16_R3/ItemDropMetadata.java
  com.daxton.fancycore.nms.v1_16_R3.ItemDropMetadata
 com/daxton/fancycore/other/task/PackPlayer.java
  com.daxton.fancycore.other.task.PackPlayer
-com/daxton/fancycore/other/hologram/TextHol.java
- com.daxton.fancycore.other.hologram.TextHol
+com/daxton/fancycore/listener/InventoryListener.java
+ com.daxton.fancycore.listener.InventoryListener
 com/daxton/fancycore/other/task/guise/GuiseEntityAPI.java
  com.daxton.fancycore.other.task.guise.GuiseEntityAPI
 com/daxton/fancycore/other/task/PackEntity.java
@@ -129,8 +131,8 @@ com/daxton/fancycore/task/player/CustomInventory.java
  com.daxton.fancycore.task.player.CustomInventory
 com/daxton/fancycore/other/entity/BukkitAttributeSet.java
  com.daxton.fancycore.other.entity.BukkitAttributeSet
-com/daxton/fancycore/api/item/CItem.java
- com.daxton.fancycore.api.item.CItem
+com/daxton/fancycore/FancyCore.java
+ com.daxton.fancycore.FancyCore
 com/daxton/fancycore/api/gui/button/GuiButton.java
  com.daxton.fancycore.api.gui.button.GuiButton
  com.daxton.fancycore.api.gui.button.GuiButton$ButtonBuilder
@@ -375,9 +377,7 @@ com/daxton/fancycore/nms/v1_15_R1/NMSItem.java
  com.daxton.fancycore.nms.v1_15_R1.NMSItem
 com/daxton/fancycore/nms/v1_17_R1/NMSItem.java
  com.daxton.fancycore.nms.v1_17_R1.NMSItem
-com/daxton/fancycore/api/gui/GUI.java
- com.daxton.fancycore.api.gui.GUI
- com.daxton.fancycore.api.gui.GUI$1
- com.daxton.fancycore.api.gui.GUI$GUIBuilder
-com/daxton/fancycore/listener/InventoryListener.java
- com.daxton.fancycore.listener.InventoryListener
+com/daxton/fancycore/other/hologram/TextHol.java
+ com.daxton.fancycore.other.hologram.TextHol
+com/daxton/fancycore/api/item/CItem.java
+ com.daxton.fancycore.api.item.CItem

@@ -64,8 +64,8 @@ public class InventoryListener implements Listener {
         UUID uuid = player.getUniqueId();
         GUI gui = PlayerManagerCore.player_Gui_Map.get(uuid);
         if(gui != null && gui.isChat()){
-            event.setCancelled(true);
             gui.setChat(false);
+            event.setCancelled(true);
             gui.guiChatAction.execute(player, event.getMessage());
         }
 

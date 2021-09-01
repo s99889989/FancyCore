@@ -69,6 +69,10 @@ public class PlayerDataFancy {
 
 	public Inventory inventory;
 
+	//-----//
+	public boolean attackSpeed;
+
+
 	public PlayerDataFancy(Player player){
 		this.player = player;
 	}

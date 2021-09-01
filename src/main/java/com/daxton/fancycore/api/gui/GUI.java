@@ -46,12 +46,30 @@ public final class GUI {
 		inventory.setItem(actual, guiButton.itemStack);
 	}
 
+	//指定範圍的空位置增加按鈕，用ignore進行過濾不需要位置
+	public void addButton(GuiButton guiButton, int head, int tail, Integer[] integers){
+		List<Integer> ignore = Arrays.asList(integers);
+		if(tail > head){
+			for(int i = head; i < tail+1 ; i++){
+				int actual = i - 1;
+				if(actual >= size){
+					break;
+				}
+				if(buttons[actual] == null && !ignore.contains(i)){
+					buttons[actual] = guiButton;
+					inventory.setItem(actual, guiButton.itemStack);
+					break;
+				}
+			}
+		}
+	}
+	//移除按鈕
 	public void removeButton(int vertical, int horizontal){
 		int actual = ((vertical-1)*9)+(horizontal-1);
 		buttons[actual] = null;
 		inventory.clear(actual);
 	}
-
+	//移除按鈕
 	public void removeButton(int place){
 		int actual = place - 1;
 		buttons[actual] = null;
@@ -71,23 +89,7 @@ public final class GUI {
 		}
 	}
 
-	//指定範圍的空位置增加按鈕，用ignore進行過濾不需要位置
-	public void addButton(GuiButton guiButton, int head, int tail, Integer[] integers){
-		List<Integer> ignore = Arrays.asList(integers);
-		if(tail > head){
-			for(int i = head; i < tail+1 ; i++){
-				int actual = i - 1;
-				if(actual >= size){
-					break;
-				}
-				if(buttons[actual] == null && !ignore.contains(i)){
-					buttons[actual] = guiButton;
-					inventory.setItem(actual, guiButton.itemStack);
-					break;
-				}
-			}
-		}
-	}
+
 	//打開
 	public void open(GUI gui){
 		gui.setOpen(true);

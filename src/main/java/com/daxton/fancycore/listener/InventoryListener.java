@@ -49,7 +49,7 @@ public class InventoryListener implements Listener {
         Player player = (Player) event.getPlayer();
         UUID uuid = player.getUniqueId();
         GUI gui = PlayerManagerCore.player_Gui_Map.get(uuid);
-        if(gui != null && !gui.isOpen()){
+        if(gui != null && gui.isOpen()){
             gui.setOpen(false);
             if(gui.guiCloseAction != null){
                 gui.guiCloseAction.execute();

@@ -1,7 +1,6 @@
 package com.daxton.fancycore.api.gui.item;
 
 import com.daxton.fancycore.nms.NMSItem;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
@@ -38,23 +37,41 @@ public class GuiEditItem {
 	//把List插入Lore後面
 	public static void loreTail(ItemStack itemStack, List<String> list){
 		List<String> oldLore = itemStack.getLore();
+		if(list != null){
+			if(oldLore != null){
+				oldLore.addAll(list);
+				itemStack.setLore(oldLore);
+			}else {
+				itemStack.setLore(list);
+			}
+		}
+
+	}
+	//替換掉lore裡面的指定值
+	public static void loreReplace(ItemStack itemStack, String key, String replace){
+		List<String> oldLore = itemStack.getLore();
+		List<String> newLore = new ArrayList<>();
 		if(oldLore != null){
-			oldLore.addAll(list);
-			itemStack.setLore(oldLore);
-		}else {
-			itemStack.setLore(list);
+			oldLore.forEach(s -> {
+				String rs = s.replace(key, replace);
+				newLore.add(rs);
+			});
+			itemStack.setLore(newLore);
 		}
 	}
+
 	//把List插入標記位置
 	public static void loreInsert(ItemStack itemStack, String key, List<String> list){
 		List<String> newLoreList = new ArrayList<>();
-		itemStack.getLore().forEach(s -> {
-			if(s.contains(key)){
-				newLoreList.addAll(list);
-			}else {
-				newLoreList.add(s);
-			}
-		});
+		if(itemStack.getLore() != null && list != null){
+			itemStack.getLore().forEach(s -> {
+				if(s.contains(key)){
+					newLoreList.addAll(list);
+				}else {
+					newLoreList.add(s);
+				}
+			});
+		}
 		itemStack.setLore(newLoreList);
 	}
 

@@ -1,5 +1,6 @@
 package com.daxton.fancycore.api.gui;
 
+import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.gui.button.GuiButton;
 import com.daxton.fancycore.api.gui.button.GuiChatAction;
 import com.daxton.fancycore.api.gui.button.GuiCloseAction;
@@ -52,12 +53,12 @@ public final class GUI {
 		if(tail > head){
 			for(int i = head; i < tail+1 ; i++){
 				int actual = i - 1;
-				if(actual >= size){
-					break;
-				}
 				if(buttons[actual] == null && !ignore.contains(i)){
+					//FancyCore.fancyCore.getLogger().info(""+actual);
 					buttons[actual] = guiButton;
-					inventory.setItem(actual, guiButton.itemStack);
+					if(actual < size){
+						inventory.setItem(actual, guiButton.itemStack);
+					}
 					break;
 				}
 			}

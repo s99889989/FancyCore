@@ -2,10 +2,15 @@ package com.daxton.fancycore.manager;
 
 import com.daxton.fancycore.other.hologram.FloatMessage;
 import com.daxton.fancycore.other.task.FancyAction;
+import com.daxton.fancycore.other.task.guise.GuiseEntity;
+import com.daxton.fancycore.other.task.modelentity.ModelEntity;
 import com.daxton.fancycore.task.meta.run.FixedPoint;
 import com.daxton.fancycore.task.meta.run.Loop;
 import com.daxton.fancycore.task.meta.run.OrbitalAction;
+import com.ticxo.modelengine.api.model.ModeledEntity;
+import org.bukkit.Location;
 import org.bukkit.boss.BossBar;
+import org.bukkit.entity.Entity;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,4 +31,10 @@ public class TaskActionManager {
     public static Map<String, FloatMessage> task_FloatMessage_Map = new HashMap<>();
     //BossBar
     public static Map<String, BossBar> task_BossBar_Map = new HashMap<>();
+    //GuiseEntity
+    public static Map<String, GuiseEntity> task_GuiseEntity_Map = new HashMap<>();
+    //ModelEntity
+    public static Map<String, ModelEntity> task_ModelEntity_Map = new HashMap<>();
+
+
 }

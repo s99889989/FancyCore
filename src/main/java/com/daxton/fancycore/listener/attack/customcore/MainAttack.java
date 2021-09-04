@@ -2,22 +2,18 @@ package com.daxton.fancycore.listener.attack.customcore;
 
 import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.event.PhysicalDamageEvent;
+import com.daxton.fancycore.other.playerdata.ItemCD;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.persistence.PersistentDataType;
 
 import static org.bukkit.entity.EntityType.ARMOR_STAND;
 
-public class MainAttack {
+public class MainAttack implements Listener {
 
 	//攻擊分類
 	@EventHandler(priority = EventPriority.LOW)
@@ -26,12 +22,16 @@ public class MainAttack {
 		if(!(event.getDamager() instanceof Player) || !(event.getEntity() instanceof LivingEntity) || event.getEntity().getType() == ARMOR_STAND){
 			return;
 		}
+		if(event.getEntity().getCustomName() != null && event.getEntity().getCustomName().equals("ModleEngine")){
+			return;
+		}
 		Player player = (Player) event.getDamager();
 		double damageNumber = event.getDamage();
 
 		if(deBug()){
 			FancyCore.fancyCore.getLogger().info("傷害條件判斷: "+damageNumber);
 		}
+
 		//遠距離攻擊(倍率)
 		if(String.valueOf(damageNumber).contains(".3444")){
 			SetAttack(event, "RANGE_MULTIPLY");
@@ -74,7 +74,7 @@ public class MainAttack {
 			return;
 		}
 		//判斷物品是否有取消攻擊
-		if(attackCan(player)){
+		if(ItemCD.attackCan(player)){
 			event.setCancelled(true);
 			return;
 		}
@@ -90,18 +90,7 @@ public class MainAttack {
 		event.setDamage(e.getDamage());
 		event.setCancelled(e.isCancelled());
 	}
-	//判斷物品是否有取消攻擊
-	public boolean attackCan(Player player){
-		boolean outB = false;
-		ItemStack itemStack = player.getInventory().getItemInMainHand();
-		if(itemStack.getType() != Material.AIR){
-			String disableAttack = itemStack.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(FancyCore.fancyCore, "DisableAttack"), PersistentDataType.STRING);
-			if(disableAttack != null){
-				outB = Boolean.parseBoolean(disableAttack);
-			}
-		}
-		return outB;
-	}
+
 	public static boolean deBug(){
 		return false;
 	}

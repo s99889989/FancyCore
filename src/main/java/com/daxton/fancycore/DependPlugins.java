@@ -14,7 +14,7 @@ public class DependPlugins {
     public static boolean depend(){
 
         FancyCore fancyCore = FancyCore.fancyCore;
-        if (Bukkit.getServer().getPluginManager().getPlugin("ProtocolLib") != null && Bukkit.getPluginManager().isPluginEnabled("ProtocolLib")){
+        if(Bukkit.getServer().getPluginManager().getPlugin("ProtocolLib") != null && Bukkit.getPluginManager().isPluginEnabled("ProtocolLib")){
             fancyCore.getLogger().info(languageConfig.getString("LogMessage.LoadProtocolLib"));
             Bukkit.getPluginManager().registerEvents(new PackListener(),FancyCore.fancyCore);
         }else {
@@ -22,14 +22,14 @@ public class DependPlugins {
             return false;
         }
 
-        if (Bukkit.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null && Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")){
+        if(Bukkit.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null && Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")){
             fancyCore.getLogger().info(languageConfig.getString("LogMessage.LoadPlaceholderAPI"));
         }else {
             languageConfig.getStringList("LogMessage.UnLoadPlaceholderAPI").forEach(s->fancyCore.getLogger().info(s));
             return false;
         }
 
-        if (Bukkit.getServer().getPluginManager().getPlugin("Vault") != null && Bukkit.getPluginManager().isPluginEnabled("Vault")) {
+        if(Bukkit.getServer().getPluginManager().getPlugin("Vault") != null && Bukkit.getPluginManager().isPluginEnabled("Vault")) {
             fancyCore.getLogger().info(languageConfig.getString("LogMessage.LoadVault"));
             RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
             if (rsp != null) {
@@ -40,14 +40,5 @@ public class DependPlugins {
         return true;
     }
 
-    //        if (Bukkit.getServer().getPluginManager().getPlugin("HolographicDisplays") != null) {
-//            fancyCore.getLogger().info(ChatColor.GREEN+"Loaded HolographicDisplays");
-//        }else {
-//            fancyCore.getLogger().severe("*** HolographicDisplays is not installed or not enabled. ***");
-//            fancyCore.getLogger().severe("*** FancyCore will be disabled. ***");
-//            fancyCore.getLogger().severe("*** HolographicDisplays未安裝或未啟用。 ***");
-//            fancyCore.getLogger().severe("*** FancyCore將被卸載。 ***");
-//            return false;
-//        }
 
 }

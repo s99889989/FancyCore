@@ -7,8 +7,9 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 
-public class MagicAttack {
+public class MagicAttack implements Listener {
 
 	//魔法攻擊
 	@EventHandler(priority = EventPriority.LOW)

@@ -44,15 +44,15 @@ public class ConversionCustom {
     public static String CustomConversion(LivingEntity self, LivingEntity target, String headKey, String content, String targetKey){
         String outputString = "";
         if(headKey.toLowerCase().contains("content")){
-            if(content.contains("%")){
-                content = ConversionPlaceholderAPI.valueOf(self,target,content,targetKey);
-            }
             if(content.contains("&")){
                 content = ConversionMain.valueOf(self,target,content, true);
             }
             if(content.contains("<") && content.contains(">")){
                 //FancyCore.fancyCore.getLogger().info(content);
                 content = ConversionPlaceholder.valueOf(self,target,content);
+            }
+            if(content.contains("%")){
+                content = ConversionPlaceholderAPI.valueOf(self,target,content,targetKey);
             }
             outputString = content;
         }

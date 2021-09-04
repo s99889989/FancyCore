@@ -154,6 +154,8 @@ public class TaskAction {
             return;
         }
         if(judgeString.equalsIgnoreCase("Guise")){
+            Guise guise = new Guise();
+            guise.execute(self, target, action_Map, inputLocation, taskID);
             return;
         }
         if(judgeString.equalsIgnoreCase("Light")){

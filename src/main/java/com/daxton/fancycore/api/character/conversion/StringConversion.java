@@ -105,7 +105,7 @@ public class StringConversion {
             try {
                 output = Integer.parseInt(inputString);
             }catch (NumberFormatException exception){
-
+                //
             }
         }
         return output;

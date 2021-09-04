@@ -6,7 +6,7 @@ import static com.daxton.fancycore.config.FileConfig.languageConfig;
 import com.daxton.fancycore.api.gui.item.GuiEditItem;
 import com.daxton.fancycore.gui.MainOpen;
 import com.daxton.fancycore.other.task.CopyClipboard;
-import com.daxton.fancycore.task.server.Reload;
+import com.daxton.fancycore.server.Reload;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

@@ -1,0 +1,269 @@
+#發射箭矢
+Bow1_Shooting:
+  Action:
+  - Orbital[onStart=Bow1_Shooting-Start;onTime=Bow1_Shooting-Time;onTimeHit=Bow1_Shooting-TimeHit;onEndHit=Bow1_Shooting-EndHit;onEnd=Bow1_Shooting-End;period=1;duration=60;speed=1;StartLocAdd=true|true|0|0|0.6|1.6;hitRange=1;HitCount=1;hitstop=true;od=true|true|false|0|0] @LocSelf{VA=Self|true|true|0|0|10;LA=0|1.55|0}
+  
+Bow1_Shooting-Start:
+  Action:
+  - Guise[ItemID=SkillEffect.Arrow1;hal=true|true;hal=true|true] @LocAdd{LA=0|-1.7|0}
+  - Sound[sound=attack_archer_attack;pitch=1;volume=1;category=PLAYERS]
+Bow1_Shooting-Time:
+  Action:
+  - Guise[tp=true;hal=true|true;hal=true|true] @LocAdd{LA=0|-1.7|0}
+
+Bow1_Shooting-TimeHit:
+  Action:
+  - Guise[delete=true]
+  - Damage[amount=&Bow1_Shooting_Value&]
+  - Sound[sound=attack_archer_hit;pitch=1;volume=1;category=PLAYERS]
+
+Bow1_Shooting-End:
+  Action:
+  - Guise[delete=true]
+
+#向前攻擊
+FlashAttack:
+  Action:
+  - teleport[VA=Self|true|true|0|0|5;OB=true] @Self
+  - Delay[t=20]
+  - Damage[Amount=10] @Target
+  - FloatMessage[m=䆎] @LocTarget{D=5;LA=0|&attack_number_height&|0}
+  - Light[ll=5;dt=10] @LocTarget{D=5;LA=0|2|0}
+  - Sound[sound=attack_sword1;pitch=1;volume=1;category=PLAYERS] @LocTarget{D=5;LA=0|&attack_number_height&|0}
+  - Delay[t=5]
+  - FloatMessage[delete=true]
+
+#光炸
+Explode:
+  Action:
+  - Guise[ItemID=SkillEffect.light1;Visible=false] @LocSelf{LA=0|0|0}
+  - Light[ll=15;dt=10] @LocSelf{LA=0|10|0}
+  - Sound[sound=lf2_090;pitch=1;volume=1;category=PLAYERS] @LocSelf{LA=0|1|0}
+  - Damage[Amount=10] @SelfRadius{R=2}
+  - Move[da=Selfaway|true|true|0|0|1|;ah=1] @SelfRadius{R=2}
+  - Delay[t=10]
+  - Guise[delete=true]
+
+#光擊
+Explode1:
+  Action:
+  - Sound[sound=lf2_darkdavis_c;pitch=1;volume=1;category=PLAYERS] @LocSelf
+
+Explode2:
+  Action:
+  - Delay[t=10]
+  - Sound[sound=lf2_darkdavis_col;pitch=1;volume=1;category=PLAYERS] @LocTarget{LA=0|1|0}
+  - FloatMessage[m=䆏] @LocTarget{LA=0|5|0}
+  - Light[ll=15;dt=24] @LocTarget{LA=0|5|0}
+  - Damage[Amount=10] @Target
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆐]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆑]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆒]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆓]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆔]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆕]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆖]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆗]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆘]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆙]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆚]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆛]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆜]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆝]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆞]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆟]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆠]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆡]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆢]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆣]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆤]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆥]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆦]
+  - Delay[t=1]
+  - FloatMessage[RM=1;m=䆧]
+  - Delay[t=1]
+  - FloatMessage[Rm=M=1;䆨]
+  - Delay[t=1]
+  - FloatMessage[delete=true]
+
+#地刺
+Collapse:
+  Action:
+  - Guise[mk=0;ItemID=SkillEffect.coal;Visible=false] @LocSelf{VA=Self|true|true|0|0|2;LA=0|0|0}
+  - Guise[mk=1;ItemID=SkillEffect.coal;Visible=false] @LocSelf{VA=Self|true|true|0|0|4;LA=0|0|0}
+  - Guise[mk=2;ItemID=SkillEffect.coal;Visible=false] @LocSelf{VA=Self|true|true|0|0|6;LA=0|0|0}
+  - Sound[sound=skills_soc_collapsed;pitch=1;volume=1;category=PLAYERS] @LocSelf
+  - Damage[Amount=10] @SelfLine{R=7}
+  - Delay[t=40]
+  - Guise[mk=0;delete=true]
+  - Guise[mk=1;delete=true]
+  - Guise[mk=2;delete=true]
+
+
+#飛盤
+Frisbee:
+  Action:
+  - Orbital[onStart=Frisbee-Start;onTime=Frisbee-Time;onTimeHit=Frisbee-TimeHit;onEndHit=Frisbee-EndHit;onEnd=Frisbee-End;period=3;duration=60;speed=40;StartLocAdd=true|true|0|0|0.6|1.6;hitRange=1;od=true|true|false|0|0] @LocSelf{VA=Self|true|true|0|0|10;LA=0|1.55|0}
+  
+Frisbee-Start:
+  Action:
+  - FloatMessage[m=䆴] @LocAdd
+  - Sound[sound=lf2_skillstart1;pitch=1;volume=1;category=PLAYERS]
+Frisbee-Time:
+  Action:
+  - Light[ll=10;dt=10]
+  - Sound[sound=lf2_skilltime1;pitch=1;volume=1;category=PLAYERS]
+  - FloatMessage[tp=true] @LocAdd
+Frisbee-TimeHit:
+  Action:
+  - Damage[amount=20]
+  - Sound[sound=lf2_damge1;pitch=1;volume=1;category=PLAYERS]
+
+Frisbee-End:
+  Action:
+  - FloatMessage[Delete=true]
+
+
+#定點龍卷風
+Tornado:
+  Action:
+  - FixedPoint[onStart=Tornado-onStart;onHit=Tornado-onHit;duration=30;period=5] @LocTarget{D=5;LA=0|0|0}
+  
+Tornado-onStart:
+  Action:
+  - Sound[sound=lf2_freeze_ww;pitch=1;volume=1;category=PLAYERS]
+  - FloatMessage[m=䆪] @LocAdd{LA=0|2.8|0}
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆫]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆬]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆭]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆮]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆯]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆰]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆱]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆲]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆳]
+  - Delay[t=3]
+  - FloatMessage[delete=true]
+  
+Tornado-onHit:
+  Action:
+  - Move[da=target|false|false|90|0|0.8] @Target
+  
+Tornado-onEnd:
+  Action:
+  
+
+
+#向前龍捲風
+TornadoLine:
+  Action:
+  - Orbital[onStart=TornadoLine-Start;onTime=TornadoLine-Time;onTimeHit=TornadoLine-TimeHit;onEndHit=TornadoLine-EndHit;onEnd=TornadoLine-End;period=3;duration=30;speed=40;StartLocAdd=true|true|0|0|0.6|1.6;hitRange=1;od=true|true|false|0|0] @LocSelf{VA=Self|true|true|0|0|10;LA=0|1.55|0}
+  
+TornadoLine-Start:
+  Action:
+  - FloatMessage[m=䆪] @LocAdd{LA=0|1.5|0}
+  - Sound[sound=lf2_freeze_ww;pitch=1;volume=1;category=PLAYERS]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆫]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆬]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆭]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆮]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆯]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆰]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆱]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆲]
+  - Delay[t=3]
+  - FloatMessage[RM=1;m=䆳]
+
+TornadoLine-Time:
+  Action:
+  - FloatMessage[tp=true] @LocAdd{LA=0|1.5|0}
+TornadoLine-TimeHit:
+  Action:
+  - Move[da=target|false|false|90|0|0.8] @Target
+
+TornadoLine-End:
+  Action:
+  - FloatMessage[delete=true]
+
+
+#發射模型攻擊
+ModelAttack:
+  Action:
+  - Orbital[onStart=ModelAttack-Start;onTime=ModelAttack-Time;onTimeHit=ModelAttack-TimeHit;onEndHit=ModelAttack-EndHit;onEnd=ModelAttack-End;period=1;duration=60;speed=10;StartLocAdd=true|true|0|0|0.5|1.2;hitRange=2;HitCount=1;hitstop=true;od=true|true|false|0|0] @LocSelf{VA=Self|true|true|0|0|10;LA=0|1.2|0}
+  
+ModelAttack-Start:
+  Action:
+  - Model[mid=kindletronjr]
+ModelAttack-Time:
+  Action:
+  - Model[tp=true] @LocAdd
+
+ModelAttack-TimeHit:
+  Action:
+  - Model[state=attack|3|2|1]
+  - Delay[Ticks=30]
+  - Damage[amount=10] @TargetRadius{R=2}
+  - Model[d=true]
+
+ModelAttack-End:
+  Action:
+  - Model[d=true]
+
+
+#射線
+LaserBeam:
+  Action:
+  - Guise[mk=0;ItemID=SkillEffect.LaserBeam;Visible=false;hal=true|true] @LocSelf{VA=Self|true|true|0|0|2;LA=0|0|0}
+  - Light[ll=5;dt=10] @LocSelf{VA=Self|true|true|0|0|2;LA=0|2.5|0}
+  - Guise[mk=1;ItemID=SkillEffect.LaserBeam;Visible=false;hal=true|true] @LocSelf{VA=Self|true|true|0|0|4.5;LA=0|0|0}
+  - Light[ll=5;dt=10] @LocSelf{VA=Self|true|true|0|0|4.5;LA=0|2.5|0}
+  - Guise[mk=2;ItemID=SkillEffect.LaserBeam;Visible=false;hal=true|true] @LocSelf{VA=Self|true|true|0|0|6.5;LA=0|0|0}
+  - Light[ll=5;dt=10] @LocSelf{VA=Self|true|true|0|0|6.5;LA=0|2.5|0}
+  - Sound[sound=lf2_086;pitch=1;volume=1;category=PLAYERS] @LocSelf
+  - Damage[Amount=10] @SelfLine{R=10}
+  - Delay[t=10]
+  - Guise[mk=0;delete=true]
+  - Guise[mk=1;delete=true]
+  - Guise[mk=2;delete=true]
+
+

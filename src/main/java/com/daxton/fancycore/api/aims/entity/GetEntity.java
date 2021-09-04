@@ -28,12 +28,11 @@ public class GetEntity {
 
         //篩選目標
         String filters = targetMapHandle.getString(new String[]{"filters","f"},"null");
-
+        FancyCore fancyCore = FancyCore.fancyCore;
         if(target == null && distance > 0){
             target = LookTarget.getLivingTarget(self,distance);
         }
-        FancyCore fancyCore = FancyCore.fancyCore;
-        switch (targetKey){
+        switch (targetKey.toLowerCase()){
             case "selfradius":
                 List<LivingEntity> livingEntityList = Radius.getSelfRadiusLivingEntities(self,radius, false);
                 targetList.addAll(livingEntityList);

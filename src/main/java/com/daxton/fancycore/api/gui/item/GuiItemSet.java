@@ -2,14 +2,17 @@ package com.daxton.fancycore.api.gui.item;
 
 import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.character.stringconversion.ConversionMain;
+import com.destroystokyo.paper.profile.PlayerProfile;
+import com.destroystokyo.paper.profile.ProfileProperty;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 
-
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -119,22 +122,35 @@ public class GuiItemSet {
                     profileField.setAccessible(true);
                     profileField.set(skullMeta, profile);
                 } catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-                    e.printStackTrace();
+                    try {
+                        PlayerProfile playerProfile = Bukkit.createProfile(UUID.randomUUID(), null);
+                        playerProfile.getProperties().add(new ProfileProperty("textures", headValue));
+                        skullMeta.setPlayerProfile(playerProfile);
+                        itemStack.setItemMeta(skullMeta);
+                    } catch (NoSuchMethodError exception) {
+                        //
+                    }
                 }
                 itemStack.setItemMeta(skullMeta);
-//                try {
-//                    PlayerProfile playerProfile = Bukkit.createProfile(UUID.randomUUID(), null);
-//                    playerProfile.getProperties().add(new ProfileProperty("textures", headValue));
-//                    skullMeta.setPlayerProfile(playerProfile);
-//                    itemStack.setItemMeta(skullMeta);
-//                } catch (NoSuchMethodError exception) {
-//                    fancyCore.getLogger().info("頭的值只能在paper伺服器使用。");
-//                    fancyCore.getLogger().info("The value of the header can only be used on the paper server.");
-//                }
+
             }
 
         }
     }
 
+    //設置物品標籤
+    public static void setItemFlags(ItemStack itemStack){
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        ItemFlag itemFlag1 = ItemFlag.HIDE_ATTRIBUTES;
+        ItemFlag itemFlag2 = ItemFlag.HIDE_DESTROYS;
+        ItemFlag itemFlag3 = ItemFlag.HIDE_DYE;
+        ItemFlag itemFlag4 = ItemFlag.HIDE_ENCHANTS;
+        ItemFlag itemFlag5 = ItemFlag.HIDE_PLACED_ON;
+        ItemFlag itemFlag6 = ItemFlag.HIDE_POTION_EFFECTS;
+        ItemFlag itemFlag7 = ItemFlag.HIDE_UNBREAKABLE;
+        itemMeta.addItemFlags(itemFlag1, itemFlag2, itemFlag3, itemFlag4, itemFlag5, itemFlag6, itemFlag7);
+        itemStack.setItemMeta(itemMeta);
+
+    }
 
 }

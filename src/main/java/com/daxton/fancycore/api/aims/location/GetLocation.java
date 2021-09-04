@@ -61,7 +61,7 @@ public class GetLocation {
         //世界設定
         String worldName = mapGetKey.getString(new String[]{"wn","worldname"},"self");
         Location location = null;
-        switch (targetKey){
+        switch (targetKey.toLowerCase()){
             case "loctarget":
                 if(target != null){
                     location = target.getLocation().add(addX, addY, addZ);
@@ -80,7 +80,6 @@ public class GetLocation {
                 }
                 break;
             case "locself":
-
             default:
                 location = self.getLocation().add(addX, addY, addZ);
                 break;

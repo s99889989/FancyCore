@@ -38,7 +38,7 @@ public class MessageFloat implements FancyAction {
         }
 
         Location location = GetLocation.getOne(self, target, targetMap, inputLocation);
-        //
+
 
         if(TaskActionManager.task_FloatMessage_Map.get(taskID+mark) == null){
             if(location != null){

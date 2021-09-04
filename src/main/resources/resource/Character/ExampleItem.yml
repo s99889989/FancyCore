@@ -1,0 +1,22 @@
+#自訂發射的傷害值
+Bow1_Shooting_Value:
+  message:
+    - content[((1+<fc_self_base_value_Str>+<fc_self_base_value_Dex>)*(1+(<fc_self_base_value_Physical_Attack_Multiplier>/100)))*(1+&ElementalRestraint&)]
+    - math[fc=Arith]
+
+
+#屬性
+ElementalRestraint:
+  message:
+  - content[<fc_self_base_value_Attributes_Attack><fc_target_base_value_Attributes_Defense>]
+  - Conver[function=ContainAll;m=無無>0,無火>0,無水>0,無風>0,無地>0,無毒>0,無聖>0,無暗>0,無念>-0.75,無不死>0]
+  - Conver[function=ContainAll;m=火無>0,火火>-0.75,火水>-0.5,火風>0,火地>1,火毒>-0.25,火聖>-0.25,火暗>0,火念>0,火不死>1]
+  - Conver[function=ContainAll;m=水無>0,水火>1,水水>-0.75,水風>-0.5,水地>0,水毒>-0.25,水聖>-0.25,水暗>0,水念>0,水不死>0.5]
+  - Conver[function=ContainAll;m=風無>0,風火>0,風水>1,風風>-0.75,風地>-0.5,風毒>-0.25,風聖>-0.25,風暗>0,風念>0,風不死>0]
+  - Conver[function=ContainAll;m=地無>0,地火>-0.5,地水>0,地風>1,地地>-0.75,地毒>-0.25,地聖>-0.25,地暗>0,地念>0,地不死>0]
+  - Conver[function=ContainAll;m=毒無>0,毒火>0.25,毒水>0,毒風>0.25,毒地>0.25,毒毒>-0.75,毒聖>-0.5,毒暗>-0.75,毒念>-0.5,毒不死>-0.75]
+  - Conver[function=ContainAll;m=聖無>0,聖火>0,聖水>0,聖風>0,聖地>0,聖毒>0.25,聖聖>-0.75,聖暗>1,聖念>0,聖不死>1]
+  - Conver[function=ContainAll;m=暗無>0,暗火>0,暗水>0,暗風>0,暗地>0,暗毒>-0.75,暗聖>1,暗暗>-0.75,暗念>0,暗不死>-0.75]
+  - Conver[function=ContainAll;m=念無>-0.75,念火>0,念水>0,念風>0,念地>0,念毒>-0.25,念聖>-0.25,念暗>-0.25,念念>1,念不死>0.75]
+  - Conver[function=ContainAll;m=不死無>0,不死火>-0.5,不死水>-0.5,不死風>-0.5,不死地>-0.5,不死毒>-0.75,不死聖>0.75,不死暗>-0.75,不死念>0,不死不死>-0.75]
+  - math[function=decimal;message=#.##]

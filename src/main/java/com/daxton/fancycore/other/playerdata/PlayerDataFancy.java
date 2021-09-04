@@ -1,11 +1,19 @@
 package com.daxton.fancycore.other.playerdata;
 
+import com.daxton.fancycore.FancyCore;
+import com.daxton.fancycore.api.item.ItemKeySearch;
+import com.daxton.fancycore.api.judgment.NumberJudgment;
 import com.daxton.fancycore.hook.ProtocolSupport.SetClientVersion;
+import com.daxton.fancycore.manager.OtherManager;
 import com.daxton.fancycore.other.entity.BukkitAttributeSet;
+import com.daxton.fancycore.other.taskaction.StringToMap;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
@@ -69,9 +77,16 @@ public class PlayerDataFancy {
 
 	public Inventory inventory;
 
-	//-----//
+	//攻擊速度限制
 	public boolean attackSpeed;
+	//物品CD
+	public Map<String, BukkitRunnable> cd_Left_Run = new HashMap<>();
+	public Map<String, BukkitRunnable> cd_Right_Run = new HashMap<>();
 
+	//裝備動作
+	public Map<String, Map<String, String>> eqm_Action_Map = new HashMap<>();
+	//裝備自訂屬性
+	public Map<String, Map<String, String>> eqm_Custom_Value_Map = new HashMap<>();
 
 	public PlayerDataFancy(Player player){
 		this.player = player;
@@ -99,5 +114,78 @@ public class PlayerDataFancy {
 		return amount;
 	}
 
+	//獲取該自訂值
+	public String getCustomValue(String key){
+
+		if(eqm_Custom_Value_Map.get(key) != null){
+			Map<String, String> string_Map = eqm_Custom_Value_Map.get(key);
+			double sum = 0;
+			for(String value : string_Map.values()){
+				if(NumberJudgment.isNumber(value)){
+					sum += Double.parseDouble(value);
+				}else {
+					return value;
+				}
+			}
+			return String.valueOf(sum);
+		}
+		if(OtherManager.custom_Value_Default.get(key) != null){
+
+			return OtherManager.custom_Value_Default.get(key);
+		}
+		return "0";
+	}
+
+	//移除裝備部位屬性
+	public void removeCustomValue(String eqm){
+		eqm_Custom_Value_Map.forEach((s, stringStringMap) -> {
+			stringStringMap.keySet().removeIf(key->key.startsWith(eqm));
+		});
+	}
+
+	//增加裝備部位屬性
+	public void addEqmCustomValue(String eqm, ItemStack itemStack){
+		if(itemStack.getType() != Material.AIR){
+			ItemKeySearch.getCustomAttributesMap(itemStack).forEach((key, value) -> {
+
+				if(key.startsWith("custom")){
+					String[] keyArray = key.split("/");
+					if(keyArray.length == 2){
+						if(eqm_Custom_Value_Map.get(keyArray[1]) != null){
+							Map<String, String> string_Map = eqm_Custom_Value_Map.get(keyArray[1]);
+							string_Map.put(eqm+keyArray[0], value);
+							//FancyCore.fancyCore.getLogger().info(keyArray[1]+" : "+eqm+keyArray[0]+" : "+value);
+							eqm_Custom_Value_Map.put(keyArray[1], string_Map);
+						}else {
+							Map<String, String> string_Map = new HashMap<>();
+							string_Map.put(eqm+keyArray[0], value);
+							eqm_Custom_Value_Map.put(keyArray[1], string_Map);
+						}
+					}
+				}
+			});
+		}
+	}
+
+	//移除裝備部位動作
+	public void removeEqmAction(String eqm){
+		eqm_Action_Map.keySet().removeIf(value -> value.startsWith(eqm));
+//		for(String key : eqm_Action_Map.keySet()){
+//			if(key.startsWith(eqm)){
+//				eqm_Action_Map.remove(key);
+//			}
+//		}
+	}
+	//增加裝備部位動作
+	public void addEqmAction(String eqm, ItemStack itemStack){
+		if(itemStack != null && itemStack.getType() != Material.AIR){
+			ItemKeySearch.getCustomAttributesMap(itemStack).forEach((key, value) -> {
+				if(key.startsWith("action")){
+					Map<String, String> string_Map = StringToMap.toActionMap(value);
+					eqm_Action_Map.put(eqm+key, string_Map);
+				}
+			});
+		}
+	}
 
 }

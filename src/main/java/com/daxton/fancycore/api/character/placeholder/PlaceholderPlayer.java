@@ -15,6 +15,7 @@ public class PlaceholderPlayer {
 		PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(uuid);
 
 		if(playerDataFancy != null){
+
 			//主手裝備類型
 			if(inputString.toLowerCase().contains("<fc_player_mainhand")){
 				return playerDataFancy.mainHand;
@@ -92,6 +93,7 @@ public class PlaceholderPlayer {
 			if(inputString.toLowerCase().contains("<fc_player_lever_location")){
 				return playerDataFancy.lever_location;
 			}
+
 		}
 
 

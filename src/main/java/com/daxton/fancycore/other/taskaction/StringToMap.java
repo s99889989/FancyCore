@@ -85,6 +85,7 @@ public class StringToMap {
 
     //把目標字串轉成，目標Map
     public static Map<String, String> toTargetMap(String inputString){
+
         Map<String, String> targetMap = new HashMap<>();
         if (inputString.contains("{") && inputString.contains("}")) {
 
@@ -106,10 +107,10 @@ public class StringToMap {
                     }
                 });
             }
-        }else if(!inputString.contains("{") && !inputString.contains("}")){
-            targetMap.put("targettype", inputString.replace("@","").trim().toLowerCase());
-        }else {
-            targetMap.put("targettype", "null");
+        }else if(inputString.contains("@")){
+            targetMap.put("targettype", inputString.substring(1));
+        } else {
+            targetMap.put("targettype", "");
         }
 //        targetMap.forEach((s, s2) -> {
 //            CustomDisplay.getCustomDisplay().getLogger().info(s+" : "+s2);

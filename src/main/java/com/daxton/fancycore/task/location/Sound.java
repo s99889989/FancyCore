@@ -26,8 +26,12 @@ public class Sound implements FancyAction {
         String targetString = actionMapHandle.getString(new String[]{"targetkey"}, "");
         Map<String, String> targetMap = StringToMap.toTargetMap(targetString);
         Location location = GetLocation.getOne(self, target, targetMap, inputLocation);
-        //發出聲音
-        location.getWorld().playSound(location, sound, category, volume, pitch);
+
+        if(location != null){
+            //發出聲音
+            location.getWorld().playSound(location, sound, category, volume, pitch);
+        }
+
     }
 
 }

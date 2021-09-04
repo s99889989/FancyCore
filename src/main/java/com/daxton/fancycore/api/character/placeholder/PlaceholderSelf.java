@@ -1,6 +1,8 @@
 package com.daxton.fancycore.api.character.placeholder;
 
+import com.daxton.fancymobs.api.placeholder.BasePlaceholder;
 import com.daxton.fancymobs.api.placeholder.FancyMobsPlaceholder;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
@@ -11,31 +13,37 @@ public class PlaceholderSelf {
     }
 
     public static String valueOf(LivingEntity entity,LivingEntity target, String inputString){
-        String outputString = "0";
         String key = inputString.replace("_self","").replace(">","");
 
         if(entity instanceof Player){
             if(key.toLowerCase().contains("<fc_base_")){
-                outputString = PlaceholderBase.valueOf(entity,target,key);
+                return PlaceholderBase.valueOf(entity,target,key);
             }
             if(key.toLowerCase().contains("<fc_player_")){
-                outputString = PlaceholderPlayer.valueOf(entity,key);
+                return PlaceholderPlayer.valueOf(entity,key);
             }
             if(key.toLowerCase().contains("<fc_attribute_")){
-                outputString = PlaceholderAttributes.valueOf(entity, key);
+                return PlaceholderAttributes.valueOf(entity, key);
             }
         }else {
-            if(key.toLowerCase().contains("<fc_base_")){
-                outputString = PlaceholderBase.valueOf(entity,target,key);
+            if(key.toLowerCase().contains("<fc_base_value_")){
+                if(Bukkit.getPluginManager().isPluginEnabled("FancyMobs")){
+                    return BasePlaceholder.valueOf(entity,key);
+                }else {
+                    return "0";
+                }
             }
-            if(key.toLowerCase().contains("<fc_mythic_")){
-                outputString = FancyMobsPlaceholder.valueOf(entity,key);
+            if(key.toLowerCase().contains("<fc_base_")){
+                return PlaceholderBase.valueOf(entity, null, key);
+            }
+            if(key.toLowerCase().contains("<fc_mythic_") && Bukkit.getServer().getPluginManager().getPlugin("FancyMobs") != null && Bukkit.getPluginManager().isPluginEnabled("FancyMobs")){
+                return FancyMobsPlaceholder.valueOf(entity,key);
             }
             if(key.toLowerCase().contains("<cd_attribute_")){
-                outputString = PlaceholderAttributes.valueOf(entity, key);
+                return PlaceholderAttributes.valueOf(entity, key);
             }
         }
-        return outputString;
+        return "0";
     }
 
 }

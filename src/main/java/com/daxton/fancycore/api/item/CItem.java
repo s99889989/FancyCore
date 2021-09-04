@@ -1,8 +1,11 @@
 package com.daxton.fancycore.api.item;
 
 import com.daxton.fancycore.FancyCore;
+import com.destroystokyo.paper.profile.PlayerProfile;
+import com.destroystokyo.paper.profile.ProfileProperty;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
@@ -182,6 +185,9 @@ public class CItem {
     }
     //設定物品的頭值
     public void setHeadValue(String headValue){
+        if(headValue == null){
+            return;
+        }
         FancyCore fancyCore = FancyCore.fancyCore;
         Material material = itemStack.getType();
         SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
@@ -200,7 +206,14 @@ public class CItem {
                     profileField.setAccessible(true);
                     profileField.set(skullMeta, profile);
                 } catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-                    e.printStackTrace();
+                    try {
+                        PlayerProfile playerProfile = Bukkit.createProfile(UUID.randomUUID(), null);
+                        playerProfile.getProperties().add(new ProfileProperty("textures", headValue));
+                        skullMeta.setPlayerProfile(playerProfile);
+                        itemStack.setItemMeta(skullMeta);
+                    } catch (NoSuchMethodError exception) {
+                        //
+                    }
                 }
                 itemStack.setItemMeta(skullMeta);
             }

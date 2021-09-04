@@ -1,9 +1,9 @@
 name: FancyCore
-version: 1.1.8
+version: 1.1.9
 main: com.daxton.fancycore.FancyCore
 api-version: 1.13
 prefix: FancyCore
-softdepend: [ProtocolLib, PlaceholderAPI, Vault, ProtocolSupport, LightAPI, Citizens]
+softdepend: [ProtocolLib, PlaceholderAPI, Vault, ProtocolSupport, LightAPI, Citizens, ModelEngine]
 authors: [ s99889989 ]
 description: The core function of the Fancy plugin.
 commands:

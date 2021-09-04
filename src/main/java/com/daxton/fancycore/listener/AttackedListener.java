@@ -1,5 +1,6 @@
 package com.daxton.fancycore.listener;
 
+import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.manager.PlayerManagerCore;
 import com.daxton.fancycore.other.playerdata.PlayerDataFancy;
 import net.citizensnpcs.api.CitizensAPI;
@@ -24,6 +25,9 @@ public class AttackedListener implements Listener {
 				return;
 			}
 		}
+		if(attacked.getCustomName() != null && attacked.getCustomName().equals("ModleEngine")){
+			return;
+		}
 		if(!(attacked instanceof Player)){
 			return;
 		}
@@ -38,5 +42,6 @@ public class AttackedListener implements Listener {
 
 
 	}
+
 
 }

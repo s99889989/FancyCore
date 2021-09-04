@@ -3,12 +3,11 @@ package com.daxton.fancycore;
 import com.daxton.fancycore.command.MainCommand;
 import com.daxton.fancycore.command.TabCommand;
 import com.daxton.fancycore.config.FileConfig;
-import com.daxton.fancycore.listener.attack.AttackListener;
+import com.daxton.fancycore.listener.MobListener;
 import com.daxton.fancycore.listener.AttackedListener;
 import com.daxton.fancycore.listener.InventoryListener;
 import com.daxton.fancycore.listener.PlayerListener;
-import com.daxton.fancycore.nms.v1_16_R3.NMSEntity;
-import com.daxton.fancycore.task.server.Start;
+import com.daxton.fancycore.server.Start;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,8 +37,10 @@ public class FancyCore extends JavaPlugin{
         //玩家監聽
         Bukkit.getPluginManager().registerEvents(new PlayerListener(), fancyCore);
         Bukkit.getPluginManager().registerEvents(new InventoryListener(), fancyCore);
-        Bukkit.getPluginManager().registerEvents(new AttackListener(), fancyCore);
         Bukkit.getPluginManager().registerEvents(new AttackedListener(), fancyCore);
+        Bukkit.getPluginManager().registerEvents(new MobListener(), fancyCore);
+        //傷害核心
+        AttackCore.setCore();
     }
 
     @Override

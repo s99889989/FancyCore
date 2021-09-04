@@ -1,12 +1,16 @@
 package com.daxton.fancycore.task.meta;
 
-import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.manager.TaskActionManager;
 import com.daxton.fancycore.other.hologram.FloatMessage;
+import com.daxton.fancycore.other.task.guise.GuiseEntity;
+import com.daxton.fancycore.other.task.modelentity.ModelEntity;
 import com.daxton.fancycore.task.meta.run.FixedPoint;
 import com.daxton.fancycore.task.meta.run.Loop;
 import com.daxton.fancycore.task.meta.run.OrbitalAction;
+import org.bukkit.Bukkit;
 import org.bukkit.boss.BossBar;
+
+import java.util.Iterator;
 
 public class ClearAction {
 	//清除全部
@@ -42,6 +46,18 @@ public class ClearAction {
 			bossBar.removeAll();
 		}
 		TaskActionManager.task_BossBar_Map.clear();
+		//清除GuiseEntity
+		for(GuiseEntity guiseEntity : TaskActionManager.task_GuiseEntity_Map.values()){
+			guiseEntity.delete();
+		}
+		TaskActionManager.task_GuiseEntity_Map.clear();
+		//清除ModelEntity
+		if (Bukkit.getServer().getPluginManager().getPlugin("ModelEngine") != null){
+			for(ModelEntity modelEntity : TaskActionManager.task_ModelEntity_Map.values()){
+				modelEntity.delete();
+			}
+			TaskActionManager.task_ModelEntity_Map.clear();
+		}
 		//
 	}
 	//依據taskID
@@ -63,14 +79,47 @@ public class ClearAction {
 			TaskActionManager.task_FixedPoint_Map.remove(taskID);
 		}
 		//清除FloatMessage
-		if(TaskActionManager.task_FloatMessage_Map.get(taskID) != null){
-			TaskActionManager.task_FloatMessage_Map.get(taskID).delete();
-			TaskActionManager.task_FloatMessage_Map.remove(taskID);
+		Iterator<String> ifm = TaskActionManager.task_FloatMessage_Map.keySet().iterator();
+		while (ifm.hasNext()){
+			String key = ifm.next();
+			if(key.startsWith(taskID)){
+				FloatMessage floatMessage = TaskActionManager.task_FloatMessage_Map.get(key);
+				floatMessage.delete();
+				ifm.remove();
+			}
+
 		}
 		//清除BossBar
-		if(TaskActionManager.task_BossBar_Map.get(taskID) != null){
-			TaskActionManager.task_BossBar_Map.get(taskID).removeAll();
-			TaskActionManager.task_BossBar_Map.remove(taskID);
+		Iterator<String> ibb = TaskActionManager.task_BossBar_Map.keySet().iterator();
+		while (ibb.hasNext()){
+			String key = ibb.next();
+			if(key.startsWith(taskID)){
+				BossBar bossBar = TaskActionManager.task_BossBar_Map.get(key);
+				bossBar.removeAll();
+				ibb.remove();
+			}
+		}
+		//清除GuiseEntity
+		Iterator<String> ige = TaskActionManager.task_GuiseEntity_Map.keySet().iterator();
+		while (ige.hasNext()){
+			String key = ige.next();
+			if(key.startsWith(taskID)){
+				GuiseEntity guiseEntity = TaskActionManager.task_GuiseEntity_Map.get(key);
+				guiseEntity.delete();
+				ige.remove();
+			}
+		}
+		//清除ModelEntity
+		if (Bukkit.getServer().getPluginManager().getPlugin("ModelEngine") != null){
+			Iterator<String> im = TaskActionManager.task_ModelEntity_Map.keySet().iterator();
+			while (im.hasNext()){
+				String key = im.next();
+				if(key.startsWith(taskID)){
+					ModelEntity modelEntity = TaskActionManager.task_ModelEntity_Map.get(key);
+					modelEntity.delete();
+					im.remove();
+				}
+			}
 		}
 		//
 	}

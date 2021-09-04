@@ -4,6 +4,7 @@ package com.daxton.fancycore.listener.attack;
 import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.aims.entity.Convert;
 import com.daxton.fancycore.manager.PlayerManagerCore;
+import com.daxton.fancycore.other.playerdata.ItemCD;
 import com.daxton.fancycore.other.playerdata.PlayerDataFancy;
 import net.citizensnpcs.api.CitizensAPI;
 import org.bukkit.Bukkit;
@@ -28,10 +29,15 @@ public class AttackListener implements Listener {
 				return;
 			}
 		}
+		if(attacked.getCustomName() != null && attacked.getCustomName().equals("ModleEngine")){
+			return;
+		}
 		if(!(attacked instanceof LivingEntity) || !(attacker instanceof Player)){
 			return;
 		}
+
 		Player killer = (Player) attacker;
+
 		UUID killerUUID = killer.getUniqueId();
 		double damagedNumber = event.getFinalDamage();
 		//玩家攻擊數字

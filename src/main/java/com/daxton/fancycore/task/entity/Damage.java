@@ -1,5 +1,6 @@
 package com.daxton.fancycore.task.entity;
 
+import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.aims.entity.GetEntity;
 import com.daxton.fancycore.api.number.Count;
 import com.daxton.fancycore.other.task.FancyAction;

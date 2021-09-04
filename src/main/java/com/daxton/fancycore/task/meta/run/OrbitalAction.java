@@ -191,11 +191,18 @@ public class OrbitalAction extends BukkitRunnable {
             Location location = fLocation.apply(startLocation.add(targetLocation.clone().subtract(startLocation).toVector().normalize().multiply(c).add(vec.multiply(1.0D - c))));
             StartAction.execute(this.self, this.target, onTimeList, location, taskID);
         }
-        List<LivingEntity> livingEntityList = Radius.getRadiusLivingEntities3(self, startLocation, hitRange);
-        if(livingEntityList.size() > 0){
-            for(LivingEntity livingEntity : livingEntityList){
-                StartAction.execute(this.self, livingEntity, onTimeHitList, targetLocation, taskID);
+        if(setHitCount == 0 || hitCount < setHitCount){
+            List<LivingEntity> livingEntityList = Radius.getRadiusLivingEntities3(self, startLocation, hitRange);
+            if(livingEntityList.size() > 0){
+                hitCount++;
+                if(hitStop && hitCount >= setHitCount){
+                    cancel();
+                }
+                for(LivingEntity livingEntity : livingEntityList){
+                    StartAction.execute(this.self, livingEntity, onTimeHitList, targetLocation, taskID);
+                }
             }
+
         }
 
 

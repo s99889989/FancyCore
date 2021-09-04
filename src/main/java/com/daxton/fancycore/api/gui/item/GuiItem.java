@@ -33,6 +33,10 @@ public class GuiItem {
         if(itemConfig.contains(itemID+".HeadValue")){
             GuiItemSet.setHeadValue(null, itemConfig, itemID, newItemStack);
         }
+
+        GuiItemSet.setItemFlags(newItemStack);
+
+
         return newItemStack;
     }
 
@@ -92,6 +96,9 @@ public class GuiItem {
         if(itemConfig.contains(itemID+".HeadValue")){
             GuiItemSet.setHeadValue(player, itemConfig, itemID, newItemStack);
         }
+
+        GuiItemSet.setItemFlags(newItemStack);
+
         return newItemStack;
     }
 

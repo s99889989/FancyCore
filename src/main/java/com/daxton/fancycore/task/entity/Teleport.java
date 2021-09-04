@@ -1,5 +1,6 @@
 package com.daxton.fancycore.task.entity;
 
+import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.aims.entity.GetEntity;
 import com.daxton.fancycore.api.aims.vector.LocationVector;
 import com.daxton.fancycore.other.task.FancyAction;
@@ -22,7 +23,9 @@ public class Teleport implements FancyAction {
         Map<String, String> targetMap = StringToMap.toTargetMap(targetString);
         List<LivingEntity> livingEntityList = GetEntity.get(self, target, targetMap);
 
+
         livingEntityList.forEach(livingEntity -> {
+
             MapGetKey actionMapHandle = new MapGetKey(action_Map, self, target);
 
             //座標向量偏移

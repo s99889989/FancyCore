@@ -32,8 +32,10 @@ public class StringToMap {
     //丟入動作字串列表 轉成 動作Map列表
     public static List<Map<String, String>> toActiomMapList(List<String> actionStringList){
         List<Map<String, String>> actionMapList = new ArrayList<>();
-        for(String actionString : actionStringList){
-            actionMapList.add(toActionMap(actionString));
+        if(actionStringList != null){
+            for(String actionString : actionStringList){
+                actionMapList.add(toActionMap(actionString));
+            }
         }
         return actionMapList;
     }

@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.daxton'
-version '1.1.9'
+version '1.1.11'
 
 repositories {
     mavenCentral()
@@ -70,6 +70,7 @@ dependencies {
 
     compileOnly fileTree(dir: 'lib', include: ['FancyMobs-1.1.4.jar'])
     compileOnly fileTree(dir: 'lib', include: ['FancyItems-1.0.jar'])
+    compileOnly fileTree(dir: 'lib', include: ['FancyGui-1.0.jar'])
 
     compileOnly fileTree(dir: 'lib', include: ['Model-Engine-r2.1.8.jar'])
     compileOnly fileTree(dir: 'lib', include: ['ProtocolSupport.jar'])
@@ -96,3 +97,10 @@ processResources {
 }
 
 compileJava.options.encoding = 'UTF-8'
+
+task copyJar(type: Copy) {
+    from jar
+    into 'C:/Users/Gary/Desktop/1.16.5/plugins'
+}
+
+build.finalizedBy copyJar

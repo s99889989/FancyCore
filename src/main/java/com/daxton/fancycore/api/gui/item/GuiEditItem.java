@@ -10,6 +10,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class GuiEditItem {
@@ -86,6 +87,22 @@ public class GuiEditItem {
 		});
 
 		return arrayList;
+	}
+
+	public static void replaceName(ItemStack itemStack, Map<String, String> nameMap){
+		ItemMeta itemMeta =  itemStack.getItemMeta();
+		String itemDisplayName = itemMeta.getDisplayName();
+
+		for(String key : nameMap.keySet()){
+			String value = nameMap.get(key);
+			if(itemDisplayName.contains(key)){
+				itemDisplayName = itemDisplayName.replace(key, value);
+			}
+		}
+
+		itemMeta.setDisplayName(itemDisplayName);
+
+		itemStack.setItemMeta(itemMeta);
 	}
 
 	public static String mmoItemType(ItemStack itemStack){

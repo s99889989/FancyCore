@@ -4,10 +4,12 @@ import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.gui.button.GuiButton;
 import com.daxton.fancycore.api.gui.button.GuiChatAction;
 import com.daxton.fancycore.api.gui.button.GuiCloseAction;
+import com.daxton.fancycore.api.gui.button.GuiOpenAction;
 import com.daxton.fancycore.manager.PlayerManagerCore;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +22,7 @@ public final class GUI {
 	String title;
 	Inventory inventory;
 	public GuiButton[] buttons;
+	public GuiOpenAction guiOpenAction;
 	public GuiCloseAction guiCloseAction;
 	public GuiChatAction guiChatAction;
 	boolean move;
@@ -30,9 +33,9 @@ public final class GUI {
 		this.player = player;
 		this.size = size;
 		this.title = title;
-		this.inventory = Bukkit.createInventory(null, size , title);
+		this.inventory = Bukkit.createInventory(player, size , title);
 		buttons = new GuiButton[size+36];
-		PlayerManagerCore.player_Gui_Map.put(player.getUniqueId(), this);
+		//PlayerManagerCore.player_Gui_Map.put(player.getUniqueId(), this);
 	}
 	//設置按鈕
 	public void setButton(GuiButton guiButton, int vertical, int horizontal){
@@ -93,9 +96,34 @@ public final class GUI {
 
 	//打開
 	public void open(GUI gui){
-		gui.setOpen(true);
-		PlayerManagerCore.player_Gui_Map.put(player.getUniqueId(), gui);
-		player.openInventory(inventory);
+
+		GUI oGui = PlayerManagerCore.player_Gui_Map.get(player.getUniqueId());
+
+
+		if(oGui != null && oGui.isOpen()){
+			oGui.close();
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					gui.setOpen(true);
+					PlayerManagerCore.player_Gui_Map.put(player.getUniqueId(), gui);
+					if(gui.guiOpenAction != null){
+						gui.guiOpenAction.execute();
+					}
+					player.openInventory(gui.inventory);
+				}
+			}.runTask(FancyCore.fancyCore);
+		}else {
+			gui.setOpen(true);
+			PlayerManagerCore.player_Gui_Map.put(player.getUniqueId(), gui);
+			if(gui.guiOpenAction != null){
+				gui.guiOpenAction.execute();
+			}
+			player.openInventory(gui.inventory);
+		}
+
+
+
 	}
 
 	public void close(){
@@ -109,6 +137,10 @@ public final class GUI {
 	//設置聊天動作
 	public void setGuiChatAction(GuiChatAction guiChatAction) {
 		this.guiChatAction = guiChatAction;
+	}
+	//設置打開動作
+	public void setGuiOpenAction(GuiOpenAction guiOpenAction) {
+		this.guiOpenAction = guiOpenAction;
 	}
 
 	//設置全部按鈕移動

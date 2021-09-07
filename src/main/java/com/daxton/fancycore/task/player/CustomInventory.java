@@ -6,6 +6,7 @@ import com.daxton.fancycore.other.playerdata.PlayerDataFancy;
 import com.daxton.fancycore.other.task.FancyAction;
 import com.daxton.fancycore.other.taskaction.MapGetKey;
 import com.daxton.fancycore.other.taskaction.StringToMap;
+import com.daxton.fancygui.gui.FancyGuiMain;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
@@ -39,7 +40,9 @@ public class CustomInventory implements FancyAction {
                 Player player = (Player) livingEntity;
                 UUID uuid = player.getUniqueId();
                 if(function.toLowerCase().contains("gui")){
-
+                    if(Bukkit.getServer().getPluginManager().getPlugin("FancyGui") != null || Bukkit.getPluginManager().isPluginEnabled("FancyGui")){
+                        FancyGuiMain.openCustom(player, GuiID);
+                    }
                 }else if(function.toLowerCase().contains("close")){
                     player.closeInventory();
                 }else {

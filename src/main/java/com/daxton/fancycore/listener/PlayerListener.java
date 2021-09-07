@@ -8,6 +8,7 @@ import com.daxton.fancycore.other.task.PackEntity;
 import com.daxton.fancycore.other.task.guise.GuiseEntity;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.Chest;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;

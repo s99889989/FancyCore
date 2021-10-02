@@ -1,5 +1,6 @@
 package com.daxton.fancycore.api.character.conversion;
 
+import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.character.stringconversion.ConversionMain;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -99,6 +100,7 @@ public class StringConversion {
 
         String inputString = getString(self, target, content);
         if(inputString != null){
+
             if(inputString.contains(".")){
                 inputString = inputString.substring(0, inputString.indexOf("."));
             }

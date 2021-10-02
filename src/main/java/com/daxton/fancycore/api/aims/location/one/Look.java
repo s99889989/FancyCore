@@ -6,7 +6,7 @@ import org.bukkit.util.Vector;
 
 public class Look {
     //獲取面前指定距離目標
-    public static Location getLook(LivingEntity self, int distance){
+    public static Location getLook(LivingEntity self, double distance){
 
         Location location = self.getLocation();
         Vector vector = location.getDirection().multiply(distance);

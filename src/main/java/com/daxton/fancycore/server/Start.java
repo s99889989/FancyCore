@@ -37,6 +37,8 @@ public class Start {
         StringToMap.setActionMap();
         //自訂值
         SetCustomValue.execute();
+
+
     }
 
 }

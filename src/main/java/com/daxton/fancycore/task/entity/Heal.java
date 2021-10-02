@@ -1,5 +1,6 @@
 package com.daxton.fancycore.task.entity;
 
+import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.aims.entity.GetEntity;
 import com.daxton.fancycore.other.task.FancyAction;
 import com.daxton.fancycore.other.taskaction.MapGetKey;
@@ -18,9 +19,9 @@ public class Heal implements FancyAction {
 
         //補量
         double amount = actionMapHandle.getDouble(new String[]{"amount","a"},10);
-
+        //FancyCore.fancyCore.getLogger().info("回復量: "+amount);
         //目標
-        String targetString = actionMapHandle.getString(new String[]{"targetkey"}, "");
+        String targetString = actionMapHandle.getString(new String[]{"targetkey"}, "@Self");
         Map<String, String> targetMap = StringToMap.toTargetMap(targetString);
         List<LivingEntity> livingEntityList = GetEntity.get(self, target, targetMap);
 

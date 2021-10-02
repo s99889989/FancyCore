@@ -20,7 +20,7 @@ public class DefaultFormula {
 
 		playerDataFancy.attackSpeed = false;
 		FileConfiguration coreConfig = FileConfig.config_Map.get("Other/CustomCore.yml");
-		String attackSpeedString = coreConfig.getString("CoreAttribute.Attack_Speed.formula");
+		String attackSpeedString = coreConfig.getString("Attack_Speed.formula");
 		int attackSpeed = StringConversion.getInt(self, target, 0, attackSpeedString);
 		attackSpeed = attackSpeed*2;
 		BukkitRunnable bukkitRunnable = new BukkitRunnable() {
@@ -40,10 +40,8 @@ public class DefaultFormula {
 
 		int randomNumber = 100;
 		int  r = (int)(Math.random()*randomNumber);
-		String hitRateString = coreConfig.getString("CoreAttribute.Hit_Rate_Player_Other.formula");
-		if(target instanceof Player){
-			hitRateString = coreConfig.getString("CoreAttribute.Hit_Rate_Player_Player.formula");
-		}
+		String hitRateString = coreConfig.getString("Hit_Rate.formula");
+
 		if(hitRateString != null){
 			double hitRate = StringConversion.getDouble(self,target, 0,hitRateString);
 
@@ -68,10 +66,8 @@ public class DefaultFormula {
 
 		int randomNumber = 100;
 		int  r = (int)(Math.random()*randomNumber);
-		String blockRateString = coreConfig.getString("CoreAttribute.Block_Rate_Player_Other.formula");
-		if(target instanceof Player){
-			blockRateString = coreConfig.getString("CoreAttribute.Block_Rate_Player_Player.formula");
-		}
+		String blockRateString = coreConfig.getString("Block_Rate.formula");
+
 		if(blockRateString != null){
 
 			double blockRate = StringConversion.getDouble(self,target, 0, blockRateString);
@@ -101,14 +97,12 @@ public class DefaultFormula {
 
 		int randomNumber2 = 100;
 		int  r2 = (int)(Math.random()*randomNumber2);
-		String crit_chanceString = coreConfig.getString("CoreAttribute.Critical_Strike_Chance_Player_Other.formula");
-		if(target instanceof Player){
-			crit_chanceString = coreConfig.getString("CoreAttribute.Critical_Strike_Chance_Player_Player.formula");
-		}
+		String crit_chanceString = coreConfig.getString("Critical_Strike_Chance.formula");
+
 		if(crit_chanceString != null){
-
+			//FancyCore.fancyCore.getLogger().info(crit_chanceString);
 			double crit_chance = StringConversion.getDouble(self,target, 0, crit_chanceString);
-
+			//FancyCore.fancyCore.getLogger().info("爆擊率: "+crit_chance);
 			int max_chance = 95;
 			if(crit_chance > max_chance){
 				crit_chance = max_chance;

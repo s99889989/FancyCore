@@ -1,7 +1,10 @@
 package com.daxton.fancycore.api.gui.item;
 
+import com.daxton.fancycore.api.character.stringconversion.ConversionMain;
 import com.daxton.fancycore.nms.NMSItem;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -14,6 +17,27 @@ import java.util.Map;
 import java.util.Set;
 
 public class GuiEditItem {
+	//設置材質
+	public static ItemStack setMaterial(ItemStack itemStack, String stringMaterial){
+		try {
+			ItemMeta itemMeta = itemStack.getItemMeta();
+			Material itemMaterial = Enum.valueOf(Material.class, stringMaterial.replace(" ","").toUpperCase());
+			ItemStack newItemStack = new ItemStack(itemMaterial);
+			newItemStack.setItemMeta(itemMeta);
+
+			return newItemStack;
+
+		}catch (Exception exception){
+			//
+		}
+		return itemStack;
+	}
+	//設置CMD值
+	public static void setCustomModelData(ItemStack itemStack, int cmd){
+		ItemMeta itemMeta = itemStack.getItemMeta();
+		itemMeta.setCustomModelData(cmd);
+		itemStack.setItemMeta(itemMeta);
+	}
 
 	//獲取損壞值
 	public static int getData(ItemStack itemStack){
@@ -76,6 +100,24 @@ public class GuiEditItem {
 		itemStack.setLore(newLoreList);
 	}
 
+	//把List插入標記位置
+	public static void loreInsert(LivingEntity self, ItemStack itemStack, String key, List<String> list){
+		List<String> newLoreList = new ArrayList<>();
+		if(itemStack.getLore() != null && list != null){
+			itemStack.getLore().forEach(s -> {
+				if(s.contains(key)){
+					for(String addString : list){
+						addString = ConversionMain.valueOf(self, null, addString, true);
+						newLoreList.add(addString);
+					}
+				}else {
+					newLoreList.add(s);
+				}
+			});
+		}
+		itemStack.setLore(newLoreList);
+	}
+
 	public static List<String> getPersistentData(ItemStack itemStack){
 		List<String> arrayList = new ArrayList<>();
 		PersistentDataContainer pData = itemStack.getItemMeta().getPersistentDataContainer();
@@ -88,7 +130,7 @@ public class GuiEditItem {
 
 		return arrayList;
 	}
-
+	//轉換Name內容
 	public static void replaceName(ItemStack itemStack, Map<String, String> nameMap){
 		ItemMeta itemMeta =  itemStack.getItemMeta();
 		String itemDisplayName = itemMeta.getDisplayName();
@@ -103,6 +145,30 @@ public class GuiEditItem {
 		itemMeta.setDisplayName(itemDisplayName);
 
 		itemStack.setItemMeta(itemMeta);
+	}
+	//轉換Lore內容
+	public static void replaceLore(ItemStack itemStack, Map<String, String> loreMap){
+		List<String> oldLore = itemStack.getLore();
+		if(oldLore == null){
+			return;
+		}
+		List<String> newLore = new ArrayList<>();
+
+		oldLore.forEach(s -> {
+			int i = 1;
+			for(String key : loreMap.keySet()){
+				String value = loreMap.get(key);
+				if(s.contains(key)){
+					s = s.replace(key, value);
+				}
+				if(i == loreMap.keySet().size()){
+					newLore.add(s);
+					break;
+				}
+				i++;
+			}
+		});
+		itemStack.setLore(newLore);
 	}
 
 	public static String mmoItemType(ItemStack itemStack){

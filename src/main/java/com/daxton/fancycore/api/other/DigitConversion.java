@@ -7,7 +7,7 @@ public class DigitConversion {
     private static String[] suffix = new String[]{"","k","m","b","t"};
     private static int MAX_LENGTH = 4;
 
-    //位數轉換，去掉一些位數
+    //位數轉換，去掉一些位數，回傳字串
     public static String NumberUtil(double number, String decimal){
         DecimalFormat decimalFormat = new DecimalFormat(decimal);
         String string = decimalFormat.format(number);
@@ -19,6 +19,20 @@ public class DigitConversion {
         }
 
          return string;
+    }
+
+    //位數轉換，去掉一些位數，回傳數字
+    public static double NumberUtilNumber(double number, String decimal){
+        DecimalFormat decimalFormat = new DecimalFormat(decimal);
+        String string = decimalFormat.format(number);
+        if(string.contains(",")){
+            string = string.replace(",",".");
+        }
+        if(string.endsWith(".0")){
+            string = string.replace(".0","");
+        }
+
+        return Double.parseDouble(string);
     }
 
     //轉換單位
@@ -45,7 +59,7 @@ public class DigitConversion {
         return string;
     }
 
-    /**對首位字做處理2**/
+    //對首位字做處理2
     public static String NumberHead2(String string, String content){
         String lastString = "";
         char[] c = string.toCharArray();
@@ -62,7 +76,7 @@ public class DigitConversion {
         }
         return lastString;
     }
-    /**對單位字做處理，不包括首位字2**/
+    //對單位字做處理，不包括首位字2
     public static String NumberUnits2(String string, String content){
         String lastString = "";
         char[] c = string.toCharArray();

@@ -22,6 +22,8 @@ public class ItemCD {
 
 			if(!coolDownString.isEmpty() && !itemID.isEmpty()){
 
+
+
 				PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(player.getUniqueId());
 
 				if(playerDataFancy.cd_Left_Run.get(itemID) == null){

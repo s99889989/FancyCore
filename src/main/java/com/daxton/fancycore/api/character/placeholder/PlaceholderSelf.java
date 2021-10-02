@@ -1,5 +1,6 @@
 package com.daxton.fancycore.api.character.placeholder;
 
+import com.daxton.fancyclasses.api.placeholder.ClassPlaceholder;
 import com.daxton.fancymobs.api.placeholder.BasePlaceholder;
 import com.daxton.fancymobs.api.placeholder.FancyMobsPlaceholder;
 import org.bukkit.Bukkit;
@@ -25,12 +26,13 @@ public class PlaceholderSelf {
             if(key.toLowerCase().contains("<fc_attribute_")){
                 return PlaceholderAttributes.valueOf(entity, key);
             }
+            if(key.toLowerCase().contains("<fc_class_") && Bukkit.getPluginManager().isPluginEnabled("FancyClasses")){
+                return ClassPlaceholder.valueOf(entity, key);
+            }
         }else {
             if(key.toLowerCase().contains("<fc_base_value_")){
                 if(Bukkit.getPluginManager().isPluginEnabled("FancyMobs")){
                     return BasePlaceholder.valueOf(entity,key);
-                }else {
-                    return "0";
                 }
             }
             if(key.toLowerCase().contains("<fc_base_")){

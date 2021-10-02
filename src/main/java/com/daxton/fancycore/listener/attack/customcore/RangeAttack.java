@@ -126,43 +126,7 @@ public class RangeAttack implements Listener {
 			FancyCore.fancyCore.getLogger().info("遠距離攻擊(攻擊)");
 		}
 
-		Player player = (Player) ((Arrow) event.getDamager()).getShooter();
-		LivingEntity target = event.getTarget();
 		double attackNumber = event.getDamage();
-
-		PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(player.getUniqueId());
-		//攻速
-		if(playerDataFancy.attackSpeed){
-			DefaultFormula.AttackSpeed(player, target);
-
-			//命中
-			boolean hit = DefaultFormula.HitRate(player, target);
-			if (!(hit)) {
-				event.setDamageType("PHYSICAL_MISS");
-				event.setCancelled(true);
-				return;
-			}
-
-			//目標格檔
-			boolean block = DefaultFormula.BlockRate(player, target);
-			if (block) {
-				event.setDamageType("PHYSICAL_BLOCK");
-				event.setCancelled(true);
-				return;
-			}
-
-			//爆擊
-			boolean crit = DefaultFormula.CritChange(player, target);
-			if (crit) {
-				event.setDamageType("PHYSICAL_CRITICAL");
-				attackNumber += RangeFormula.CriticalRangeAttack(player, target);
-				event.setDamage(attackNumber);
-				return;
-			}
-
-			attackNumber += RangeFormula.RangeAttack(player, target);
-
-		}
 
 		event.setDamageType("RANGE_ATTACK");
 		event.setDamage(attackNumber);

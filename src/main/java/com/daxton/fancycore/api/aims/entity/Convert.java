@@ -39,9 +39,41 @@ public class Convert {
 		return killer;
 	}
 
+	//把非實體攻擊轉換為實體
+	public static Entity convertEntity2(Entity killer){
+
+		if(killer instanceof Arrow){
+			if(((Arrow) killer).getShooter() instanceof Entity){
+				return (Entity) ((Arrow) killer).getShooter();
+			}
+		}
+		if(killer instanceof ThrownPotion){
+			if(((ThrownPotion) killer).getShooter() instanceof Entity){
+				return (Entity) ((ThrownPotion) killer).getShooter();
+			}
+		}
+		if(killer instanceof TNTPrimed){
+			if(((TNTPrimed) killer).getSource() != null){
+				return ((TNTPrimed) killer).getSource();
+			}
+		}
+		if(killer instanceof Projectile){
+			if(((Projectile) killer).getShooter() instanceof Entity){
+				return (Entity) ((Projectile) killer).getShooter();
+			}
+		}
+		if(killer instanceof Fireball){
+			if(((Fireball) killer).getShooter() instanceof Entity){
+				return (Entity) ((Fireball) killer).getShooter();
+			}
+		}
+
+		return killer;
+	}
+
 	//判斷目標是否有主人，如果有目標就轉為該主人
 	public static LivingEntity convertOwner(LivingEntity killer){
-		Player player = null;
+		Player player;
 		//玩家
 		if(killer instanceof Player){
 			player = ((Player) killer).getPlayer();

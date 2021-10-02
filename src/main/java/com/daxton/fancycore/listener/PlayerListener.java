@@ -1,6 +1,7 @@
 package com.daxton.fancycore.listener;
 
 import com.daxton.fancycore.FancyCore;
+import com.daxton.fancycore.config.FileConfig;
 import com.daxton.fancycore.manager.PlayerManagerCore;
 import com.daxton.fancycore.other.playerdata.ItemCD;
 import com.daxton.fancycore.other.playerdata.PlayerDataFancy;
@@ -9,6 +10,8 @@ import com.daxton.fancycore.other.task.guise.GuiseEntity;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
@@ -16,6 +19,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -138,5 +143,30 @@ public class PlayerListener implements Listener {
         }
 
     }
+
+    //當玩家回血
+    @EventHandler
+    public void onRegainHealth(EntityRegainHealthEvent event){
+        Entity entity = event.getEntity();
+        if(entity instanceof Player){
+            FileConfiguration coreConfig = FileConfig.config_Map.get("Other/CustomCore.yml");
+            boolean hungerReg = coreConfig.getBoolean("Health_Hunger_Regeneration.enable");
+            if(!hungerReg){
+                if(event.getRegainReason() == EntityRegainHealthEvent.RegainReason.SATIATED){
+                    event.setCancelled(true);
+                }
+            }
+            //Player player = (Player) entity;
+            //player.sendMessage("回血: "+event.getRegainReason().name());
+        }
+    }
+
+//    //當玩家飢餓度下降
+//    @EventHandler
+//    public void onHunger(FoodLevelChangeEvent event){
+//        Player player = (Player) event.getEntity();
+//        player.sendMessage("飢餓下降"+event.getFoodLevel());
+//
+//    }
 
 }

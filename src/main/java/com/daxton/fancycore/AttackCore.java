@@ -20,9 +20,11 @@ public class AttackCore {
 			Bukkit.getPluginManager().registerEvents(new MagicAttack(), fancyCore);
 			Bukkit.getPluginManager().registerEvents(new MeleeAttack(), fancyCore);
 			Bukkit.getPluginManager().registerEvents(new RangeAttack(), fancyCore);
+			Bukkit.getPluginManager().registerEvents(new DefaultAttack(), fancyCore);
 			Bukkit.getPluginManager().registerEvents(new NumberAttack(), fancyCore);
 			return;
 		}
+
 		Bukkit.getPluginManager().registerEvents(new AttackListener(), fancyCore);
 
 

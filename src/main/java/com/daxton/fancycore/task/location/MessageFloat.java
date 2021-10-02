@@ -28,7 +28,7 @@ public class MessageFloat implements FancyAction {
         //是否要移動
         boolean teleport = actionMapHandle.getBoolean(new String[]{"teleport","tp"}, false);
         //是否刪除
-        boolean delete = actionMapHandle.getBoolean(new String[]{"delete","d"}, false);
+        boolean delete = actionMapHandle.getBoolean(new String[]{"delete","d", "deleteall"}, false);
         //目標
         String targetString = actionMapHandle.getString(new String[]{"targetkey"}, "");
         Map<String, String> targetMap = StringToMap.toTargetMap(targetString);

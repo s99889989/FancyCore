@@ -29,10 +29,11 @@ public final class GUI {
 	boolean open;
 	boolean chat;
 
-	private GUI(Player player, int size, String title){
+	private GUI(Player player, int size, String title, boolean move){
 		this.player = player;
 		this.size = size;
 		this.title = title;
+		this.move = move;
 		this.inventory = Bukkit.createInventory(player, size , title);
 		buttons = new GuiButton[size+36];
 		//PlayerManagerCore.player_Gui_Map.put(player.getUniqueId(), this);
@@ -246,7 +247,7 @@ public final class GUI {
 		}
 
 		public GUI build(){
-			return new GUI(player, size, title);
+			return new GUI(player, size, title, move);
 		}
 
 	}

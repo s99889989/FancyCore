@@ -2,6 +2,7 @@ package com.daxton.fancycore.listener.attack.customcore;
 
 import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.event.PhysicalDamageEvent;
+import com.daxton.fancycore.api.other.DigitConversion;
 import com.daxton.fancycore.other.playerdata.ItemCD;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
@@ -28,38 +29,40 @@ public class MainAttack implements Listener {
 		Player player = (Player) event.getDamager();
 		double damageNumber = event.getDamage();
 
+		damageNumber = DigitConversion.NumberUtilNumber(damageNumber, "0.0000");
+
 		if(deBug()){
 			FancyCore.fancyCore.getLogger().info("傷害條件判斷: "+damageNumber);
 		}
 
 		//遠距離攻擊(倍率)
-		if(String.valueOf(damageNumber).contains(".3444")){
+		if(String.valueOf(damageNumber).contains(".3333")){
 			SetAttack(event, "RANGE_MULTIPLY");
 			return;
 		}
 		//遠距離攻擊(增加)
-		if(String.valueOf(damageNumber).contains(".3333")){
+		if(String.valueOf(damageNumber).contains(".3222")){
 			SetAttack(event, "RANGE_ADD");
 			return;
 		}
 		//遠距離攻擊(攻擊)
-		if(String.valueOf(damageNumber).contains(".3222")){
+		if(String.valueOf(damageNumber).contains(".3111")){
 			SetAttack(event, "RANGE_ATTACK");
 			return;
 		}
 
 		//魔法攻擊(倍率)
-		if(String.valueOf(damageNumber).contains(".2444")){
+		if(String.valueOf(damageNumber).contains(".2333")){
 			SetAttack(event, "MAGIC_MULTIPLY");
 			return;
 		}
 		//魔法攻擊(增加)
-		if(String.valueOf(damageNumber).contains(".2333")){
+		if(String.valueOf(damageNumber).contains(".2222")){
 			SetAttack(event, "MAGIC_ADD");
 			return;
 		}
 		//魔法攻擊(攻擊)
-		if(String.valueOf(damageNumber).contains(".2222")){
+		if(String.valueOf(damageNumber).contains(".2111")){
 			SetAttack(event, "MAGIC_ATTACK");
 			return;
 		}
@@ -73,13 +76,18 @@ public class MainAttack implements Listener {
 			SetAttack(event, "MELEE_ADD");
 			return;
 		}
+		//近距離攻擊(增加)
+		if(String.valueOf(damageNumber).contains(".1111")){
+			SetAttack(event, "MELEE_ATTACK");
+			return;
+		}
 		//判斷物品是否有取消攻擊
 		if(ItemCD.attackCan(player)){
 			event.setCancelled(true);
 			return;
 		}
 		//近距離攻擊(攻擊)
-		SetAttack(event, "MELEE_ATTACK");
+		SetAttack(event, "Default");
 
 	}
 

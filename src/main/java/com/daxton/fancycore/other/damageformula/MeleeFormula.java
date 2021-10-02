@@ -1,5 +1,6 @@
 package com.daxton.fancycore.other.damageformula;
 
+import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.character.conversion.StringConversion;
 import com.daxton.fancycore.config.FileConfig;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,15 +14,12 @@ public class MeleeFormula {
 		double mAttack = 0;
 		FileConfiguration coreConfig = FileConfig.config_Map.get("Other/CustomCore.yml");
 
-		String mAtt = coreConfig.getString("CoreAttribute.Melee_Physics_Player_Other.formula");
-		if(target instanceof Player){
-			mAtt = coreConfig.getString("CoreAttribute.Melee_Physics_Player_Player.formula");
-		}
+		String mAtt = coreConfig.getString("Melee_Physics.formula");
+		//FancyCore.fancyCore.getLogger().info(mAtt);
 		if(mAtt != null){
 			mAttack = StringConversion.getDouble(self, target, 0, mAtt);
 		}
-
-
+		//FancyCore.fancyCore.getLogger().info(mAttack+"");
 		return mAttack;
 	}
 
@@ -30,10 +28,8 @@ public class MeleeFormula {
 		double mAttack = 0;
 		FileConfiguration coreConfig = FileConfig.config_Map.get("Other/CustomCore.yml");
 
-		String mAtt = coreConfig.getString("CoreAttribute.Melee_Physics_Critical_Strike_Power_Player_Other.formula");
-		if(target instanceof Player){
-			mAtt = coreConfig.getString("CoreAttribute.Melee_Physics_Critical_Strike_Power_Player_Player.formula");
-		}
+		String mAtt = coreConfig.getString("Melee_Physics.critical-formula");
+
 		if(mAtt != null){
 			mAttack = StringConversion.getDouble(self, target, 0, mAtt);
 		}

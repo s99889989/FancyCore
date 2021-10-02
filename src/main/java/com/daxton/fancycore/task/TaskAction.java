@@ -91,6 +91,10 @@ public class TaskAction {
             teleport.execute(self, target, action_Map, inputLocation, taskID);
             return;
         }
+        if(judgeString.equalsIgnoreCase("Threat")){
+            Threat threat = new Threat();
+            threat.execute(self, target, action_Map, inputLocation, taskID);
+        }
         //目標為玩家
         //-------------------------------------------------------------------------//
         if(judgeString.equalsIgnoreCase("ActionBar")){

@@ -78,7 +78,7 @@ public class PlayerDataFancy {
 	public Inventory inventory;
 
 	//攻擊速度限制
-	public boolean attackSpeed;
+	public boolean attackSpeed = true;
 	//物品CD
 	public Map<String, BukkitRunnable> cd_Left_Run = new HashMap<>();
 	public Map<String, BukkitRunnable> cd_Right_Run = new HashMap<>();
@@ -87,6 +87,8 @@ public class PlayerDataFancy {
 	public Map<String, Map<String, String>> eqm_Action_Map = new HashMap<>();
 	//裝備自訂屬性
 	public Map<String, Map<String, String>> eqm_Custom_Value_Map = new HashMap<>();
+	//職業被動動作
+	public Map<String, List<Map<String, String>>> class_Action_Map = new HashMap<>();
 
 	public PlayerDataFancy(Player player){
 		this.player = player;
@@ -151,19 +153,33 @@ public class PlayerDataFancy {
 				if(key.startsWith("custom")){
 					String[] keyArray = key.split("/");
 					if(keyArray.length == 2){
-						if(eqm_Custom_Value_Map.get(keyArray[1]) != null){
-							Map<String, String> string_Map = eqm_Custom_Value_Map.get(keyArray[1]);
-							string_Map.put(eqm+keyArray[0], value);
-							//FancyCore.fancyCore.getLogger().info(keyArray[1]+" : "+eqm+keyArray[0]+" : "+value);
-							eqm_Custom_Value_Map.put(keyArray[1], string_Map);
-						}else {
-							Map<String, String> string_Map = new HashMap<>();
-							string_Map.put(eqm+keyArray[0], value);
-							eqm_Custom_Value_Map.put(keyArray[1], string_Map);
-						}
+						addCustomValue(keyArray[1], value, eqm+keyArray[0]);
+//						if(eqm_Custom_Value_Map.get(keyArray[1]) != null){
+//							Map<String, String> string_Map = eqm_Custom_Value_Map.get(keyArray[1]);
+//							string_Map.put(eqm+keyArray[0], value);
+//							//FancyCore.fancyCore.getLogger().info(keyArray[1]+" : "+eqm+keyArray[0]+" : "+value);
+//							eqm_Custom_Value_Map.put(keyArray[1], string_Map);
+//						}else {
+//							Map<String, String> string_Map = new HashMap<>();
+//							string_Map.put(eqm+keyArray[0], value);
+//							eqm_Custom_Value_Map.put(keyArray[1], string_Map);
+//						}
 					}
 				}
 			});
+		}
+	}
+	//增加自訂值
+	public void addCustomValue(String key, String value, String label){
+		String nKey = key.toLowerCase();
+		if(eqm_Custom_Value_Map.get(nKey) != null){
+			Map<String, String> string_Map = eqm_Custom_Value_Map.get(nKey);
+			string_Map.put(label, value);
+			eqm_Custom_Value_Map.put(nKey, string_Map);
+		}else {
+			Map<String, String> string_Map = new HashMap<>();
+			string_Map.put(label, value);
+			eqm_Custom_Value_Map.put(nKey, string_Map);
 		}
 	}
 

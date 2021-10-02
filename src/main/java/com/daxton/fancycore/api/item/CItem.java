@@ -222,28 +222,29 @@ public class CItem {
 
     }
     //設定物品的右鍵CD
-    public void setCoolDownRightClick(int coolDown){
-        if(coolDown <= 0){
+    public void setCoolDownRightClick(String coolDown){
+        if(coolDown == null){
             return;
         }
         ItemMeta itemMeta = itemStack.getItemMeta();
         FancyCore fancyCore = FancyCore.fancyCore;
-        String coolDownString = String.valueOf(coolDown);
         assert itemMeta != null;
         PersistentDataContainer data = itemMeta.getPersistentDataContainer();
         NamespacedKey xd = new NamespacedKey(fancyCore, "CoolDownRightClick");
-        data.set(xd , PersistentDataType.STRING, coolDownString);
+        data.set(xd , PersistentDataType.STRING, coolDown);
         itemStack.setItemMeta(itemMeta);
     }
     //設定物品的左鍵CD
-    public void setCoolDownLeftClick(int coolDown){
+    public void setCoolDownLeftClick(String coolDown){
+        if(coolDown == null){
+            return;
+        }
         ItemMeta itemMeta = itemStack.getItemMeta();
         FancyCore fancyCore = FancyCore.fancyCore;
-        String coolDownString = String.valueOf(coolDown);
         assert itemMeta != null;
         PersistentDataContainer data = itemMeta.getPersistentDataContainer();
         NamespacedKey xd = new NamespacedKey(fancyCore, "CoolDownLeftClick");
-        data.set(xd , PersistentDataType.STRING, coolDownString);
+        data.set(xd , PersistentDataType.STRING, coolDown);
         itemStack.setItemMeta(itemMeta);
     }
     public void setDisableAttack(boolean enable){

@@ -89,7 +89,6 @@ public class MeleeAttack implements Listener {
 		LivingEntity target = event.getTarget();
 		double attackNumber = event.getDamage();
 
-
 		//命中
 		boolean hit = DefaultFormula.HitRate(player, target);
 		if (!(hit)) {
@@ -121,51 +120,14 @@ public class MeleeAttack implements Listener {
 
 	}
 
+
 	//近距離攻擊(攻擊)
 	public static void onMeleeAttack(PhysicalDamageEvent event){
 		if(MainAttack.deBug()){
 			FancyCore.fancyCore.getLogger().info("近距離攻擊(攻擊)");
 		}
 
-		Player player = (Player) event.getDamager();
-		LivingEntity target = event.getTarget();
 		double attackNumber = event.getDamage();
-
-
-		PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(player.getUniqueId());
-		//攻速
-		if(playerDataFancy.attackSpeed){
-			DefaultFormula.AttackSpeed(player, target);
-
-			//命中
-			boolean hit = DefaultFormula.HitRate(player, target);
-			if (!(hit)) {
-				event.setDamageType("PHYSICAL_MISS");
-				event.setCancelled(true);
-				return;
-			}
-
-			//目標格檔
-			boolean block = DefaultFormula.BlockRate(player, target);
-			if (block) {
-				event.setDamageType("PHYSICAL_BLOCK");
-				event.setCancelled(true);
-				return;
-			}
-
-			//爆擊
-			boolean crit = DefaultFormula.CritChange(player, target);
-			if (crit) {
-				event.setDamageType("PHYSICAL_CRITICAL");
-				attackNumber += MeleeFormula.CriticalMeleeAttack(player, target);
-				event.setDamage(attackNumber);
-				return;
-			}
-
-			attackNumber += MeleeFormula.MeleeAttack(player, target);
-
-		}
-
 		event.setDamageType("Melee_ATTACK");
 		event.setDamage(attackNumber);
 

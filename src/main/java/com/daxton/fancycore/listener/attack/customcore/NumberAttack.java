@@ -44,7 +44,7 @@ public class NumberAttack implements Listener {
 				return;
 			}
 			if(damageType.contains("PHYSICAL_BLOCK")){
-				playerDataFancy.attack_number = "BLOCK";
+				playerDataFancy.attack_number = "Block";
 				return;
 			}
 			if(damageType.contains("PHYSICAL_CRITICAL")){

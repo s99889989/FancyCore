@@ -21,7 +21,7 @@ public class AttributeSet implements FancyAction {
         String attributes = actionMapHandle.getString(new String[]{"attributes","attr"},"GENERIC_MAX_HEALTH");
 
         //屬性標籤
-        String label = actionMapHandle.getString(new String[]{"label"},"");
+        String label = actionMapHandle.getString(new String[]{"label"},"default");
 
         //持續時間
         int duration = actionMapHandle.getInt(new String[]{"duration","dt"},200);
@@ -30,7 +30,7 @@ public class AttributeSet implements FancyAction {
         double amount = actionMapHandle.getDouble(new String[]{"amount","a"},1);
 
         //目標
-        String targetString = actionMapHandle.getString(new String[]{"targetkey"}, "");
+        String targetString = actionMapHandle.getString(new String[]{"targetkey"}, "@Self");
         Map<String, String> targetMap = StringToMap.toTargetMap(targetString);
         List<LivingEntity> livingEntityList = GetEntity.get(self, target, targetMap);
         //
@@ -38,7 +38,7 @@ public class AttributeSet implements FancyAction {
     }
 
     public void setAttributes(LivingEntity livingEntity, String attributes, Double amount, String label, int duration){
-
+        FancyCore.fancyCore.getLogger().info(livingEntity.getName()+" : "+attributes);
         BukkitAttributeSet.removeAddAttribute(livingEntity, attributes, "ADD_NUMBER", amount, label);
 
         new BukkitRunnable() {

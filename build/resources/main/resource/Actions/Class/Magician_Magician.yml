@@ -1,0 +1,150 @@
+#技能
+#-------------------------------------------#
+#-------------------------------------------#
+
+#魔法攻擊
+Magician_Shooting:
+  Action:
+  - Orbital[onStart=Magician_Shooting-Start;onTime=Magician_Shooting-Time;onTimeHit=Magician_Shooting-TimeHit;onEndHit=Magician_Shooting-EndHit;onEnd=Magician_Shooting-End;period=1;duration=60;speed=1;StartLocAdd=true|true|0|0|0.6|1.6;hitRange=1;HitCount=1;hitstop=true;od=true|true|false|0|0] @LocSelf{VA=Self|true|true|0|0|6;LA=0|1.55|0}
+  
+Magician_Shooting-Start:
+  Action:
+  - Particle[particle=REDSTONE;pdata=00FFFF;count=10] @LocAdd
+Magician_Shooting-Time:
+  Action:
+  - Particle[particle=REDSTONE;pdata=00FFFF;count=10] @LocAdd
+
+Magician_Shooting-TimeHit:
+  Action:
+  - Particle[particle=REDSTONE;pdata=00FFFF;count=10] @LocAdd
+  - Damage[amount=1;t=magic_add]
+  - Sound[sound=attack_magician_hit;pitch=1;volume=1;category=PLAYERS]
+
+Magician_Shooting-End:
+  Action:
+  - Particle[particle=REDSTONE;pdata=00FFFF;count=10] @LocAdd
+
+#冰箭術
+Magician_ColdBolt:
+  Action:
+  - Orbital[onStart=Magician_ColdBolt-Start;onTime=Magician_ColdBolt-Time;onTimeHit=Magician_ColdBolt-EndHit;onEndHit=Magician_ColdBolt-EndHit;onEnd=Magician_ColdBolt-EndHit;period=1;duration=20;speed=10;StartLocAdd=true|true|0|0|0.6|5;hitRange=1.5;HitCount=1;hitstop=true;od=true|true|false|0|0] @LocTarget{LA=0|1|0}
+Magician_ColdBolt-Start:
+  Action:
+  - Particle[particle=REDSTONE;pdata=00FFFF;count=10] @LocAdd{LA=0|0|0}
+Magician_ColdBolt-Time:
+  Action:
+  - Particle[particle=REDSTONE;pdata=00FFFF;count=10] @LocAdd{LA=0|0|0}
+Magician_ColdBolt-EndHit:
+  Action:
+  - Particle[particle=REDSTONE;pdata=00FFFF;count=10] @LocAdd{LA=0|0|0}
+  - Damage[amount=&Mob_Base_Damage_Magic_Water&;t=magic]
+  - Sound[sound=attack_magician_hit;pitch=1;volume=1;category=PLAYERS]
+
+
+#火焰之環
+Magician_RingOfFlame:
+  Action:
+  - FixedPoint[onStart=Magician_RingOfFlame-Start;onTime=Magician_RingOfFlame-Time;onHit=Magician_RingOfFlame-Hit;onEnd=Magician_RingOfFlame-End;period=20;duration=200;HitRange=5]@LocSelf{LA=0|0.5|0}
+Magician_RingOfFlame-Start:
+  Action:
+  - Sound[sound=skills_soc_firewall;pitch=1;volume=1;category=PLAYERS]
+Magician_RingOfFlame-Time:
+  Action:
+  - Particle[fc=IMG;IMG=Magician_RingOfFlame;IMGSize=1;IMGRotAngle=Self|false|false|90|0|0;count=1]  @LocAdd{LA=0|0|0}
+Magician_RingOfFlame-Hit:
+  Action:
+  - Damage[amount=&Mob_Base_Damage_Magic_Fire&;t=magic] @Target
+Magician_RingOfFlame-End:
+  Action:
+  - Particle[fc=IMG;IMG=Magician_RingOfFlame;IMGSize=1;IMGRotAngle=Self|false|false|90|0|0;count=1]  @LocAdd{LA=0|0|0}
+
+#聖靈召喚 #;onEnd=Magician_SoulStrike-End
+Magician_SoulStrike:
+  Action:
+  - Orbital[onStart=Magician_SoulStrike-Start;onTime=Magician_SoulStrike-Time;onTimeHit=Magician_SoulStrike-Hit;onEndHit=Magician_SoulStrike-Hit;onEnd=Magician_SoulStrike-End;period=1;duration=20;speed=10;StartLocAdd=true|true|0|0|0.6|2;hitRange=2;HitCount=1;hitstop=true;od=true|true|true|45|45] @LocTarget{LA=0|0.5|0}
+Magician_SoulStrike-Start:
+  Action:
+  - FloatMessage[m=䆩] @LocAdd{LA=0|1|0}
+  - Sound[sound=lf2_skillstart12;pitch=1;volume=1;category=PLAYERS]
+Magician_SoulStrike-Time:
+  Action:
+  - FloatMessage[teleport=true] @LocAdd{LA=0|1|0}
+Magician_SoulStrike-Hit:
+  Action:
+  - Damage[amount=&Mob_Base_Damage_Magic_Holy&;t=magic]
+  - Sound[sound=lf2_damge2;pitch=1;volume=0.5;category=PLAYERS]
+  - FloatMessage[teleport=true] @LocAdd{LA=0|1|0}
+  - Delay[t=2]
+  - FloatMessage[delete=true]
+Magician_SoulStrike-End:
+  Action:
+  - FloatMessage[delete=true]
+
+#冰凍術
+Magician_FrostDiver:
+  Action:
+  - Orbital[onStart=Magician_FrostDiver-Start;onTime=Magician_FrostDiver-Time;onEndHit=Magician_FrostDiver-EndHit;onEnd=Magician_FrostDiver-End;period=1;duration=20;speed=20;StartLocAdd=true|true|0|0|2|5;hitRange=4;od=true|true|false|0|0] @LocTarget{LA=0|1|0}
+Magician_FrostDiver-Start:
+  Action:
+  - Guise[ItemID=SkillEffect.Ice;dt=0] @LocAdd
+  - Particle[particle=REDSTONE;pdata=00FFFF;count=10]
+Magician_FrostDiver-Time:
+  Action:
+  - Guise[dt=0;tp=true] @LocAdd{LA=0|0|0}
+  - Particle[particle=REDSTONE;pdata=00FFFF;count=10]
+Magician_FrostDiver-EndHit:
+  Action:
+  - SetAttribute[Attr=GENERIC_KNOCKBACK_RESISTANCE;a=1;dt=100] @Target
+  - CustomValue[Key=Attributes_Defense;v=水] @Target
+  - Guise[dt=100;tp=true] @LocAdd{LA=0|-1|0}
+  - PotionEffect[Potion=SLOW;dt=100;ap=5] @Target
+  - Damage[amount=&Mob_Base_Damage_Magic_Water&;t=magic] @Target
+  - Sound[sound=skills_soc_coin3;pitch=1;volume=1;category=PLAYERS] @LocAdd
+  - Delay[t=100]
+  - CustomValue[Key=Attributes_Defense] @Target
+Magician_FrostDiver-End:
+  Action:
+  - SetAttribute[Attr=GENERIC_KNOCKBACK_RESISTANCE;a=1;dt=100] @Target
+  - CustomValue[Key=Attributes_Defense;v=水] @Target
+  - Guise[dt=100;tp=true] @LocAdd{LA=0|-1|0}
+  - PotionEffect[Potion=SLOW;dt=100;ap=5] @Target
+  - Damage[amount=&Mob_Base_Damage_Magic_Water&;t=magic] @Target
+  - Sound[sound=skills_soc_coin3;pitch=1;volume=1;category=PLAYERS] @LocAdd
+  - Delay[t=100]
+  - CustomValue[Key=Attributes_Defense] @Target
+
+#火箭術
+Magician_FireBolt:
+  Action:
+  - Orbital[onStart=Magician_FireBolt-Start;onTime=Magician_FireBolt-Time;onTimeHit=Magician_FireBolt-EndHit;onEndHit=Magician_FireBolt-EndHit;onEnd=Magician_FireBolt-EndHit;period=1;duration=20;speed=10;StartLocAdd=true|true|0|0|0.6|5;hitRange=1.5;HitCount=1;hitstop=true;od=true|true|false|0|0] @LocTarget{LA=0|1|0}
+Magician_FireBolt-Start:
+  Action:
+  - Particle[particle=REDSTONE;pdata=FF0000;count=10] @LocAdd{LA=0|0|0}
+Magician_FireBolt-Time:
+  Action:
+  - Particle[particle=REDSTONE;pdata=FF0000;count=10] @LocAdd{LA=0|0|0}
+Magician_FireBolt-EndHit:
+  Action:
+  - Particle[particle=REDSTONE;pdata=FF0000;count=10] @LocAdd{LA=0|0|0}
+  - Damage[amount=&Mob_Base_Damage_Magic_Fire&;t=magic]
+  - Sound[sound=attack_magician_hit;pitch=1;volume=1;category=PLAYERS]
+
+#雷擊術
+Magician_LightningBolt:
+  Action:
+  - Damage[amount=&Mob_Base_Damage_Magic_Wind&;t=magic]
+  - Sound[sound=skills_soc_thunderstorm;pitch=1;volume=1;category=PLAYERS]
+  - Guise[EntityType=LIGHTNING;dt=30] @LocTarget{LA=0|1|0}
+
+#禪心
+Magician_IncreaseSpiritualPower:
+  Action:
+  - Loop[onTime=Magician_IncreaseSpiritualPower-Time;period=200;duration=0]
+Magician_IncreaseSpiritualPower-Time:
+  Action:
+  - Break[ConditionType=Compare;ConditionContent=&self_Sp_now&<&self_Sp_max&]
+  - Mana[a=&self_class_skill_Magician_IncreaseSpiritualPower_amount&]
+  - Sound[sound=skills_ab_heal_effect;pitch=1;volume=1;category=PLAYERS] @LocSelf{LA=0|1|0}
+
+
+

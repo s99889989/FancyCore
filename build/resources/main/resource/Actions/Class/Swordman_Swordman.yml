@@ -1,0 +1,67 @@
+#技能
+#-------------------------------------------#
+#-------------------------------------------#
+#霸體
+Swordman_Endure:
+  Action:
+  - FloatMessage[m=䇩] @LocSelf{LA=0|2|0}
+  - Attribute[Attr=GENERIC_KNOCKBACK_RESISTANCE;a=1;dt=100] @Self
+  - Sound[sound=skills_rk_endure;pitch=1;volume=1;category=PLAYERS] @LocSelf{LA=0|2|0}
+  - Delay[Ticks=10]
+  - FloatMessage[delete=true]
+
+#怒爆
+Swordman_MagnumBreak:
+  Action:
+  - Sound[sound=skills_magnumbreak;pitch=1;volume=1;category=PLAYERS] @LocSelf{LA=0|2|0}
+  - Particle[fc=add;particle=EXPLOSION_HUGE;count=1] @LocSelf{LA=0|2|0}
+  - Damage[Amount=&self_class_skill_Swordman_MagnumBreak_amount&;t=melee_multiply] @SelfRadius{R=3}
+  - Move[da=Selfaway|true|true|0|0|1|;ah=1] @SelfRadius{Filters=Monster;R=3}
+
+#挑釁
+Swordman_Provoke:
+  Action:
+  - Threat[amount=&self_class_skill_Swordman_Provoke_amount&] @SelfRadius{Filters=Monster;R=3}
+Swordman_Provoke2:
+  Action:
+  - FloatMessage[m=䇵] @LocTarget{LA=0|&self_class_skill_Swordman_Provoke_height&|0}
+  - Sound[sound=skills_rk_swordmanprovoke;pitch=1;volume=1;category=PLAYERS] @LocTarget{LA=0|1|0}
+  - FloatMessage[teleport=true] @LocAdd{LA=0|0.5|0}
+  - Delay[Ticks=5]
+  - FloatMessage[teleport=true] @LocAdd{LA=0|-0.5|0}
+  - Delay[Ticks=5]
+  - Sound[sound=skills_rk_swordmanprovoke;pitch=1;volume=1;category=PLAYERS] @LocTarget{LA=0|1|0}
+  - FloatMessage[teleport=true] @LocAdd{LA=0|0.5|0}
+  - Delay[Ticks=5]
+  - FloatMessage[teleport=true] @LocAdd{LA=0|-0.5|0}
+  - Delay[Ticks=5]
+  - FloatMessage[deleteAll=true]
+
+#狂擊
+Swordman_Bash:
+  Action:
+  - Damage[Amount=&self_class_skill_Swordman_Bash_amount&;t=melee_multiply] @Target
+  - Sound[sound=attack_acolyte_hit;pitch=1;volume=1;category=PLAYERS] @LocTarget{D=2;LA=0|1|0}
+
+#快速回復
+Swordman_IncreaseRecuperativePower:
+  Action:
+  - Loop[onTime=Swordman_IncreaseRecuperativePower-Time;period=200;duration=0]
+Swordman_IncreaseRecuperativePower-Time:
+  Action:
+  - Break[ConditionType=Compare;ConditionContent=&self_health_now&<&self_health_max&]
+  - Heal[Amount=&self_class_skill_Swordman_IncreaseRecuperativePower_amount&] @Self
+  - Sound[sound=skills_ab_heal_effect;pitch=1;volume=1;category=PLAYERS] @LocSelf{LA=0|2|0}
+
+#劍術修煉
+Swordman_SwordMastery:
+  Action:
+  - CustomValue[Key=Physical_Attack;v=0]
+  - Break[ConditionType=Contains;ConditionContent=&self_Eq_Class_Weapon_Type&~武器-長劍]
+  - CustomValue[Key=Physical_Attack;v=&self_class_skill_Swordman_SwordMastery_amount&]
+
+
+
+
+
+

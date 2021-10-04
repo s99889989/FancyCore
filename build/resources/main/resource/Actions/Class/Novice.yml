@@ -1,0 +1,19 @@
+#技能
+#-------------------------------------------#
+#-------------------------------------------#
+#緊急治療
+Novice_FirstAid:
+  Action:
+  - Heal[Amount=&self_class_skill_Novice_FirstAid_amount&] @Self
+  - Sound[sound=skills_ab_heal_effect;pitch=1;volume=1;category=PLAYERS] @LocSelf
+
+#重擊
+Novice_Slam:
+  Action:
+  - Damage[Amount=&self_class_skill_Novice_Slam_amount&;t=melee_multiply] @Target
+  - Sound[sound=attack_acolyte_hit;pitch=1;volume=1;category=PLAYERS] @LocTarget{D=2;LA=0|1|0}
+
+
+
+
+

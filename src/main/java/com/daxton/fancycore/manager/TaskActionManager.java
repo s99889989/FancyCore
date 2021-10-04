@@ -5,6 +5,7 @@ import com.daxton.fancycore.other.task.FancyAction;
 import com.daxton.fancycore.other.task.guise.GuiseEntity;
 import com.daxton.fancycore.other.task.modelentity.ModelEntity;
 import com.daxton.fancycore.task.meta.run.FixedPoint;
+import com.daxton.fancycore.task.meta.run.LocPng;
 import com.daxton.fancycore.task.meta.run.Loop;
 import com.daxton.fancycore.task.meta.run.OrbitalAction;
 import com.ticxo.modelengine.api.model.ModeledEntity;
@@ -27,6 +28,8 @@ public class TaskActionManager {
     public static Map<String, OrbitalAction> task_OrbitalAction_Map = new HashMap<>();
     //FixedPoint
     public static Map<String, FixedPoint> task_FixedPoint_Map = new HashMap<>();
+    //LocPng
+    public static Map<String, LocPng> task_LocPng_Map = new HashMap<>();
     //FloatMessage
     public static Map<String, FloatMessage> task_FloatMessage_Map = new HashMap<>();
     //BossBar

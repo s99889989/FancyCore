@@ -35,32 +35,34 @@ public class NumberAttack implements Listener {
 			double damageNumber = event.getDamage();
 			Player player = (Player) event.getDamager();
 
+			String targetUUIDString = event.getTarget().getUniqueId().toString();
+
 			String damageType = event.getDamageType();
 
 			PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(player.getUniqueId());
 
 			if(damageType.contains("PHYSICAL_MISS")){
-				playerDataFancy.attack_number = "Miss";
+				playerDataFancy.addAttackNumber(targetUUIDString, "Miss");
 				return;
 			}
 			if(damageType.contains("PHYSICAL_BLOCK")){
-				playerDataFancy.attack_number = "Block";
+				playerDataFancy.addAttackNumber(targetUUIDString, "Block");
 				return;
 			}
 			if(damageType.contains("PHYSICAL_CRITICAL")){
-				playerDataFancy.attack_number = String.valueOf(damageNumber);
+				playerDataFancy.addAttackNumber(targetUUIDString, String.valueOf(damageNumber));
 				return;
 			}
 			if(damageType.contains("Melee_ATTACK")){
-				playerDataFancy.attack_number = String.valueOf(damageNumber);
+				playerDataFancy.addAttackNumber(targetUUIDString, String.valueOf(damageNumber));
 				return;
 			}
 			if(damageType.contains("RANGE_ATTACK")){
-				playerDataFancy.attack_number = String.valueOf(damageNumber);
+				playerDataFancy.addAttackNumber(targetUUIDString, String.valueOf(damageNumber));
 				return;
 			}
 			if(damageType.contains("MAGIC_ATTACK")){
-				playerDataFancy.attack_number = String.valueOf(damageNumber);
+				playerDataFancy.addAttackNumber(targetUUIDString, String.valueOf(damageNumber));
 			}
 
 		}

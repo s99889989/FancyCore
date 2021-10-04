@@ -20,6 +20,7 @@ public class PlaceholderBase {
     public static String valueOf(LivingEntity entity,LivingEntity target, String inputString){
 
 
+
         //名稱
         if(inputString.toLowerCase().contains("<fc_base_name")){
             return entity.getName();
@@ -86,7 +87,16 @@ public class PlaceholderBase {
             }
             //攻擊傷害
             if(inputString.toLowerCase().contains("<fc_base_attack_number")){
-                return playerDataFancy.attack_number;
+                if(target != null){
+                    String targetUUIDString = target.getUniqueId().toString();
+                    if(playerDataFancy.attack_number2.containsKey(targetUUIDString)){
+                        return playerDataFancy.attack_number2.get(targetUUIDString);
+                    }else {
+                        return playerDataFancy.attack_number;
+                    }
+                }else {
+                    return playerDataFancy.attack_number;
+                }
             }
             //被攻擊傷害
             if(inputString.toLowerCase().contains("<fc_base_damaged_number")){

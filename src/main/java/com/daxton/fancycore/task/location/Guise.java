@@ -13,6 +13,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Map;
 
@@ -76,6 +77,18 @@ public class Guise implements FancyAction {
 				}
 
 				TaskActionManager.task_GuiseEntity_Map.put(taskID+mark, guiseEntity);
+
+				if(duration > 0){
+					new BukkitRunnable() {
+						@Override
+						public void run() {
+							if(TaskActionManager.task_GuiseEntity_Map.containsKey(taskID+mark)){
+								guiseEntity.delete();
+								TaskActionManager.task_GuiseEntity_Map.remove(taskID+mark);
+							}
+						}
+					}.runTaskLater(FancyCore.fancyCore, duration);
+				}
 			}
 		}else {
 			GuiseEntity guiseEntity = TaskActionManager.task_GuiseEntity_Map.get(taskID+mark);
@@ -109,6 +122,18 @@ public class Guise implements FancyAction {
 			if(delete){
 				guiseEntity.delete();
 				TaskActionManager.task_GuiseEntity_Map.remove(taskID+mark);
+			}
+
+			if(duration > 0){
+				new BukkitRunnable() {
+					@Override
+					public void run() {
+						if(TaskActionManager.task_GuiseEntity_Map.containsKey(taskID+mark)){
+							guiseEntity.delete();
+							TaskActionManager.task_GuiseEntity_Map.remove(taskID+mark);
+						}
+					}
+				}.runTaskLater(FancyCore.fancyCore, duration);
 			}
 
 		}

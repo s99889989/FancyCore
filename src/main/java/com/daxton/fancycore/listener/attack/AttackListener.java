@@ -37,15 +37,15 @@ public class AttackListener implements Listener {
 		}
 
 		Player killer = (Player) attacker;
-
+		String targetUUIDString = event.getEntity().getUniqueId().toString();
 		UUID killerUUID = killer.getUniqueId();
-		double damagedNumber = event.getFinalDamage();
+		double damageNumber = event.getFinalDamage();
 		//玩家攻擊數字
 		PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(killerUUID);
 		if (event.isCancelled()) {
-			playerDataFancy.attack_number = "Miss";
+			playerDataFancy.addAttackNumber(targetUUIDString, "Miss");
 		}else {
-			playerDataFancy.attack_number = String.valueOf(damagedNumber);
+			playerDataFancy.addAttackNumber(targetUUIDString, String.valueOf(damageNumber));
 		}
 
 	}

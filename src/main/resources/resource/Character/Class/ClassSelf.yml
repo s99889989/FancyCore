@@ -1,0 +1,756 @@
+#1+到目前等級
+self_class_1_base_level:
+  message:
+  - content[1,<fc_self_class_level_now_base>]
+  - math[fc=Acc]
+
+#-----------------------------------------------------#
+#玩家名稱
+class_self_name:
+  message:
+    - content[<fc_self_base_name>]
+#基礎等級
+class_level_base_now:
+  message:
+    - content[<fc_self_class_level_now_base>]
+
+#base等級上限
+class_level_base_max:
+  message:
+    - content[<fc_self_class_level_max_base>]
+
+#job等級
+class_level_job_now:
+  message:
+    - content[<fc_self_class_level_now_job>]
+#job等級上限
+class_level_job_max:
+  message:
+    - content[<fc_self_class_level_max_job>]
+
+#job1等級
+class_level_job1_now:
+  message:
+    - content[<fc_self_class_level_now_job1>]
+#job1等級上限
+class_level_job1_max:
+  message:
+    - content[<fc_self_class_level_max_job1>]
+
+#job2等級
+class_level_job2_now:
+  message:
+    - content[<fc_self_class_level_now_job2>]
+#job2等級上限
+class_level_job2_max:
+  message:
+    - content[<fc_self_class_level_max_job2>]
+
+#-----------------------------------------------------#
+
+#base等級目前經驗
+class_exp_base_now:
+  message:
+    - content[<fc_self_class_exp_now_base>]
+#base等級滿經驗
+class_exp_base_max:
+  message:
+    - content[<fc_self_class_exp_max_base>]
+
+#job等級目前經驗
+class_exp_job_now:
+  message:
+    - content[<fc_self_class_exp_now_job>]
+#job等級滿經驗
+class_exp_job_max:
+  message:
+    - content[<fc_self_class_exp_max_job>]
+
+#job1等級目前經驗
+class_exp_job1_now:
+  message:
+    - content[<fc_self_class_exp_now_job1>]
+#job1等級滿經驗
+class_exp_job1_max:
+  message:
+    - content[<fc_self_class_exp_max_job1>]
+
+#job2等級目前經驗
+class_exp_job2_now:
+  message:
+    - content[<fc_self_class_exp_now_job2>]
+#job2等級滿經驗
+class_exp_job2_max:
+  message:
+    - content[<fc_self_class_exp_max_job2>]
+
+#-----------------------------------------------------#
+
+#base等級剩餘點數
+class_point_base_now:
+  message:
+    - content[<fc_self_class_point_now_base>]
+#base等級點數總量
+class_point_base_max:
+  message:
+    - content[<fc_self_class_point_max_base>]
+
+#job等級剩餘點數
+class_point_job_now:
+  message:
+    - content[<fc_self_class_point_now_job>]
+#job等級點數總量
+class_point_job_max:
+  message:
+    - content[<fc_self_class_point_max_job>]
+
+#job1等級剩餘點數
+class_point_job1_now:
+  message:
+    - content[<fc_self_class_point_now_job1>]
+#job1等級點數總量
+class_point_job1_max:
+  message:
+    - content[<fc_self_class_point_max_job1>]
+
+#job2等級剩餘點數
+class_point_job2_now:
+  message:
+    - content[<fc_self_class_point_now_job2>]
+#job2等級點數總量
+class_point_job2_max:
+  message:
+    - content[<fc_self_class_point_max_job2>]
+
+#-----------------------------------------------------#
+
+#基礎
+#----------------------------------------------------------------#
+#玩家名稱
+self_name:
+  message:
+  - content[<fc_self_base_name>]
+#職業名稱
+class_name:
+  message:
+    - content[<fc_self_class_name>]
+#種族
+self_Class_Race:
+  message:
+  - content[<fc_self_base_value_Race>]
+#體型
+self_Class_Body:
+  message:
+  - content[<fc_self_base_value_Body>]
+#攻擊屬性
+self_Eq_Class_Attributes_Attack:
+  message:
+  - content[<fc_self_base_value_Attributes_Attack>]
+#防禦屬性
+self_Eq_Class_Attributes_Defense:
+  message:
+  - content[<fc_self_base_value_Attributes_Defense>]
+#武器類型
+self_Eq_Class_Weapon_Type:
+  message:
+  - content[<fc_self_base_value_Weapon_Type>]
+
+
+#六維屬性
+#----------------------------------------------------------------#
+
+#力量
+self_attr_Str:
+  message:
+  - content[<fc_self_base_value_Str>]
+self_eqm_Eq_Str:
+  message:
+  - content[<fc_self_base_value_Str>]
+#敏捷
+self_attr_Agi:
+  message:
+  - content[<fc_self_base_value_Agi>]
+self_eqm_Eq_Agi:
+  message:
+  - content[<fc_self_base_value_Agi>]
+#體質
+self_attr_Vit:
+  message:
+  - content[<fc_self_base_value_Vit>]
+self_eqm_Eq_Vit:
+  message:
+  - content[<fc_self_base_value_Vit>]
+#智力
+self_attr_Int:
+  message:
+  - content[<fc_self_base_value_Int>]
+self_eqm_Eq_Int:
+  message:
+  - content[<fc_self_base_value_Int>]
+#靈巧
+self_attr_Dex:
+  message:
+  - content[<fc_self_base_value_Dex>]
+  
+self_attr_Dex_Archer:
+  message:
+  - content[<fc_self_base_value_Dex>-<fc_self_class_skill_Archer_OwlsEye_level>]
+  - math[function=arithmetic]
+
+self_eqm_Eq_Dex:
+  message:
+  - content[<fc_self_base_value_Dex>]
+#幸運
+self_attr_Luk:
+  message:
+  - content[<fc_self_base_value_Luk>]
+self_eqm_Eq_Luk:
+  message:
+  - content[<fc_self_base_value_Luk>]
+
+#基礎屬性
+#----------------------------------------------------------------#
+
+#HP
+self_attr_Hp:
+  message:
+  - content[((100+5 * <fc_self_class_level_now_base> + 1 * (&self_class_1_base_level&)) * (1+(<fc_self_base_value_Vit>)/100))]
+  - math[fc=Arith]
+self_health_now:
+  message:
+  - content[<fc_self_base_nowhealth>]
+  - math[fc=Dec;m=0.0]
+self_health_max:
+  message:
+  - content[<fc_self_base_maxhealth>]
+class_self_health_proportion_10:
+  message:
+  - content[<fc_self_base_nowhealth>/<fc_self_base_maxhealth>*10]
+  - math[fc=Arith]
+  - math [fc=Dec;m=#]
+  - Conver[function=ExSame;m=10>䁏,9>䁎,8>䁍,7>䁌,6>䁋,5>䁊,4>䁉,3>䁈,2>䁇,1>䁆,0>䁆]
+#HP恢復
+self_attr_Hp_Regeneration:
+  message:
+  - content[((<fc_self_base_maxhealth>/200) + ((<fc_self_base_value_Vit>)/5) + <fc_self_base_value_Hp_Regeneration>)]
+  - math[fc=Arith]
+#物理攻擊(近距離)
+self_attr_Melee_Physical_Attack:
+  message:
+  - content[((<fc_self_base_value_Str>) * (<fc_self_base_value_Str>)/100) + 2*(<fc_self_base_value_Str>)+((<fc_self_base_value_Dex>)/5) + ((<fc_self_base_value_Luk>)/5) + (<fc_self_base_value_Physical_Attack>)]
+  - math[fc=Arith]
+#物理攻擊(遠距離)
+self_attr_Range_Physical_Attack:
+  message:
+  - content[((<fc_self_base_value_Dex>) * (<fc_self_base_value_Dex>)/100) + 2*(<fc_self_base_value_Dex>)+((<fc_self_base_value_Str>)/5) + ((<fc_self_base_value_Luk>)/5)]
+  - math[fc=Arith]
+#物理防禦
+self_attr_Physical_Defense:
+  message:
+  - content[((<fc_self_base_value_Vit>)+<fc_self_base_value_Physical_Defense>)]
+  - math[fc=Arith]
+#命中
+self_attr_Hit_Rate:
+  message:
+  - content[<fc_self_class_level_now_base> + (<fc_self_base_value_Dex>) + <fc_self_base_value_Hit_Rate>]
+  - math[fc=Arith]
+#閃避
+self_attr_Dodge_Rate:
+  message:
+  - content[<fc_self_class_level_now_base> + (<fc_self_base_value_Agi>) + <fc_self_base_value_Dodge_Rate>]
+  - math[fc=Arith]
+#SP
+self_attr_Sp:
+  message:
+  - content[(20+(5*<fc_self_class_level_now_base>)) * (1+(<fc_self_base_value_Int>)/100)]
+  - math[fc=Arith]
+  - math[fc=Dec;m=0.0]
+self_Sp_now:
+  message:
+  - content[<fc_self_class_nowmana>]
+  - math[fc=Dec;m=0.0]
+self_Sp_max:
+  message:
+  - content[<fc_self_class_maxmana>]
+  - math[fc=Dec;m=0.0]
+class_self_Sp_proportion_10:
+  message:
+  - content[<fc_self_class_nowmana>/<fc_self_class_maxmana>*10]
+  - math[fc=Arith]
+  - math [fc=Dec;m=#]
+  - Conver[function=ExSame;m=10>䀓,9>䀒,8>䀑,7>䀐,6>䀏,5>䀎,4>䀍,3>䀌,2>䀋,1>䀊,0>䀊]
+#SP恢復
+self_attr_Sp_Regeneration:
+  message:
+  - content[(((&self_attr_Sp&/100) + ((<fc_self_base_value_Int>)/6) + <fc_self_base_value_Sp_Regeneration>)]
+  - math[fc=Arith]
+  - math[fc=Dec;m=0.0]
+#魔法攻擊
+self_attr_Magic_Attack:
+  message:
+  - content[((((<fc_self_base_value_Int>)*2 + ((<fc_self_base_value_Int>)*(<fc_self_base_value_Int>)/100)) + <fc_self_base_value_Magic_Attack>) * (1+(<fc_self_base_value_Magic_Attack_Multiplier>/100)))]
+  - math[fc=Arith]
+#魔法防禦
+self_attr_Magic_Defense:
+  message:
+  - content[((<fc_self_base_value_Int>) + <fc_self_base_value_Magic_Defense>)]
+  - math[fc=Arith]
+#移動速度
+self_attr_Moving_Speed_Gui:
+  message:
+  - content[(1+(<fc_self_base_value_Moving_Speed>/100))*100]
+  - math[fc=Arith]
+self_attr_Moving_Speed:
+  message:
+  - content[(1+(<fc_self_base_value_Moving_Speed>/100))]
+  - math[fc=Arith]
+self_attr_Moving_Speed_Core:
+  message:
+  - content[(1+(<fc_self_base_value_Moving_Speed>/100))/10]
+  - math[fc=Arith]
+#攻擊速度
+self_attr_Attack_Speed_Gui:
+  message:
+  - content[(50 / ( 200 - ((200 - ( 200 - ( 156 - (( ( 205^0.5 - (<fc_self_base_value_Agi>)^0.5 ) * 1000 / 7.15 ) / 1000) + ((<fc_self_base_value_Agi>)*9.9999)^0.5 * (1 - ( 156 - 144 ) / 50) ) )) + <fc_self_base_value_Attack_Speed>) ))*100]
+  - math[fc=Arith]
+  - math[fc=Dec;m=0.0]
+self_attr_Attack_Speed_Core:
+  message:
+  - content[10/(50 / ( 200 - ((200 - ( 200 - ( 156 - (( ( 205^0.5 - (<fc_self_base_value_Agi>)^0.5 ) * 1000 / 7.15 ) / 1000) + ((<fc_self_base_value_Agi>)*9.9999)^0.5 * (1 - ( 156 - 144 ) / 50) ) )) + <fc_self_base_value_Attack_Speed>) ))]
+  - math[fc=Arith]
+  - math[fc=Dec;m=0.0]
+self_attr_Attack_Speed:
+  message:
+  - content[50 / ( 200 - ((200 - ( 200 - ( 156 - (( ( 205^0.5 - (<fc_self_base_value_Agi>)^0.5 ) * 1000 / 7.15 ) / 1000) + ((<fc_self_base_value_Agi>)*9.9999)^0.5 * (1 - ( 156 - 144 ) / 50) ) )) + <fc_self_base_value_Attack_Speed>) )]
+  - math[fc=Arith]
+  - math[fc=Dec;m=0.0]
+  
+#穿透、暴擊、吟唱
+#----------------------------------------------------------------#
+
+#物理穿透
+self_attr_Physical_Penetration_Multiplier:
+  message:
+  - content[<fc_self_base_value_Physical_Penetration_Multiplier>]
+#暴擊率
+self_attr_Critical_Strike_Chance_Multiplier:
+  message:
+  - content[((<fc_self_base_value_Luk>)/3) + 1 + (<fc_self_base_value_Critical_Strike_Chance_Multiplier>)]
+  - math[fc=Arith]
+  - math[fc=Dec;m=0.0]
+#暴擊傷害
+self_attr_Critical_Strike_Power_Multiplier:
+  message:
+  - content[150+<fc_self_base_value_Critical_Strike_Power_Multiplier>]
+  - math[fc=Arith]
+#暴擊防護
+self_attr_Critical_Strike_Protection_Multiplier:
+  message:
+  - content[((<fc_self_base_value_Luk>)/5) + 1 + <fc_self_base_value_Critical_Strike_Protection_Multiplier>]
+  - math[fc=Arith]
+#暴傷減免
+self_attr_Critical_Strike_Reduction_Multiplier:
+  message:
+  - content[<fc_self_base_value_Critical_Strike_Reduction_Multiplier>]
+  - math[fc=Arith]
+#吟唱減免
+self_attr_Cooldown_Reduction:
+  message:
+  - content[((<fc_self_base_value_Dex>)/30)+<fc_self_base_value_Cooldown_Reduction>]
+  - math[fc=Arith]
+  - math[fc=Dec;m=0.0]
+#受治療加成
+self_attr_Receive_Healing_Bonus_Multiplier:
+  message:
+  - content[<fc_self_base_value_Receive_Healing_Bonus_Multiplier>]
+  - math[fc=Arith]
+#治療加成
+self_attr_Healing_Bonus_Multiplier:
+  message:
+  - content[<fc_self_base_value_Healing_Bonus_Multiplier>]
+  - math[fc=Arith]
+
+#物理屬性
+#----------------------------------------------------------------#
+
+#物理攻擊%
+self_attr_Physical_Attack_Multiplier:
+  message:
+  - content[<fc_self_base_value_Physical_Attack_Multiplier>]
+#物理防禦%
+self_attr_Physical_Defense_Multiplier:
+  message:
+  - content[<fc_self_base_value_Physical_Defense_Multiplier>]
+#物傷加成%
+self_attr_Physical_Damage_Bonus_Multiplier:
+  message:
+  - content[<fc_self_base_value_Physical_Damage_Bonus_Multiplier>]
+#忽視物防%
+self_attr_Ignore_Physical_Defense_Multiplier:
+  message:
+  - content[<fc_self_base_value_Ignore_Physical_Defense_Multiplier>]
+#物傷減免%
+self_attr_Physical_Injury_Reduction_Multiplier:
+  message:
+  - content[<fc_self_base_value_Physical_Injury_Reduction_Multiplier>]
+#精煉物攻
+self_attr_Refined_Physical_Attack:
+  message:
+  - content[<fc_self_base_value_Refined_Physical_Attack>]
+#精煉物免%
+self_attr_Refined_Material_Free_Multiplier:
+  message:
+  - content[<fc_self_base_value_Refined_Material_Free_Multiplier>]
+
+#魔法屬性
+#----------------------------------------------------------------#
+
+#魔法攻擊%
+self_attr_Magic_Attack_Multiplier:
+  message:
+  - content[<fc_self_base_value_Magic_Attack_Multiplier>]
+#魔法防禦%
+self_attr_Magic_Defense_Multiplier:
+  message:
+  - content[<fc_self_base_value_Magic_Defense_Multiplier>]
+#魔傷加成%
+self_attr_Magic_Injury_Bonus_Multiplier:
+  message:
+  - content[<fc_self_base_value_Magic_Injury_Bonus_Multiplier>]
+#忽視魔防%
+self_attr_Ignore_Magic_Defense_Multiplier:
+  message:
+  - content[<fc_self_base_value_Ignore_Magic_Defense_Multiplier>]
+#魔傷減免%
+self_attr_Magic_Injury_Reduction_Multiplier:
+  message:
+  - content[<fc_self_base_value_Magic_Injury_Reduction_Multiplier>]
+#精煉魔攻
+self_attr_Refining_Magic_Attack:
+  message:
+  - content[<fc_self_base_value_Refining_Magic_Attack>]
+#精煉魔免%
+self_attr_Refining_Magic_Free_Multiplier:
+  message:
+  - content[<fc_self_base_value_Refining_Magic_Free_Multiplier>]
+
+#狀態抵抗和攻擊
+#----------------------------------------------------------------#
+
+#中毒抵抗%
+self_attr_Poisoning_Resistance_Multiplier:
+  message:
+  - content[<fc_self_base_value_Poisoning_Resistance_Multiplier>]
+#流血抵抗%
+self_attr_Bleeding_Resistance_Multiplier:
+  message:
+  - content[<fc_self_base_value_Bleeding_Resistance_Multiplier>]
+#灼燒抵抗%
+self_attr_Burning_Resistance_Multiplier:
+  message:
+  - content[<fc_self_base_value_Burning_Resistance_Multiplier>]
+#暈眩抵抗%
+self_attr_Dizziness_Resistance_Multiplier:
+  message:
+  - content[<fc_self_base_value_Dizziness_Resistance_Multiplier>]
+#冰凍抵抗%
+self_attr_Freezing_Resistance_Multiplier:
+  message:
+  - content[<fc_self_base_value_Freezing_Resistance_Multiplier>]
+#石化抵抗%
+self_attr_Petrochemical_Resistance_Multiplier:
+  message:
+  - content[<fc_self_base_value_Petrochemical_Resistance_Multiplier>]
+#睡眠抵抗%
+self_attr_Sleep_Resistance_Multiplier:
+  message:
+  - content[<fc_self_base_value_Sleep_Resistance_Multiplier>]
+#恐懼抵抗%
+self_attr_Fear_Resistance_Multiplier:
+  message:
+  - content[<fc_self_base_value_Fear_Resistance_Multiplier>]
+#定身抵抗%
+self_attr_Fixed_Resistance_Multiplier:
+  message:
+  - content[<fc_self_base_value_Fixed_Resistance_Multiplier>]
+#沉默抵抗%
+self_attr_Silent_Resistance_Multiplier:
+  message:
+  - content[<fc_self_base_value_Silent_Resistance_Multiplier>]
+#詛咒抵抗%
+self_attr_Curse_Resistance_Multiplier:
+  message:
+  - content[<fc_self_base_value_Curse_Resistance_Multiplier>]
+#黑暗抵抗%
+self_attr_Dark_Resistance_Multiplier:
+  message:
+  - content[<fc_self_base_value_Dark_Resistance_Multiplier>]
+
+#屬性-技能增強
+#----------------------------------------------------------------#
+
+#無屬性攻擊%
+self_attr_No_Attribute_Attack_Multiplier:
+  message:
+  - content[<fc_self_base_value_No_Attribute_Attack_Multiplier>]
+#火屬性攻擊%
+self_attr_Fire_Attribute_Attack_Multiplier:
+  message:
+  - content[<fc_self_base_value_Fire_Attribute_Attack_Multiplier>]
+#地屬性攻擊%
+self_attr_Earth_Attribute_Attack_Multiplier:
+  message:
+  - content[<fc_self_base_value_Earth_Attribute_Attack_Multiplier>]
+#水屬性攻擊%
+self_attr_Water_Attribute_Attack_Multiplier:
+  message:
+  - content[<fc_self_base_value_Water_Attribute_Attack_Multiplier>]
+#風屬性攻擊%
+self_attr_Wind_Attribute_Attack_Multiplier:
+  message:
+  - content[<fc_self_base_value_Wind_Attribute_Attack_Multiplier>]
+#毒屬性攻擊%
+self_attr_Poison_Attribute_Attack_Multiplier:
+  message:
+  - content[<fc_self_base_value_Poison_Attribute_Attack_Multiplier>]
+#不死屬性攻擊%
+self_attr_Immortality_Attribute_Attack_Multiplier:
+  message:
+  - content[<fc_self_base_value_Immortality_Attribute_Attack_Multiplier>]
+#暗屬性攻擊%
+self_attr_Dark_Attribute_Attack_Multiplier:
+  message:
+  - content[<fc_self_base_value_Dark_Attribute_Attack_Multiplier>]
+#聖屬性攻擊%
+self_attr_Holy_Attribute_Attack_Multiplier:
+  message:
+  - content[<fc_self_base_value_Holy_Attribute_Attack_Multiplier>]
+#念屬性攻擊%
+self_attr_Sense_Attribute_Attack_Multiplier:
+  message:
+  - content[<fc_self_base_value_Sense_Attribute_Attack_Multiplier>]
+
+#屬性-攻擊增加
+#----------------------------------------------------------------#
+
+#對無屬性魔物增傷%
+self_attr_Increase_Damage_To_Non_Attribute_monsters_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increase_Damage_To_Non_Attribute_monsters_Multiplier>]
+#對火屬性魔物增傷%
+self_attr_Increase_Damage_To_Fire_Attribute_monsters_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increase_Damage_To_Fire_Attribute_monsters_Multiplier>]
+#對地屬性魔物增傷%
+self_attr_Increase_Damage_To_Earth_Attribute_monsters_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increase_Damage_To_Earth_Attribute_monsters_Multiplier>]
+#對水屬性魔物增傷%
+self_attr_Increase_Damage_To_Water_Attribute_monsters_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increase_Damage_To_Water_Attribute_monsters_Multiplier>]
+#對風屬性魔物增傷%
+self_attr_Increase_Damage_To_Wind_Attribute_monsters_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increase_Damage_To_Wind_Attribute_monsters_Multiplier>]
+#對毒屬性魔物增傷%
+self_attr_Increase_Damage_To_Poisonous_Attribute_monsters_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increase_Damage_To_Poisonous_Attribute_monsters_Multiplier>]
+#對不死屬性魔物增傷%
+self_attr_Increase_Damage_To_Undead_Attribute_monsters_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increase_Damage_To_Undead_Attribute_monsters_Multiplier>]
+#對暗屬性魔物增傷%
+self_attr_Increase_Damage_To_Dark_Attribute_monsters_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increase_Damage_To_Dark_Attribute_monsters_Multiplier>]
+#對聖屬性魔物增傷%
+self_attr_Increase_Damage_To_Holy_Attribute_monsters_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increase_Damage_To_Holy_Attribute_monsters_Multiplier>]
+#對念屬性魔物增傷%
+self_attr_Increase_Damage_To_Mind_Attribute_monsters_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increase_Damage_To_Mind_Attribute_monsters_Multiplier>]
+
+#屬性-傷害減免
+#----------------------------------------------------------------#
+
+#對無屬性傷害減免%
+self_attr_No_Attribute_Damage_Reduction_Multiplier:
+  message:
+  - content[<fc_self_base_value_No_Attribute_Damage_Reduction_Multiplier>]
+#對火屬性傷害減免%
+self_attr_Fire_Attribute_Damage_Reduction_Multiplier:
+  message:
+  - content[<fc_self_base_value_Fire_Attribute_Damage_Reduction_Multiplier>]
+#對地屬性傷害減免%
+self_attr_Earth_Attribute_Damage_Reduction_Multiplier:
+  message:
+  - content[<fc_self_base_value_Earth_Attribute_Damage_Reduction_Multiplier>]
+#對水屬性傷害減免%
+self_attr_Water_Attribute_Damage_Reduction_Multiplier:
+  message:
+  - content[<fc_self_base_value_Water_Attribute_Damage_Reduction_Multiplier>]
+#對風屬性傷害減免%
+self_attr_Wind_Attribute_Damage_Reduction_Multiplier:
+  message:
+  - content[<fc_self_base_value_Wind_Attribute_Damage_Reduction_Multiplier>]
+#對毒屬性傷害減免%
+self_attr_Poison_Attribute_Damage_Reduction_Multiplier:
+  message:
+  - content[<fc_self_base_value_Poison_Attribute_Damage_Reduction_Multiplier>]
+#對不死屬性傷害減免%
+self_attr_Undead_Attribute_Damage_Reduction_Multiplier:
+  message:
+  - content[<fc_self_base_value_Undead_Attribute_Damage_Reduction_Multiplier>]
+#對暗屬性傷害減免%
+self_attr_Dark_Attribute_Damage_Reduction_Multiplier:
+  message:
+  - content[<fc_self_base_value_Dark_Attribute_Damage_Reduction_Multiplier>]
+#對聖屬性傷害減免%
+self_attr_Holy_Attribute_Damage_Reduction_Multiplier:
+  message:
+  - content[<fc_self_base_value_Holy_Attribute_Damage_Reduction_Multiplier>]
+#對念屬性傷害減免%
+self_attr_Mind_Attribute_Damage_Reduction_Multiplier:
+  message:
+  - content[<fc_self_base_value_Mind_Attribute_Damage_Reduction_Multiplier>]
+
+#種族-攻擊增加
+#----------------------------------------------------------------#
+
+#對無形增傷%
+self_attr_Increases_Damage_To_Invisible_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_Invisible_Multiplier>]
+#對植物增傷%
+self_attr_Increases_Damage_To_Plant_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_Plant_Multiplier>]
+#對昆蟲增傷%
+self_attr_Increases_Damage_To_Insect_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_Insect_Multiplier>]
+#對動物增傷%
+self_attr_Increases_Damage_To_Animal_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_Animal_Multiplier>]
+#對魚貝增傷%
+self_attr_Increases_Damage_To_Fish_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_Fish_Multiplier>]
+#對人形增傷%
+self_attr_Increases_Damage_To_Human_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_Human_Multiplier>]
+#對不死增傷%
+self_attr_Increases_Damage_To_Immortal_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_Immortal_Multiplier>]
+#對龍族增傷%
+self_attr_Increases_Damage_To_Dragon_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_Dragon_Multiplier>]
+#對天使增傷%
+self_attr_Increases_Damage_To_Angel_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_Angel_Multiplier>]
+#對惡魔增傷%
+self_attr_Increases_Damage_To_Demon_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_Demon_Multiplier>]
+
+#種族-傷害減免
+#----------------------------------------------------------------#
+
+#對無形減傷%
+self_attr_Reduce_Damage_To_Invisible_Multiplier:
+  message:
+  - content[<fc_self_base_value_Reduce_Damage_To_Invisible_Multiplier>]
+#對植物減傷%
+self_attr_Reduce_Damage_To_Plant_Multiplier:
+  message:
+  - content[<fc_self_base_value_Reduce_Damage_To_Plant_Multiplier>]
+#對昆蟲減傷%
+self_attr_Reduce_Damage_To_Insect_Multiplier:
+  message:
+  - content[<fc_self_base_value_Reduce_Damage_To_Insect_Multiplier>]
+#對動物減傷%
+self_attr_Reduce_Damage_To_Animal_Multiplier:
+  message:
+  - content[<fc_self_base_value_Reduce_Damage_To_Animal_Multiplier>]
+#對魚貝減傷%
+self_attr_Reduce_Damage_To_Fish_Multiplier:
+  message:
+  - content[<fc_self_base_value_Reduce_Damage_To_Fish_Multiplier>]
+#對人形減傷%
+self_attr_Reduce_Damage_To_Human_Multiplier:
+  message:
+  - content[<fc_self_base_value_Reduce_Damage_To_Human_Multiplier>]
+#對不死減傷%
+self_attr_Reduce_Damage_To_Immortal_Multiplier:
+  message:
+  - content[<fc_self_base_value_Reduce_Damage_To_Immortal_Multiplier>]
+#對龍族減傷%
+self_attr_Reduce_Damage_To_Dragon_Multiplier:
+  message:
+  - content[<fc_self_base_value_Reduce_Damage_To_Dragon_Multiplier>]
+#對天使減傷%
+self_attr_Reduce_Damage_To_Angel_Multiplier:
+  message:
+  - content[<fc_self_base_value_Reduce_Damage_To_Angel_Multiplier>]
+#對惡魔減傷%
+self_attr_Reduce_Damage_To_Demon_Multiplier:
+  message:
+  - content[<fc_self_base_value_Reduce_Damage_To_Demon_Multiplier>]
+
+#體型-攻擊增強
+#----------------------------------------------------------------#
+
+#對小型魔物傷害增加%
+self_attr_Increases_Damage_To_Small_Body_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_Small_Body_Multiplier>]
+#對中型魔物傷害增加%
+self_attr_Increases_Damage_To_Mid_Body_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_Mid_Body_Multiplier>]
+#對大型魔物傷害增加%
+self_attr_Increases_Damage_To_Big_Body_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_Big_Body_Multiplier>]
+
+#體型-傷害減免
+#----------------------------------------------------------------#
+
+#受到小型魔物減傷%
+self_attr_Reduce_Damage_To_Small_Body_Multiplier:
+  message:
+  - content[<fc_self_base_value_Reduce_Damage_To_Small_Body_Multiplier>]
+#受到中型魔物減傷%
+self_attr_Reduce_Damage_To_Mid_Body_Multiplier:
+  message:
+  - content[<fc_self_base_value_Reduce_Damage_To_Mid_Body_Multiplier>]
+#受到大型魔物減傷%
+self_attr_Reduce_Damage_To_Big_Body_Multiplier:
+  message:
+  - content[<fc_self_base_value_Reduce_Damage_To_Big_Body_Multiplier>]
+
+#類型-攻擊增強
+#----------------------------------------------------------------#
+
+#MineBoss傷害增加%
+self_attr_Increases_Damage_To_MINI_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_MINI_Multiplier>]
+#MVPBoss傷害增加%
+self_attr_Increases_Damage_To_MVP_Multiplier:
+  message:
+  - content[<fc_self_base_value_Increases_Damage_To_MVP_Multiplier>]
+
+#########################
+
+
+

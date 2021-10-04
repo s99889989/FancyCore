@@ -22,6 +22,7 @@ public class PlayerDataFancy {
 	public Player player;
 	//玩家攻擊數字
 	public String attack_number = "";
+	public LinkedHashMap<String, String> attack_number2;
 	//玩家被攻擊數字
 	public double attacked_number;
 
@@ -92,6 +93,12 @@ public class PlayerDataFancy {
 
 	public PlayerDataFancy(Player player){
 		this.player = player;
+		attack_number2 = new LinkedHashMap<String, String>() {
+			@Override
+			protected boolean removeEldestEntry(final Map.Entry eldest) {
+				return size() > 50;
+			}
+		};
 	}
 	//檢測玩家版本，並記錄
 	public void setPlayer_version(){
@@ -143,6 +150,10 @@ public class PlayerDataFancy {
 		eqm_Custom_Value_Map.forEach((s, stringStringMap) -> {
 			stringStringMap.keySet().removeIf(key->key.startsWith(eqm));
 		});
+	}
+	//增加攻擊數字
+	public void addAttackNumber(String key, String number){
+		attack_number2.put(key, number);
 	}
 
 	//增加裝備部位屬性

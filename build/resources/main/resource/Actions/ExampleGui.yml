@@ -1,0 +1,16 @@
+#介面
+#Gui
+#-------------------------------------------------------------------------#
+OpenGui:
+  Action:
+    - Sound[sound=skills_ef_steal;pitch=1;volume=1;category=PLAYERS]
+
+CloseGui:
+  Action:
+    - Inventory[fc=close] @Self
+    - Sound[sound=skills_ef_steal;pitch=1;volume=1;category=PLAYERS]
+
+ToGacha:
+  Action:
+    - Sound[sound=skills_ef_steal;pitch=1;volume=1;category=PLAYERS]
+    - Inventory[fc=gui;guiid=Gacha] @Self

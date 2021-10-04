@@ -1,0 +1,153 @@
+#技能
+#-------------------------------------------#
+#-------------------------------------------#
+
+#箭矢普通攻擊
+Archer_Shooting:
+  Action:
+  - Break[ConditionType=equals;ConditionContent=&self_class_name&~弓箭手]
+  - Break[ConditionType=Contains;ConditionContent=&self_Eq_Class_Weapon_Type&~武器-弓]
+  - Break[ConditionType=Compare;ConditionContent=&self_Class_Archer_SkillEffect_Arrow_Amount&>0]
+  - Item[ItemID=SkillEffect.Arrow1;a=1;remove=true]
+  - Orbital[onStart=Archer_Shooting-Start;onTime=Archer_Shooting-Time;onTimeHit=Archer_Shooting-TimeHit;onEndHit=Archer_Shooting-EndHit;onEnd=Archer_Shooting-End;period=1;duration=60;speed=1;StartLocAdd=true|true|0|0|0.6|1.6;hitRange=1;HitCount=1;hitstop=true;od=true|true|false|0|0] @LocSelf{VA=Self|true|true|0|0|&self_class_skill_Archer_VulturesEye_amount&;LA=0|1.55|0}
+Archer_Shooting-Start:
+  Action:
+  - Guise[ItemID=SkillEffect.Arrow1;dt=0;hal=true|true] @LocAdd{LA=0|-1.7|0}
+  - Sound[sound=attack_attack_dagger;pitch=1;volume=1;category=PLAYERS]
+Archer_Shooting-Time:
+  Action:
+  - Guise[dt=0;tp=true;hal=true|true] @LocAdd{LA=0|-1.7|0}
+Archer_Shooting-TimeHit:
+  Action:
+  - Guise[dt=-1]
+  - Damage[amount=1;t=range_add]
+  - Sound[sound=attack_hit_arrow;pitch=1;volume=1;category=PLAYERS]
+Archer_Shooting-End:
+  Action:
+  - Guise[dt=-1]
+
+#遠距離物理攻擊
+Range_Shooting:
+  Action:
+  - Orbital[onStart=Range_Shooting-Start;onTime=Range_Shooting-Time;onTimeHit=Range_Shooting-TimeHit;onEndHit=Range_Shooting-EndHit;onEnd=Range_Shooting-End;period=1;duration=60;speed=1;StartLocAdd=true|true|0|0|0.6|1.6;hitRange=1;HitCount=1;hitstop=true;od=true|true|false|0|0] @LocSelf{VA=Self|true|true|0|0|&self_class_skill_Archer_VulturesEye_amount&;LA=0|1.55|0}
+  
+Range_Shooting-Start:
+  Action:
+  - Guise[ItemID=SkillEffect.Arrow1;hal=true|true] @LocAdd{LA=0|-1.7|0}
+  - Sound[sound=attack_archer_attack;pitch=1;volume=1;category=PLAYERS]
+Range_Shooting-Time:
+  Action:
+  - Guise[tp=true;hal=true|true] @LocAdd{LA=0|-1.7|0}
+
+Range_Shooting-TimeHit:
+  Action:
+  - Guise[delete=true]
+  - Damage[type=range_add]
+  - Sound[sound=attack_archer_hit;pitch=1;volume=1;category=PLAYERS]
+
+Range_Shooting-End:
+  Action:
+  - Guise[delete=true]
+
+#二連矢
+Archer_DoubleStrafing:
+  Action:
+  - Break[ConditionType=Contains;ConditionContent=&self_Eq_Class_Weapon_Type&~武器-弓]
+  - Orbital[onStart=Archer_DoubleStrafing-Start;onTime=Archer_DoubleStrafing-Time;onTimeHit=Archer_DoubleStrafing-TimeHit;onEndHit=Archer_DoubleStrafing-EndHit;onEnd=Archer_DoubleStrafing-End;period=1;duration=60;speed=1;StartLocAdd=true|true|0|0|0.6|1.6;hitRange=1;HitCount=1;hitstop=true;od=true|true|false|0|0] @LocSelf{VA=Self|true|true|0|0|&self_class_skill_Archer_VulturesEye_amount&;LA=0|1.55|0}
+  
+Archer_DoubleStrafing-Start:
+  Action:
+  - Guise[ItemID=SkillEffect.Arrow1;hal=true|true;hal=true|true] @LocAdd{LA=0|-1.7|0}
+  - Sound[sound=attack_archer_attack;pitch=1;volume=1;category=PLAYERS]
+Archer_DoubleStrafing-Time:
+  Action:
+  - Guise[tp=true;hal=true|true;hal=true|true] @LocAdd{LA=0|-1.7|0}
+
+Archer_DoubleStrafing-TimeHit:
+  Action:
+  - Guise[delete=true]
+  - Damage[amount=&self_class_skill_Archer_DoubleStrafing_amount&;t=range_multiply]
+  - Sound[sound=attack_archer_hit;pitch=1;volume=1;category=PLAYERS]
+
+Archer_DoubleStrafing-End:
+  Action:
+  - Guise[delete=true]
+
+#定位陷阱
+Archer_Anklesnare:
+  Action:
+  - FixedPoint[onStart=Archer_Anklesnare-Start;onTime=Archer_Anklesnare-Time;onHit=Archer_Anklesnare-Hit;onEnd=Archer_Anklesnare-End;period=20;duration=200;HitRange=2;HitCount=1] @LocSelf{LA=0|0|0}
+Archer_Anklesnare-Start:
+  Action:
+  - Guise[ItemID=SkillEffect.Archer_Anklesnare]
+Archer_Anklesnare-Hit:
+  Action:
+  - Attribute[Attr=GENERIC_KNOCKBACK_RESISTANCE;a=1;dt=100] @Target
+  - PotionEffect[Potion=SLOW;dt=100;ap=5] @Target
+  - Guise[ItemID=SkillEffect.Archer_Anklesnare2;dt=100]
+  - Damage[amount=&self_class_skill_Archer_Anklesnare_amount&;t=range_multiply]
+Archer_Anklesnare-End:
+  Action:
+  - Guise[delete=true]
+
+#鶚梟之眼
+Archer_OwlsEye:
+  Action:
+  - CustomValue[Key=Dex;v=&self_class_skill_Archer_OwlsEye_amount&]
+
+#箭雨
+Archer_ArrowShower:
+  Action:
+  - Break[ConditionType=Contains;ConditionContent=&self_Eq_Class_Weapon_Type&~武器-弓]
+  - LocPng[onStart=Archer_ArrowShower-Start;onTime=Archer_ArrowShower-Time;onEndHit=Archer_ArrowShower-EndHit;onEnd=Archer_ArrowShower-End;period=1;duration=60;speed=1;StartLocAdd=true|true|0|0|5|10;hitRange=5;HitCount=1;hitstop=true;od=true|true|false|0|0;IMG=Archer_ArrowShower;IMGSize=1;IMGRotAngle=Self|false|false|90|0|0] @LocSelf{VA=Self|true|true|0|0|5;LA=0|0|0}
+  
+Archer_ArrowShower-Start:
+  Action:
+  - Guise[ItemID=SkillEffect.Arrow1;Head=90|0|0] @LocAdd{LA=0|-5|0}
+  - Sound[sound=attack_attack_dagger;pitch=1;volume=1;category=PLAYERS]
+Archer_ArrowShower-Time:
+  Action:
+  - Guise[tp=true;Head=90|0|0] @LocAdd{LA=0|-5|0}
+
+Archer_ArrowShower-EndHit:
+  Action:
+  - Sound[sound=attack_hit_arrow;pitch=1;volume=1;category=PLAYERS]
+  - Damage[amount=&self_class_skill_Archer_ArrowShower_amount&;t=range_multiply]
+
+Archer_ArrowShower-End:
+  Action:
+  - Guise[delete=true]
+  
+#衝鋒箭
+Archer_ChargeArrow:
+  Action:
+  - Break[ConditionType=Contains;ConditionContent=&self_Eq_Class_Weapon_Type&~武器-弓]
+  - Orbital[onStart=Archer_ChargeArrow-Start;onTime=Archer_ChargeArrow-Time;onTimeHit=Archer_ChargeArrow-Hit;onEndHit=Archer_ChargeArrow-Hit;onEnd=Archer_ChargeArrow-End;period=1;duration=60;speed=1;StartLocAdd=true|true|0|0|0.6|1.6;hitRange=1;HitCount=1;hitstop=true;od=true|true|false|0|0] @LocSelf{VA=Self|true|true|0|0|&self_class_skill_Archer_VulturesEye_amount&;LA=0|1.55|0}
+Archer_ChargeArrow-Start:
+  Action:
+  - Guise[ItemID=SkillEffect.Arrow1;dt=0;hal=true|true;hal=true|true] @LocAdd{LA=0|-1.7|0}
+  - Sound[sound=attack_attack_dagger;pitch=1;volume=1;category=PLAYERS]
+Archer_ChargeArrow-Time:
+  Action:
+  - Guise[dt=0;tp=true;hal=true|true;hal=true|true] @LocAdd{LA=0|-1.7|0}
+Archer_ChargeArrow-Hit:
+  Action:
+  - Guise[delete=true]
+  - Damage[amount=&self_class_skill_Archer_ChargeArrow_amount&;t=range_multiply]
+  - Move[da=Self|true|true|0|0|2]
+  - Sound[sound=attack_hit_arrow;pitch=1;volume=1;category=PLAYERS]
+Archer_ChargeArrow-End:
+  Action:
+  - Guise[delete=true]
+
+#元素箭矢
+Archer_ElementArrow:
+  Action:
+  - CustomValue[Key=Physical_Attack;v=0] @Self
+  - Break[ConditionType=Contains;ConditionContent=&self_Eq_Class_Weapon_Type&~武器-弓]
+  - CustomValue[Key=Physical_Attack;v=&self_class_skill_Archer_ElementArrow_amount1&] @Self
+
+#蒼鷹之眼
+Archer_VulturesEye:
+  Action:
+

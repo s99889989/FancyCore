@@ -1,0 +1,154 @@
+#玩家攻擊玩家
+#---------------------------------------------------------------#
+#---------------------------------------------------------------#
+#其他
+#---------------------------------------------------------------#
+
+#體型減傷(針對玩家)
+Player_Player_Body_Reduce:
+  message:
+  - content[<fc_target_class_attr_stats_Class_Body>]
+  - Conver[function=ContainAll;m=小型>&target_attr_Reduce_Damage_To_Small_Body%&]
+  - Conver[function=ContainAll;m=中型>&target_attr_Reduce_Damage_To_Mid_Body%&]
+  - Conver[function=ContainAll;m=大型>&target_attr_Reduce_Damage_To_Big_Body%&]
+  - math[function=decimal;message=#.#]
+
+
+#屬性減傷(針對玩家)
+Player_Player_Attr_Reduce:
+  message:
+  - content[<fc_target_base_value_Class_Attributes_Defense>]
+  - Conver[function=ContainAll;m=無>&target_attr_Increase_Damage_To_Non_Attribute_monsters%&]
+  - Conver[function=ContainAll;m=火>&target_attr_Increase_Damage_To_Fire_Attribute_monsters%&]
+  - Conver[function=ContainAll;m=水>&target_attr_Increase_Damage_To_Earth_Attribute_monsters%&]
+  - Conver[function=ContainAll;m=風>&target_attr_Increase_Damage_To_Water_Attribute_monsters%&]
+  - Conver[function=ContainAll;m=地>&target_attr_Increase_Damage_To_Wind_Attribute_monsters%&]
+  - Conver[function=ContainAll;m=毒>&target_attr_Increase_Damage_To_Poisonous_Attribute_monsters%&]
+  - Conver[function=ContainAll;m=聖>&target_attr_Increase_Damage_To_Undead_Attribute_monsters%&]
+  - Conver[function=ContainAll;m=暗>&target_attr_Increase_Damage_To_Dark_Attribute_monsters%&]
+  - Conver[function=ContainAll;m=念>&target_attr_Increase_Damage_To_Holy_Attribute_monsters%&]
+  - Conver[function=ContainAll;m=不死>&target_attr_Increase_Damage_To_Mind_Attribute_monsters%&]
+  - math[function=decimal;message=#.#]
+
+#種族減傷(針對玩家)
+Player_Player_Race_Reduce:
+  message:
+  - content[<fc_target_class_attr_stats_Class_Race>]
+  - Conver[function=ContainAll;m=無形>&target_attr_Increases_Damage_To_Invisible%&]
+  - Conver[function=ContainAll;m=植物>&target_attr_Increases_Damage_To_Plant%&]
+  - Conver[function=ContainAll;m=昆蟲>&target_attr_Increases_Damage_To_Insect%&]
+  - Conver[function=ContainAll;m=動物>&target_attr_Increases_Damage_To_Animal%&]
+  - Conver[function=ContainAll;m=魚貝>&target_attr_Increases_Damage_To_Fish%&]
+  - Conver[function=ContainAll;m=人形>&target_attr_Increases_Damage_To_Human%&]
+  - Conver[function=ContainAll;m=不死>&target_attr_Increases_Damage_To_Immortal%&]
+  - Conver[function=ContainAll;m=龍族>&target_attr_Increases_Damage_To_Dragon%&]
+  - Conver[function=ContainAll;m=天使>&target_attr_Increases_Damage_To_Angel%&]
+  - Conver[function=ContainAll;m=惡魔>&target_attr_Increases_Damage_To_Demon%&]
+  - math[function=decimal;message=#.#]
+
+
+#最終物攻(近戰)(針對玩家)
+Player_Player_Final_Attack_Melee:
+  message:
+  - content[((( (<fc_self_base_value_Physical_Attack>) * (1+(<fc_self_base_value_Physical_Attack_Multiplier>/100)) * (1+&Player_Player_Body_Fix&) * (1+((&Player_Player_Body_Add&-&Player_Player_Body_Reduce&)/100)) * (1+&Player_Player_Attr_Rest&) * (1+(&Player_Player_Attr_Add&-&Player_Player_Attr_Reduce&)/100))+(&self_attr_Melee_Physical_Attack&)) * (1+(&Player_Player_Race_Add&-&Player_Player_Race_Reduce&)/100)]
+  - math[fc=Arith]
+#最終物攻(遠距)(針對玩家)
+Player_Player_Final_Attack_Range:
+  message:
+  - content[((( (<fc_self_base_value_Physical_Attack>) * (1+(<fc_self_base_value_Physical_Attack_Multiplier>/100)) * (1+&Player_Player_Body_Fix&) * (1+((&Player_Player_Body_Add&-&Player_Player_Body_Reduce&)/100)) * (1+&Player_Player_Attr_Rest&) * (1+(&Player_Player_Attr_Add&-&Player_Player_Attr_Reduce&)/100))+(&self_attr_Range_Physical_Attack&)) * (1+(&Player_Player_Race_Add&-&Player_Player_Race_Reduce&)/100)]
+  - math[fc=Arith]
+
+#最終魔攻(針對玩家)
+Player_Player_Final_Attack_Magic:
+  message:
+  - content[(( (<fc_self_base_value_Magic_Attack>)*(1+(<fc_self_base_value_Magic_Attack_Multiplier>/100))+(((<fc_self_class_attr_point_Int>+<fc_self_base_value_Int>))*(<fc_self_base_value_Magic_Attack_Multiplier>/100))+(&self_attr_Magic_Attack&))*(1+(&Player_Player_Race_Add&-&Player_Player_Race_Reduce&)/100)]
+  - math[fc=Arith]
+
+#物防乘數(針對玩家)
+Player_Player_Physical_Defense_Multiplier:
+  message:
+  - content[((4000+((<fc_target_base_value_Physical_Defense>)*(1+(<fc_target_base_value_Physical_Defense_Multiplier>-<fc_self_base_value_Ignore_Physical_Defense_Multiplier>)/100)))/(4000+((<fc_target_base_value_Physical_Defense>)*(1+(<fc_target_base_value_Physical_Defense_Multiplier>-<fc_self_base_value_Ignore_Physical_Defense_Multiplier>)/100))*10))]
+  - math[fc=Arith]
+
+#魔防乘數(針對玩家)
+Player_Player_Magic_Defense_Multiplier:
+  message:
+  - content[(1000+((<fc_target_base_value_Magic_Defense>)*(1+(<fc_target_base_value_Magic_Defense_Multiplier>-<fc_self_base_value_Ignore_Magic_Defense_Multiplier>)/100)))/(1000+((<fc_target_base_value_Magic_Defense>)*(1+(<fc_target_base_value_Magic_Defense_Multiplier>-<fc_self_base_value_Ignore_Magic_Defense_Multiplier>)/100))*10)]
+  - math[fc=Arith]
+
+#基礎傷害(近戰)(針對玩家)
+Player_Player_Base_Damage_Melee:
+  message:
+  - content[((((&Player_Player_Final_Attack_Melee&)*(&Player_Player_Physical_Defense_Multiplier&)+(<fc_self_base_value_Refined_Physical_Attack>))-(<fc_target_class_attr_point_Vit>+<fc_target_base_value_Vit>))*(1+(<fc_self_base_value_Physical_Damage_Bonus_Multiplier>/100)))]
+  - math[fc=Arith]
+
+#基礎傷害(遠距)(針對玩家)
+Player_Player_Base_Damage_Range:
+  message:
+  - content[((((&Player_Player_Final_Attack_Range&)*(&Player_Player_Physical_Defense_Multiplier&)+(<fc_self_base_value_Refined_Physical_Attack>))-(<fc_target_class_attr_point_Vit>+<fc_target_base_value_Vit>))*(1+(<fc_self_base_value_Physical_Damage_Bonus_Multiplier>/100)))]
+  - math[fc=Arith]
+
+#基礎傷害(近戰) (暴擊)(針對玩家)
+Player_Player_Base_Damage_Melee_Crit:
+  message:
+  - content[((&Player_Player_Final_Attack_Melee&)+(<fc_self_base_value_Refined_Physical_Attack>))*((150+<fc_self_base_value_Critical_Strike_Power_Multiplier>)/100)*(1+(<fc_self_base_value_Physical_Damage_Bonus_Multiplier>/100))]
+  - math[fc=Arith]
+
+#基礎傷害(遠距) (暴擊)(針對玩家)
+Player_Player_Base_Damage_Range_Crit:
+  message:
+  - content[((&Player_Player_Final_Attack_Range&)+(<fc_self_base_value_Refined_Physical_Attack>))*((150+<fc_self_base_value_Critical_Strike_Power_Multiplier>)/100)*(1+(<fc_self_base_value_Physical_Damage_Bonus_Multiplier>/100))]
+  - math[fc=Arith]
+
+#基礎傷害(魔法)(針對玩家)
+Player_Player_Base_Damage_Magic:
+  message:
+  - content[(((&Player_Player_Final_Attack_Magic&)* (&Player_Player_Magic_Defense_Multiplier&) + (<fc_self_base_value_Refining_Magic_Attack>)) * (1+(<fc_self_base_value_Magic_Injury_Bonus_Multiplier>/100)) * (1+(&Player_Player_Attr_Rest&)))]
+  - math[fc=Arith]
+
+
+#總
+#---------------------------------------------------------------#
+#近距離物理攻擊(針對玩家)
+Player_Player_Final_Damage_Melee:
+  message:
+  - content[((&Player_Player_Base_Damage_Melee&)*(1+(&Player_Player_Race_Add&-&Player_Player_Race_Reduce&)/100))]
+  - math[fc=Arith]
+#近距離物理暴擊(針對玩家)
+Player_Player_Final_Damage_Melee_Crit:
+  message:
+  - content[((&Player_Player_Base_Damage_Melee_Crit&)*(1+(&Player_Player_Race_Add&-&Player_Player_Race_Reduce&)/100))]
+  - math[fc=Arith]
+#遠距離物理攻擊(弓箭)(針對玩家)
+Player_Player_Final_Damage_Range:
+  message:
+  - content[((&Player_Player_Base_Damage_Range&)*(1+(&Player_Player_Race_Add&-&Player_Player_Race_Reduce&)/100))]
+  - math[fc=Arith]
+#遠距離物理暴擊(弓箭)(針對玩家)
+Player_Player_Final_Damage_Range_Crit:
+  message:
+  - content[((&Player_Player_Base_Damage_Melee_Crit&)*(1+(&Player_Player_Race_Add&-&Player_Player_Race_Reduce&)/100))]
+  - math[fc=Arith]
+#魔法攻擊(針對玩家)
+Player_Player_Final_Damage_Magic:
+  message:
+  - content[((&Player_Player_Base_Damage_Magic&)*(1+(&Player_Player_Race_Add&-&Player_Player_Race_Reduce&)/100))]
+  - math[fc=Arith]
+#命中(針對玩家)
+Player_Player_Hit_Rate:
+  message:
+  - content[(80+(&self_attr_Hit_Rate&-&target_attr_Dodge_Rate&))]
+  - math[fc=Arith]
+#迴避(算目標的)(針對玩家)
+Player_Player_Dodge_Rate:
+  message:
+  - content[20+(&self_attr_Dodge_Rate&)-(&target_attr_Hit_Rate&)]
+  - math[fc=Arith]
+#格檔(算目標的)(針對玩家)
+
+#暴擊率(針對玩家)
+Player_Player_Critical_Strike_Chance%:
+  message:
+  - content[((<fc_self_class_attr_point_Luk>+<fc_self_base_value_Luk>)/3) + 1 + (<fc_self_base_value_Critical_Strike_Chance_Multiplier>-<fc_target_base_value_Critical_Strike_Protection_Multiplier>)]
+  - math[fc=Arith]
+

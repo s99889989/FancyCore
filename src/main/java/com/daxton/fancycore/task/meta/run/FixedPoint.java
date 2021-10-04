@@ -95,18 +95,18 @@ public class FixedPoint extends BukkitRunnable {
 					count++;
 					for(LivingEntity livingEntity : entityList){
 
-						Location hitLoction = livingEntity.getLocation();
+						Location hitLocation = livingEntity.getLocation();
 
-						StartAction.execute(this.self, livingEntity, onHitList, hitLoction, taskID);
+						StartAction.execute(this.self, livingEntity, onHitList, hitLocation, taskID);
 
 					}
 				}
 			}else {
 				for(LivingEntity livingEntity : entityList){
 
-					Location hitLoction = livingEntity.getLocation();
+					Location hitLocation = livingEntity.getLocation();
 
-					StartAction.execute(this.self, livingEntity, onHitList, hitLoction, taskID);
+					StartAction.execute(this.self, livingEntity, onHitList, hitLocation, taskID);
 
 				}
 			}

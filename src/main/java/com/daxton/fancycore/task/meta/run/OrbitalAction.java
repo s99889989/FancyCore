@@ -149,8 +149,7 @@ public class OrbitalAction extends BukkitRunnable {
             fLocation = (floc) -> floc;
 
             vec = PathDeviation.getDirection2(self.getLocation(), odpt, odyw, odsign, odX, odY, 1);
-
-
+            
             StartAction.execute(self, target, onStartList, startLocation, taskID);
 
             runTaskTimer(FancyCore.fancyCore, 0L, period);
@@ -204,7 +203,6 @@ public class OrbitalAction extends BukkitRunnable {
             }
 
         }
-
 
         if(target != null){
 

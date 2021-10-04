@@ -5,6 +5,7 @@ import com.daxton.fancycore.other.hologram.FloatMessage;
 import com.daxton.fancycore.other.task.guise.GuiseEntity;
 import com.daxton.fancycore.other.task.modelentity.ModelEntity;
 import com.daxton.fancycore.task.meta.run.FixedPoint;
+import com.daxton.fancycore.task.meta.run.LocPng;
 import com.daxton.fancycore.task.meta.run.Loop;
 import com.daxton.fancycore.task.meta.run.OrbitalAction;
 import org.bukkit.Bukkit;
@@ -36,6 +37,13 @@ public class ClearAction {
 			}
 		}
 		TaskActionManager.task_FixedPoint_Map.clear();
+		//清除LocPng
+		for(LocPng locPng : TaskActionManager.task_LocPng_Map.values()){
+			if(!locPng.isCancelled()){
+				locPng.cancel();
+			}
+		}
+		TaskActionManager.task_LocPng_Map.clear();
 		//清除FloatMessage
 		for(FloatMessage floatMessage : TaskActionManager.task_FloatMessage_Map.values()){
 			floatMessage.delete();
@@ -77,6 +85,11 @@ public class ClearAction {
 		if(TaskActionManager.task_FixedPoint_Map.get(taskID) != null){
 			TaskActionManager.task_FixedPoint_Map.get(taskID).cancel();
 			TaskActionManager.task_FixedPoint_Map.remove(taskID);
+		}
+		//清除LocPng
+		if(TaskActionManager.task_LocPng_Map.get(taskID) != null){
+			TaskActionManager.task_LocPng_Map.get(taskID).cancel();
+			TaskActionManager.task_LocPng_Map.remove(taskID);
 		}
 		//清除FloatMessage
 		Iterator<String> ifm = TaskActionManager.task_FloatMessage_Map.keySet().iterator();

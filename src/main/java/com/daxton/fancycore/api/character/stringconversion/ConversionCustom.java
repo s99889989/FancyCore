@@ -33,7 +33,7 @@ public class ConversionCustom {
                     break;
                 }
             }else {
-                outputString = CustomChange(self,target,headKey, outputString, content);
+                outputString = CustomChange(self, target, headKey, outputString, content);
             }
 
         }

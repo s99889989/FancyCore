@@ -7,6 +7,7 @@ import com.daxton.fancycore.task.entity.*;
 import com.daxton.fancycore.task.location.*;
 import com.daxton.fancycore.task.meta.Action;
 import com.daxton.fancycore.task.meta.run.FixedPoint;
+import com.daxton.fancycore.task.meta.run.LocPng;
 import com.daxton.fancycore.task.meta.run.Loop;
 import com.daxton.fancycore.task.meta.run.OrbitalAction;
 import com.daxton.fancycore.task.player.*;
@@ -29,6 +30,11 @@ public class TaskAction {
         if(judgeString.equalsIgnoreCase("Attribute")){
             AttributeSet attributeSet = new AttributeSet();
             attributeSet.execute(self, target, action_Map, inputLocation, taskID);
+            return;
+        }
+        if(judgeString.equalsIgnoreCase("CustomValue")){
+            CustomValueSet customValueSet = new CustomValueSet();
+            customValueSet.execute(self, target, action_Map, inputLocation, taskID);
             return;
         }
         if(judgeString.equalsIgnoreCase("Damage")){
@@ -94,6 +100,7 @@ public class TaskAction {
         if(judgeString.equalsIgnoreCase("Threat")){
             Threat threat = new Threat();
             threat.execute(self, target, action_Map, inputLocation, taskID);
+            return;
         }
         //目標為玩家
         //-------------------------------------------------------------------------//
@@ -132,7 +139,8 @@ public class TaskAction {
             return;
         }
         if(judgeString.equalsIgnoreCase("Mana")){
-
+            Mana mana = new Mana();
+            mana.execute(self, target, action_Map, inputLocation, taskID);
             return;
         }
         if(judgeString.equalsIgnoreCase("Money")){
@@ -201,7 +209,19 @@ public class TaskAction {
                 fixedPoint2.execute(self, target, action_Map, inputLocation, taskID);
                 TaskActionManager.task_FixedPoint_Map.put(taskID, fixedPoint2);
             }
-
+        }
+        if(judgeString.equalsIgnoreCase("LocPng")){
+            if(TaskActionManager.task_LocPng_Map.get(taskID) == null){
+                LocPng locPng = new LocPng();
+                locPng.execute(self, target, action_Map, inputLocation, taskID);
+                TaskActionManager.task_LocPng_Map.put(taskID, locPng);
+            }else {
+                LocPng locPng = TaskActionManager.task_LocPng_Map.get(taskID);
+                locPng.cancel();
+                LocPng locPng1 = new LocPng();
+                locPng1.execute(self, target, action_Map, inputLocation, taskID);
+                TaskActionManager.task_LocPng_Map.put(taskID, locPng1);
+            }
         }
         if(judgeString.equalsIgnoreCase("Loop")){
             if(TaskActionManager.task_Loop_Map.get(taskID) == null){

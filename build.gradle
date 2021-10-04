@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.daxton'
-version '1.1.12'
+version '1.1.13'
 
 repositories {
     mavenCentral()
@@ -68,7 +68,7 @@ dependencies {
 
     compileOnly fileTree(dir: 'lib', include: ['FMythicLib-1.1.2-173.jar'])
 
-    compileOnly fileTree(dir: 'lib', include: ['FancyMobs-1.1.4.jar'])
+    compileOnly fileTree(dir: 'lib', include: ['FancyMobs-1.1.8.jar'])
     compileOnly fileTree(dir: 'lib', include: ['FancyItems-1.0.jar'])
     compileOnly fileTree(dir: 'lib', include: ['FancyGui-1.0.jar'])
     compileOnly fileTree(dir: 'lib', include: ['FancyClasses-1.0.jar'])

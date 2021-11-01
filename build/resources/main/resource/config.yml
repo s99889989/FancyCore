@@ -12,3 +12,14 @@ AttackCore: Default
 Discord:
   enable: false
   token: ''
+
+#資料庫設定
+MySql:
+  enable: true
+  host: localhost
+  port: 3306
+  user: ''
+  password: ''
+  database: fancy_core
+  table:
+    fancy_equipment: fancy_equipment

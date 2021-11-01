@@ -5,6 +5,7 @@ import static com.daxton.fancycore.config.FileConfig.languageConfig;
 
 import com.daxton.fancycore.api.gui.item.GuiEditItem;
 import com.daxton.fancycore.gui.MainOpen;
+import com.daxton.fancycore.nms.NMSItem;
 import com.daxton.fancycore.other.task.CopyClipboard;
 import com.daxton.fancycore.server.Reload;
 import org.bukkit.command.Command;
@@ -15,6 +16,8 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class MainCommand implements CommandExecutor {
+
+    public static String itemString = "";
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args){
@@ -42,6 +45,19 @@ public class MainCommand implements CommandExecutor {
 
             if(args.length == 1 && args[0].equalsIgnoreCase("gui")) {
                 MainOpen.open(player);
+            }
+            if(args.length == 1 && args[0].equalsIgnoreCase("hand")) {
+                ItemStack itemStack = player.getInventory().getItemInMainHand();
+                ItemStack[] itemStacks = new ItemStack[]{itemStack};
+                itemString = NMSItem.itemStackToBase64(itemStacks);
+                player.sendMessage(itemString);
+            }
+            if(args.length == 1 && args[0].equalsIgnoreCase("hand2")) {
+                ItemStack[] itemStacks = NMSItem.base64toItemStack(itemString);
+                for(ItemStack itemStack : itemStacks){
+                    String s = itemStack.getI18NDisplayName();
+                    player.sendMessage(s);
+                }
             }
         }
 

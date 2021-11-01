@@ -61,5 +61,35 @@
       <option name="name" value="Citizens" />
       <option name="url" value="http://repo.citizensnpcs.co/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="FancyMobs" />
+      <option name="name" value="FancyMobs" />
+      <option name="url" value="https://maven.pkg.github.com/s99889989/FancyMobs" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="FancyMobs" />
+      <option name="name" value="FancyMobs" />
+      <option name="url" value="https://fancycore.coding.net/public-artifacts/fancymobs/maven/packages" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="FancyMobs" />
+      <option name="name" value="FancyMobs" />
+      <option name="url" value="https://fancycore-maven.pkg.coding.net/repository/fancymobs/maven/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="FancyMobs" />
+      <option name="name" value="FancyMobs" />
+      <option name="url" value="https://fancycore.coding.net/public-artifacts/fancymobs/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="FancyMobs" />
+      <option name="name" value="FancyMobs" />
+      <option name="url" value="https://fancycore.coding.net/public-artifacts/fancymobs/maven/com.daxton:FancyMobs/version/9456146/overview" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="FancyMobs" />
+      <option name="name" value="FancyMobs" />
+      <option name="url" value="https://fancycore-maven.pkg.coding.net/repository/fancymobs/maven/com.daxton/FancyMobs/1.1.9/FancyMobs-1.1.9.pom" />
+    </remote-repository>
   </component>
 </project>

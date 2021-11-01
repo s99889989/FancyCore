@@ -24,6 +24,7 @@ import org.bukkit.persistence.PersistentDataType;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class CItem {
@@ -65,6 +66,56 @@ public class CItem {
             itemStack.setItemMeta(itemMeta);
         }
     }
+    //設定職業需求
+    public void setNeedClasses(List<String> classList){
+        if(classList.isEmpty()){
+            return;
+        }
+        FancyCore fancyCore = FancyCore.fancyCore;
+
+        NamespacedKey MAIN_DATA = new NamespacedKey(fancyCore, "needclasses");
+
+        ItemMeta itemMeta = itemStack.getItemMeta();
+
+        PersistentDataContainer dataContainer = itemMeta.getPersistentDataContainer();
+
+        PersistentDataContainer newDataContainer = dataContainer.getAdapterContext().newPersistentDataContainer();
+
+        for(int i = 0; i < classList.size() ; i++){
+            String value = classList.get(i);
+            newDataContainer.set(new NamespacedKey(fancyCore, String.valueOf(i)), PersistentDataType.STRING, value);
+        }
+
+        dataContainer.set(MAIN_DATA, PersistentDataType.TAG_CONTAINER, newDataContainer);
+
+        itemStack.setItemMeta(itemMeta);
+
+    }
+    //設定職業等級需求
+    public void setNeedLevel(Map<String, String> levelMap){
+        if(levelMap.isEmpty()){
+            return;
+        }
+        FancyCore fancyCore = FancyCore.fancyCore;
+
+        NamespacedKey MAIN_DATA = new NamespacedKey(fancyCore, "needlevel");
+
+        ItemMeta itemMeta = itemStack.getItemMeta();
+
+        PersistentDataContainer dataContainer = itemMeta.getPersistentDataContainer();
+
+        PersistentDataContainer newDataContainer = dataContainer.getAdapterContext().newPersistentDataContainer();
+
+        levelMap.forEach((s, s2) -> {
+            newDataContainer.set(new NamespacedKey(fancyCore, s), PersistentDataType.STRING, s2);
+        });
+
+        dataContainer.set(MAIN_DATA, PersistentDataType.TAG_CONTAINER, newDataContainer);
+
+        itemStack.setItemMeta(itemMeta);
+
+    }
+    //設置Lore
     public void setLore(List<String> loreList, boolean head){
         List<String> oldLore = itemStack.getLore();
         List<String> newLoreList = new ArrayList<>();
@@ -98,9 +149,12 @@ public class CItem {
     //設定物品附魔
     public void setEnchantments(String enchantments, int level){
         ItemMeta itemMeta = itemStack.getItemMeta();
+        //FancyCore.fancyCore.getLogger().info("附魔V ");
         try {
-            NamespacedKey key = NamespacedKey.minecraft(enchantments);
-            Enchantment enchant = Enchantment.getByKey(key);
+            //NamespacedKey key = NamespacedKey.minecraft(enchantments);
+            //Enchantment enchant = Enchantment.getByKey(key);
+            Enchantment enchant = Enchantment.getByName(enchantments);
+            //FancyCore.fancyCore.getLogger().info("附魔: "+enchant.getName());
             if(enchant != null){
                 assert itemMeta != null;
                 itemMeta.addEnchant(enchant, level,false);

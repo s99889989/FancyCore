@@ -1,6 +1,7 @@
 package com.daxton.fancycore.listener;
 
 import com.daxton.fancycore.FancyCore;
+import com.daxton.fancycore.api.fancyclient.ClientConnect;
 import com.daxton.fancycore.config.FileConfig;
 import com.daxton.fancycore.manager.PlayerManagerCore;
 import com.daxton.fancycore.other.playerdata.ItemCD;
@@ -38,7 +39,7 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
-
+        ClientConnect.sendMessage(player, "version:");
         PlayerManagerCore.player_Data_Map.putIfAbsent(uuid, new PlayerDataFancy(player));
         PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(uuid);
         //檢測玩家版本，並記錄

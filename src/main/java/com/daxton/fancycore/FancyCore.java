@@ -1,23 +1,25 @@
 package com.daxton.fancycore;
 
+import com.daxton.fancycore.api.fancyclient.ClientConnect;
 import com.daxton.fancycore.command.MainCommand;
 import com.daxton.fancycore.command.TabCommand;
 import com.daxton.fancycore.config.FileConfig;
-import com.daxton.fancycore.listener.MobListener;
-import com.daxton.fancycore.listener.AttackedListener;
-import com.daxton.fancycore.listener.InventoryListener;
-import com.daxton.fancycore.listener.PlayerListener;
+import com.daxton.fancycore.listener.*;
 import com.daxton.fancycore.server.Start;
 import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
 import static com.daxton.fancycore.config.FileConfig.languageConfig;
 
-public class FancyCore extends JavaPlugin{
+public class FancyCore extends JavaPlugin implements Listener {
 
     public static FancyCore fancyCore;
+
+    private static final int IDX = 233;
+    private final String channel = "msgtutor:test";
 
     @Override
     public void onEnable() {
@@ -41,6 +43,13 @@ public class FancyCore extends JavaPlugin{
         Bukkit.getPluginManager().registerEvents(new MobListener(), fancyCore);
         //傷害核心
         AttackCore.setCore();
+        //連接頻道
+        Bukkit.getServer().getMessenger().registerIncomingPluginChannel(fancyCore, ClientConnect.channel, new ClientListener());
+        Bukkit.getServer().getMessenger().registerOutgoingPluginChannel(fancyCore, ClientConnect.channel);
+    }
+
+    public static void sendLogger(String logger){
+        fancyCore.getLogger().info(logger);
     }
 
     @Override

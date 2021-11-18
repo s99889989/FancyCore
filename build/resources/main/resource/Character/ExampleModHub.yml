@@ -1,0 +1,13 @@
+#玩家UUID
+self_uuid:
+  message:
+    - content[<fc_self_base_uuid>]
+#血條長度
+health_width:
+  message:
+  - content[182/<fc_self_base_maxhealth>*<fc_self_base_nowhealth>]
+  - math[fc=Arith]
+  
+text_field_1:
+  message:
+  - content[<fc_self_gui_text_field_2.ExampleObject.TextFieldExample>]

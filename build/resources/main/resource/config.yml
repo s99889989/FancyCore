@@ -13,9 +13,27 @@ Discord:
   enable: false
   token: ''
 
+#客戶端模組設定
+#Client module settings
+ClientMod:
+  #判斷延遲。(單位為秒)
+  #Determine the delay.(In seconds)
+  determine_delay: 5
+  #如果客戶端沒裝模組將被踢出伺服器。
+  #If the client does not install the module, it will be kicked out of the server.
+  kick_no_mod: false
+  #要客戶端安裝的模組版本。
+  #會以版本開頭來判斷，如果設為1.2，開頭為1.2的版本都登入。
+  #The version of the mod to be installed on the client.
+  #It will be judged by the beginning of the version. If it is set to 1.2, all the versions starting with 1.2 will be logged in.
+  need_mod_version: 1.2
+  #如果模組版本不對將被踢出伺服器。
+  #If the module version is wrong, it will be kicked out of the server.
+  kick_mod_version_wrong: false
+
 #資料庫設定
 MySql:
-  enable: true
+  enable: false
   host: localhost
   port: 3306
   user: ''

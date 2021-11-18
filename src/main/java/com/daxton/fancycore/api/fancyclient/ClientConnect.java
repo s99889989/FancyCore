@@ -15,7 +15,7 @@ public class ClientConnect {
 	public static final int IDX = 159;
 	public static final String channel = "fancycore:fancygui";
 
-	public static void sendMessage(Player player, String message){
+	public static void sendMessage(Player player, String type, String message){
 		try {
 			Class<? extends CommandSender> senderClass = player.getClass();
 			Method addChannel = senderClass.getDeclaredMethod("addChannel", String.class);
@@ -25,7 +25,7 @@ public class ClientConnect {
 			e.printStackTrace();
 		}
 		Bukkit.getScheduler().runTaskLater(FancyCore.fancyCore,
-			() -> send(player, message), 1);
+			() -> send(player, type+" : "+message), 1);
 	}
 
 	private static void send(Player player, String msg) {

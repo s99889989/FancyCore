@@ -12,6 +12,8 @@ LogMessage:
   LoadVault: '§aLoaded Vault.'
 OpMessage:
   Reload: '§e[FancyCore] §aRe-read the configuration file.'
-
+ModMessage:
+  KickNoMod: 'You do not have the FancyClient mod installed!'
+  KickModVersionWrong: 'Your FancyClient mod version is wrong, you need version {version}.'
 
 

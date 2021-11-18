@@ -29,6 +29,8 @@ public class NMSVersion {
         return out;
     }
 
+
+
     //依據封包名稱判斷客戶端版本
     public static String clientVersion(int pack){
         switch(pack){
@@ -139,6 +141,55 @@ public class NMSVersion {
         throw new IllegalArgumentException(nms + " isn't a know version");
     }
 
+    //把版本轉成NMS版本
+    public static String versionToNMSVersion(String version){
+        switch(version){
+            case "1.7.2":
+                return "v_1_7_R1";
+            case "1.7.5":
+                return "v_1_7_R2";
+            case "1.7.8":
+                return "v_1_7_R3";
+            case "1.7.10":
+                return "v_1_7_R4";
+            case "1.8.1":
+                return "v1_8_R1";
+            case "1.8.4":
+                return "v1_8_R2";
+            case "1.8.8":
+                return "v_1_8_R3";
+            case "1.9.2":
+                return "v1_9_R1";
+            case "1.9.4":
+                return "v1_9_R2";
+            case "1.10.2":
+                return "v1_10_R1";
+            case "1.11.2":
+                return "v1_11_R1";
+            case "1.12.2":
+                return "v1_12_R1";
+            case "1.13":
+                return "v1_13_R1";
+            case "1.13.2":
+                return "v1_13_R2";
+            case "1.14.4":
+                return "v1_14_R1";
+            case "1.15.2":
+                return "v1_15_R1";
+            case "1.16.1":
+                return "v1_16_R1";
+            case "1.16.3":
+                return "v1_16_R2";
+            case "1.16.5":
+                return "v1_16_R3";
+            case "1.17":
+                return "v1_17_R1";
+            case "1.17.1":
+                return "v1_17_R1";
+        }
+        return "";
+    }
+
     public static String getMinecraftVersion(){
         String v = Bukkit.getServer().getClass().getPackage().getName();
         String nms = v.substring(v.lastIndexOf('.') + 1);
@@ -182,7 +233,7 @@ public class NMSVersion {
             case "v1_16_R3":
                 return "1.16.5";
             case "v1_17_R1":
-                return "1.17";
+                return "1.17.1";
         }
         throw new IllegalArgumentException(nms + " isn't a know version");
     }

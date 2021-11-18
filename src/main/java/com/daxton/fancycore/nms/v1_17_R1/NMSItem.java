@@ -16,12 +16,21 @@ import net.minecraft.nbt.NBTCompressedStreamTools;
 
 import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 public class NMSItem {
 
 	private static Method WRITE_NBT;
 	private static Method READ_NBT;
+
+	//把物品NBT轉成String
+	public static String itemNBTtoString(@NotNull ItemStack itemStack){
+		net.minecraft.world.item.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
+		NBTTagCompound compound = new NBTTagCompound();
+		nmsItemStack.save(compound);
+		return compound.toString();
+	}
 
 	//從物品獲得NBT並轉成String
 	public static String getNBTTagString(ItemStack itemStack, String key){

@@ -12,3 +12,6 @@ LogMessage:
   LoadVault: '§aVault carregado.'
 OpMessage:
   Reload: '§e[FancyCore] §aLeia novamente o arquivo de configuração.'
+ModMessage:
+  KickNoMod: 'FancyClient 모듈이 설치되어 있지 않습니다!'
+  KickModVersionWrong: 'FancyClient 모듈 버전이 잘못되었습니다. {version} 버전이 필요합니다.'

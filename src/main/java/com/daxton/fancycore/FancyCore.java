@@ -41,6 +41,8 @@ public class FancyCore extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(new InventoryListener(), fancyCore);
         Bukkit.getPluginManager().registerEvents(new AttackedListener(), fancyCore);
         Bukkit.getPluginManager().registerEvents(new MobListener(), fancyCore);
+        //客戶端模組監聽
+        Bukkit.getPluginManager().registerEvents(new ModListener(), fancyCore);
         //傷害核心
         AttackCore.setCore();
         //連接頻道

@@ -12,3 +12,6 @@ LogMessage:
   LoadVault: '§aVault 已加载。'
 OpMessage:
   Reload: '§e[FancyCore] §a重新读取设定档。'
+ModMessage:
+  KickNoMod: '你没有安装FancyClient模组!'
+  KickModVersionWrong: '你的FancyClient模组版本错误，需要版本{version}。'

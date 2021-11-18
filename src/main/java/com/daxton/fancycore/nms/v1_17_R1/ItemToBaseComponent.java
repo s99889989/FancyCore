@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class ItemToBaseComponent {
 
+    //把物品轉成聊天格式
     public static BaseComponent[] to(ItemStack itemStack){
         net.minecraft.world.item.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
         NBTTagCompound compound = new NBTTagCompound();

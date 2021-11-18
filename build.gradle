@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.daxton'
-version '1.1.14'
+version '1.2.4'
 
 repositories {
     mavenCentral()
@@ -113,12 +113,12 @@ task copyJar(type: Copy) {
 
 task copyJar1(type: Copy) {
     from jar
-    into 'C:/Users/Gary/Desktop/PluginServer/1.15.2/plugins'
+    into 'C:/Users/Gary/Desktop/PluginServer/1.17.1/plugins'
 }
 
 task copyJar2(type: Copy) {
     from jar
-    into 'C:/Users/Gary/IdeaProjects/Plugins/FancySeries/FancyGui/lib'
+    into 'C:/Users/Gary/IdeaProjects/Plugins/FancySeries/FancyPass/lib'
 }
 
 task multiIntoCopy {

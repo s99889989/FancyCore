@@ -17,7 +17,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
-public class PlayerDataFancy {
+public class PlayerDataFancy extends PlayerDataMod{
 
 	public Player player;
 	//玩家攻擊數字
@@ -26,7 +26,7 @@ public class PlayerDataFancy {
 	//玩家被攻擊數字
 	public double attacked_number;
 
-	//客戶端版本Map
+	//客戶端版本
 	public String client_version = "";
 	//是否移除其他ActionBar
 	public boolean actionBar_remove;
@@ -92,6 +92,7 @@ public class PlayerDataFancy {
 	public Map<String, List<Map<String, String>>> class_Action_Map = new HashMap<>();
 
 	public PlayerDataFancy(Player player){
+		super(player);
 		this.player = player;
 		attack_number2 = new LinkedHashMap<String, String>() {
 			@Override

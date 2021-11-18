@@ -1,5 +1,6 @@
 package com.daxton.fancycore.task.entity;
 
+import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.aims.entity.GetEntity;
 import com.daxton.fancycore.other.task.FancyAction;
 import com.daxton.fancycore.other.taskaction.MapGetKey;
@@ -25,11 +26,13 @@ public class MythicAction implements FancyAction {
         MapGetKey actionMapHandle = new MapGetKey(action_Map, self, target);
         //MythicMobs技能名稱
         String skillName = actionMapHandle.getString(new String[]{"skill","s"},"SmashAttack");
+        //FancyCore.sendLogger("技能: "+skillName);
         //目標
         String targetString = actionMapHandle.getString(new String[]{"targetkey"}, "");
         Map<String, String> targetMap = StringToMap.toTargetMap(targetString);
         List<LivingEntity> livingEntityList = GetEntity.get(self, target, targetMap);
         //
+        //livingEntityList.forEach(livingEntity -> FancyCore.sendLogger(skillName+" : "+livingEntity.getName()));
         Optional<Skill> opt = MythicMobs.inst().getSkillManager().getSkill(skillName);
         if(!(opt.isPresent())){
             return;
@@ -37,6 +40,8 @@ public class MythicAction implements FancyAction {
         Skill skill = opt.get();
 
         List<Entity> entityList = new ArrayList<>(livingEntityList);
+
+
         MythicMobs.inst().getAPIHelper().castSkill(self, skill.getInternalName(), self, self.getOrigin(), entityList, null, 1.0F);
 
     }

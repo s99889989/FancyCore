@@ -39,7 +39,6 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
-        ClientConnect.sendMessage(player, "version:");
         PlayerManagerCore.player_Data_Map.putIfAbsent(uuid, new PlayerDataFancy(player));
         PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(uuid);
         //檢測玩家版本，並記錄
@@ -52,8 +51,8 @@ public class PlayerListener implements Listener {
     @EventHandler//玩家登出
     public void onPlayerQuit(PlayerQuitEvent event){
         Player player = event.getPlayer();
-        String uuidString = player.getUniqueId().toString();
-
+        UUID uuid = player.getUniqueId();
+        PlayerManagerCore.player_Data_Map.remove(uuid);
 
     }
 

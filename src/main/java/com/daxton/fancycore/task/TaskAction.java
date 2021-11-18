@@ -125,7 +125,8 @@ public class TaskAction {
             return;
         }
         if(judgeString.equalsIgnoreCase("Item")){
-
+            ItemGive itemGive = new ItemGive();
+            itemGive.execute(self, target, action_Map, inputLocation, taskID);
             return;
         }
         if(judgeString.equalsIgnoreCase("Inventory")){

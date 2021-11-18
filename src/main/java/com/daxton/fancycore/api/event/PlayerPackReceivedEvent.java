@@ -11,11 +11,22 @@ public class PlayerPackReceivedEvent extends Event{
 
 	private Player player;
 
+	private String type;
+
 	private String received;
 
-	public PlayerPackReceivedEvent(Player player, String received){
+	public PlayerPackReceivedEvent(Player player, String type, String received){
 		this.player = player;
+		this.type = type;
 		this.received = received;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public Player getPlayer() {

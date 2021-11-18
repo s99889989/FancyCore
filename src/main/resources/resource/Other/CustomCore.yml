@@ -27,7 +27,7 @@ Health_Regeneration:
 #當吃飽時回復血量。
 #When a player regains health from regenerating due to their hunger being satisfied.
 Health_Hunger_Regeneration:
-  enable: false
+  enable: true
   
 #魔量
 #Sp

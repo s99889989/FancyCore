@@ -36,6 +36,9 @@ public class ArmorStandOther {
             case "v1_17_R1":
                 com.daxton.fancycore.nms.v1_17_R1.ArmorStand.setArmorStandAngle(entityID, type, x, y, z);
                 break;
+            case "v1_18_R1":
+                com.daxton.fancycore.nms.v1_18_R1.ArmorStand.setArmorStandAngle(entityID, type, x, y, z);
+                break;
         }
     }
 

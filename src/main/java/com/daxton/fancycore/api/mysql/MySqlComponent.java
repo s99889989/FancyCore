@@ -1,5 +1,10 @@
 package com.daxton.fancycore.api.mysql;
 
+import com.daxton.fancycore.FancyCore;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -87,71 +92,16 @@ public class MySqlComponent {
 
 		for(String key : keyValue.keySet()){
 			createString.append(", ");
-			Object object = keyValue.get(key);
-			if(object instanceof String){
-				String value = (String) object;
-				if(value.length() <= 255){
-					createString.append(key);
-					continue;
-				}else if(value.length() <= 16383){
-					createString.append(key);
-					continue;
-				}else if(value.length() <= 65535){
-					createString.append(key);
-					continue;
-				}else if(value.length() <= 16777215){
-					createString.append(key);
-					continue;
-				}
-			}
-			if(object instanceof Boolean){
-				createString.append(key);
-				continue;
-			}
-			if(object instanceof Byte){
-				createString.append(key);
-				continue;
-			}
-			if(object instanceof Short){
-				createString.append(key);
-				continue;
-			}
-			if(object instanceof Integer){
-				createString.append(key);
-				continue;
-			}
-			if(object instanceof Long){
-				createString.append(key);
-				continue;
-			}
-			if(object instanceof Float){
-				createString.append(key);
-				continue;
-			}
-			if(object instanceof Double){
-				createString.append(key);
-			}
+			createString.append(key);
 		}
-		createString.append(") Values (").append(mainValue);
+		createString.append(") Values (").append("'").append(mainValue).append("'");
 
 		for(String key : keyValue.keySet()){
 			createString.append(", ");
 			Object object = keyValue.get(key);
 			if(object instanceof String){
 				String value = (String) object;
-				if(value.length() <= 255){
-					createString.append(value);
-					continue;
-				}else if(value.length() <= 16383){
-					createString.append(value);
-					continue;
-				}else if(value.length() <= 65535){
-					createString.append(value);
-					continue;
-				}else if(value.length() <= 16777215){
-					createString.append(value);
-					continue;
-				}
+				createString.append("'").append(value).append("'");
 			}
 			if(object instanceof Boolean){
 				boolean value = (Boolean) object;
@@ -189,7 +139,7 @@ public class MySqlComponent {
 			}
 		}
 
-		createString.append(") On Duplicate Key Update ").append(mainKey).append("=").append(mainValue);
+		createString.append(") On Duplicate Key Update ").append(mainKey).append("=").append("'").append(mainValue).append("'");
 
 		return createString.toString();
 	}
@@ -205,19 +155,8 @@ public class MySqlComponent {
 			Object object = keyValue.get(key);
 			if(object instanceof String){
 				String value = (String) object;
-				if(value.length() <= 255){
-					createString.append(key).append("=").append(value);
-					continue;
-				}else if(value.length() <= 16383){
-					createString.append(key).append("=").append(value);
-					continue;
-				}else if(value.length() <= 65535){
-					createString.append(key).append("=").append(value);
-					continue;
-				}else if(value.length() <= 16777215){
-					createString.append(key).append("=").append(value);
-					continue;
-				}
+				createString.append(key).append("=").append("'").append(value).append("'");
+				continue;
 			}
 			if(object instanceof Boolean){
 				boolean value = (Boolean) object;
@@ -254,7 +193,7 @@ public class MySqlComponent {
 				createString.append(key).append("=").append(value);
 			}
 		}
-		createString.append(" Where ").append(mainKey).append("=").append(mainValue);
+		createString.append(" Where ").append(mainKey).append("=").append("'").append(mainValue).append("'");
 		return createString.toString();
 	}
 
@@ -313,5 +252,122 @@ public class MySqlComponent {
 		}
 
 	}
+
+
+	public PreparedStatement getInsertPreparedStatement(Connection connection){
+		StringBuilder createString = new StringBuilder("Insert Into " + table + " (" + mainKey);
+
+		for(String key : keyValue.keySet()){
+			createString.append(", ");
+			Object object = keyValue.get(key);
+			if(object instanceof String){
+				String value = (String) object;
+				if(value.length() <= 255){
+					createString.append(key);
+					continue;
+				}else if(value.length() <= 16383){
+					createString.append(key);
+					continue;
+				}else if(value.length() <= 65535){
+					createString.append(key);
+					continue;
+				}else if(value.length() <= 16777215){
+					createString.append(key);
+					continue;
+				}
+			}
+			if(object instanceof Boolean){
+				createString.append(key);
+				continue;
+			}
+			if(object instanceof Byte){
+				createString.append(key);
+				continue;
+			}
+			if(object instanceof Short){
+				createString.append(key);
+				continue;
+			}
+			if(object instanceof Integer){
+				createString.append(key);
+				continue;
+			}
+			if(object instanceof Long){
+				createString.append(key);
+				continue;
+			}
+			if(object instanceof Float){
+				createString.append(key);
+				continue;
+			}
+			if(object instanceof Double){
+				createString.append(key);
+			}
+		}
+		createString.append(") Values (").append("?");
+
+		for(String key : keyValue.keySet()){
+			createString.append(", ");
+			createString.append("?");
+		}
+
+		createString.append(") On Duplicate Key Update ").append(mainKey).append("=").append("?");
+
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = connection.prepareStatement(createString.toString());
+			preparedStatement.setString(1, mainValue);
+			int i = 1;
+			for(String key : keyValue.keySet()){
+				i++;
+				createString.append(", ");
+				Object object = keyValue.get(key);
+				if(object instanceof String){
+					String value = (String) object;
+					preparedStatement.setString(i, value);
+				}
+				if(object instanceof Boolean){
+					boolean value = (Boolean) object;
+					preparedStatement.setBoolean(i, value);
+					continue;
+				}
+				if(object instanceof Byte){
+					byte value = (Byte) object;
+					preparedStatement.setByte(i, value);
+					continue;
+				}
+				if(object instanceof Short){
+					short value = (Short) object;
+					preparedStatement.setShort(i, value);
+					continue;
+				}
+				if(object instanceof Integer){
+					int value = (Integer) object;
+					preparedStatement.setInt(i, value);
+					continue;
+				}
+				if(object instanceof Long){
+					long value = (Long) object;
+					preparedStatement.setLong(i, value);
+					continue;
+				}
+				if(object instanceof Float){
+					float value = (Float) object;
+					preparedStatement.setFloat(i, value);
+					continue;
+				}
+				if(object instanceof Double){
+					double value = (Double) object;
+					preparedStatement.setDouble(i, value);
+				}
+			}
+			preparedStatement.setString(i+1, mainValue);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return preparedStatement;
+	}
+
 
 }

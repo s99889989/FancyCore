@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.daxton'
-version '1.2.4'
+version '1.3.0'
 
 repositories {
     mavenCentral()
@@ -46,7 +46,7 @@ repositories {
     }
     maven {
         name = 'Citizens'
-        url = 'http://repo.citizensnpcs.co/'
+        url = 'https://repo.citizensnpcs.co/'
     }
     maven {
         name = 'FancyMobs'
@@ -56,7 +56,7 @@ repositories {
 
 dependencies {
 
-    compile 'com.daxton:FancyMobs:1.1.9'
+    compileOnly 'com.daxton:FancyMobs:1.1.9'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
@@ -65,7 +65,7 @@ dependencies {
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
     compileOnly group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.7.0";
     compileOnly 'me.clip:placeholderapi:2.10.9'
-    //compileOnly 'com.gmail.filoghost.holographicdisplays:holographicdisplays-api:2.4.8'
+
     compileOnly "com.github.MilkBowl:VaultAPI:1.7"
     compileOnly "io.lumine.xikage:MythicMobs:4.9.1"
     compileOnly 'io.github.qveshn:LightAPI-fork:3.4.6-SNAPSHOT'
@@ -78,10 +78,11 @@ dependencies {
     //compileOnly fileTree(dir: 'lib', include: ['FancyMobs-1.1.8.jar'])
     compileOnly fileTree(dir: 'lib', include: ['FancyItems-1.0.jar'])
     compileOnly fileTree(dir: 'lib', include: ['FancyClasses-1.0.jar'])
-    compileOnly fileTree(dir: 'lib', include: ['FancyGui-1.2.0.jar'])
+    compileOnly fileTree(dir: 'lib', include: ['FancyGui-1.2.2.jar'])
 
     compileOnly fileTree(dir: 'lib', include: ['Model-Engine-r2.1.8.jar'])
     compileOnly fileTree(dir: 'lib', include: ['ProtocolSupport.jar'])
+
     compileOnly fileTree(dir: 'lib', include: ['spigot-1.13-D.jar'])
     compileOnly fileTree(dir: 'lib', include: ['spigot-1.13.2-D.jar'])
     compileOnly fileTree(dir: 'lib', include: ['spigot-1.14.4-D.jar'])
@@ -89,22 +90,33 @@ dependencies {
     compileOnly fileTree(dir: 'lib', include: ['spigot-1.16.1-D.jar'])
     compileOnly fileTree(dir: 'lib', include: ['spigot-1.16.3-D.jar'])
     compileOnly fileTree(dir: 'lib', include: ['spigot-1.16.5-D.jar'])
-    compileOnly fileTree(dir: 'lib', include: ['spigot-1.17-D.jar'])
+
+
+
+
+   // compileOnly fileTree(dir: 'lib', include: ['spigot-1.18.1-D.jar'])
+    compileOnly fileTree(dir: 'lib', include: ['spigot-1.17.1-D.jar'])
 }
 
-shadowJar {
-    relocate 'io.netty', 'com.discord4j.shaded.io.netty'
-    relocate 'com.fasterxml', 'com.discord4j.shaded.com.fasterxml'
-}
-//build.dependsOn shadowJar
 
 processResources {
+
     filteringCharset = "UTF-8"
     expand(project.properties)
     inputs.property("version", version)
 }
 
-compileJava.options.encoding = 'UTF-8'
+def targetJavaVersion = 8
+
+tasks.withType(JavaCompile).configureEach {
+
+    it.options.encoding = "UTF-8"
+    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+        it.options.release = targetJavaVersion
+    }
+}
+
+//compileJava.options.encoding = 'UTF-8'
 
 task copyJar(type: Copy) {
     from jar
@@ -113,12 +125,12 @@ task copyJar(type: Copy) {
 
 task copyJar1(type: Copy) {
     from jar
-    into 'C:/Users/Gary/Desktop/PluginServer/1.17.1/plugins'
+    into 'C:/Users/Gary/Desktop/發布插件'
 }
 
 task copyJar2(type: Copy) {
     from jar
-    into 'C:/Users/Gary/IdeaProjects/Plugins/FancySeries/FancyPass/lib'
+    into 'C:/Users/Gary/IdeaProjects/Plugins/FancySeries/FancyGui/lib'
 }
 
 task multiIntoCopy {

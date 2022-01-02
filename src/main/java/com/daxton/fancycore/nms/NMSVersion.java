@@ -70,6 +70,10 @@ public class NMSVersion {
                 return "1.17";
             case 756:
                 return "1.17.1";
+            case 757:
+                return "1.18.1";
+            case 25566:
+                return "1.18.1";
             default:
                 return "";
         }
@@ -137,6 +141,10 @@ public class NMSVersion {
                 return 29;
             case "1.17.1":
                 return 30;
+            case "1.18":
+                return 31;
+            case "1.18.1":
+                return 32;
         }
         throw new IllegalArgumentException(nms + " isn't a know version");
     }
@@ -186,6 +194,10 @@ public class NMSVersion {
                 return "v1_17_R1";
             case "1.17.1":
                 return "v1_17_R1";
+            case "1.18":
+                return "v1_18_R1";
+            case "1.18.1":
+                return "v1_18_R1";
         }
         return "";
     }
@@ -234,6 +246,8 @@ public class NMSVersion {
                 return "1.16.5";
             case "v1_17_R1":
                 return "1.17.1";
+            case "v1_18_R1":
+                return "1.18.1";
         }
         throw new IllegalArgumentException(nms + " isn't a know version");
     }

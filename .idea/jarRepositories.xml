@@ -91,5 +91,10 @@
       <option name="name" value="FancyMobs" />
       <option name="url" value="https://fancycore-maven.pkg.coding.net/repository/fancymobs/maven/com.daxton/FancyMobs/1.1.9/FancyMobs-1.1.9.pom" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="Citizens" />
+      <option name="name" value="Citizens" />
+      <option name="url" value="https://repo.citizensnpcs.co/" />
+    </remote-repository>
   </component>
 </project>

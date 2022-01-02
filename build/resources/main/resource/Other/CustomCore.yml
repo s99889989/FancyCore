@@ -4,12 +4,12 @@
 #血量
 #HP
 Health:
-  enable: true
+  enable: false
   formula: '&self_attr_Hp&'
 #血量愛心數量
 #Number of love hearts
 HealthScale:
-  enable: true
+  enable: false
   scale: 20
 
 #移動速度
@@ -21,13 +21,13 @@ Move_Speed:
 #定時回復血量
 #Regularly restore blood volume
 Health_Regeneration:
-  enable: true
+  enable: false
   period: 10
   formula: '&self_attr_Hp_Regeneration&'
 #當吃飽時回復血量。
 #When a player regains health from regenerating due to their hunger being satisfied.
 Health_Hunger_Regeneration:
-  enable: false
+  enable: true
   
 #魔量
 #Sp

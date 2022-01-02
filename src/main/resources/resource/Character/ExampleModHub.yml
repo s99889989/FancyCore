@@ -1,13 +1,35 @@
 #玩家UUID
+#Player UUID
 self_uuid:
   message:
     - content[<fc_self_base_uuid>]
 #血條長度
+#Health bar length
 health_width:
   message:
-  - content[182/<fc_self_base_maxhealth>*<fc_self_base_nowhealth>]
-  - math[fc=Arith]
-  
+    - content[182/<fc_self_base_maxhealth>*<fc_self_base_nowhealth>]
+    - math[fc=Arith]
+
+#輸入框
+#Input box
 text_field_1:
   message:
-  - content[<fc_self_gui_text_field_2.ExampleObject.TextFieldExample>]
+    - content[<fc_self_gui_value_ExampleObject_TextFieldExample>]
+
+#確認選擇
+#Confirm selection
+check_test:
+  message:
+    - content[<fc_self_gui_value_ExampleObject_CheckBoxExample>]
+
+#文字選擇
+#Text selection
+choice_test:
+  message:
+    - content[<fc_self_gui_value_ExampleObject_ChoiceBoxExample>]
+
+#拖動文字選擇
+#Drag text to select
+option_slider_test:
+  message:
+    - content[<fc_self_gui_value_ExampleObject_OptionSliderExample>]

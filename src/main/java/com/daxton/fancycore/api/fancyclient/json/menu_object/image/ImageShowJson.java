@@ -26,10 +26,6 @@ public class ImageShowJson {
 	//Y偏移
 	private int y;
 
-	public ImageShowJson(){
-
-	}
-
 	public ImageShowJson(String object_name, String image, String width, String height, int position, int x, int y) {
 		this.object_name = object_name;
 		this.image = image;
@@ -55,8 +51,17 @@ public class ImageShowJson {
 	public ImageShowJson(Player player, FileConfiguration config, FileConfiguration object_config, String key, String button_configKey, String button_key){
 		this.object_name = key+"."+button_configKey+"."+button_key;
 		this.position = config.getInt("ObjectList."+key+".Position");
-		this.x = config.getInt("ObjectList."+key+".X");
-		this.y = config.getInt("ObjectList."+key+".Y");
+		this.x = StringConversion.getInt(player, null, 0, config.getString("ObjectList."+key+".X"));
+		this.y = StringConversion.getInt(player, null, 0, config.getString("ObjectList."+key+".Y"));
+		this.width = StringConversion.getInt(player, null, 0, object_config.getString(button_key+".Width"));
+		this.height = StringConversion.getInt(player, null, 0, object_config.getString(button_key+".Height"));
+		this.image = StringConversion.getString(player, null, object_config.getString(button_key+".Image"));
+	}
+	public ImageShowJson(Player player, FileConfiguration config, FileConfiguration object_config, String key, String button_configKey, String button_key, String pullKey){
+		this.object_name = key+"."+button_configKey+"."+button_key;
+		this.position = config.getInt(pullKey+".ObjectList."+key+".Position");
+		this.x = config.getInt(pullKey+".ObjectList."+key+".X");
+		this.y = config.getInt(pullKey+".ObjectList."+key+".Y");
 		this.width = StringConversion.getInt(player, null, 0, object_config.getString(button_key+".Width"));
 		this.height = StringConversion.getInt(player, null, 0, object_config.getString(button_key+".Height"));
 		this.image = StringConversion.getString(player, null, object_config.getString(button_key+".Image"));

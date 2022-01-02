@@ -1,6 +1,7 @@
 package com.daxton.fancycore.api.fancyclient;
 
 import com.daxton.fancycore.FancyCore;
+import com.daxton.fancycore.api.other.GZIPUtils;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.bukkit.Bukkit;
@@ -12,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 
 public class ClientConnect {
 
-	public static final int IDX = 159;
+	public static final int IDX = 210;
 	public static final String channel = "fancycore:fancygui";
 
 	public static void sendMessage(Player player, String type, String message){
@@ -29,7 +30,9 @@ public class ClientConnect {
 	}
 
 	private static void send(Player player, String msg) {
-		byte[] bytes = msg.getBytes(StandardCharsets.UTF_8);
+		msg = GZIPUtils.compress(msg);
+		byte[] bytes = msg.getBytes();
+		//byte[] bytes = msg.getBytes(StandardCharsets.UTF_8);
 		ByteBuf buf = Unpooled.buffer(bytes.length + 1);
 		buf.writeByte(IDX);
 		buf.writeBytes(bytes);

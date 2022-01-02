@@ -1,5 +1,6 @@
 package com.daxton.fancycore.hook.ProtocolSupport;
 
+import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.manager.ProtocolMap;
 import com.daxton.fancycore.nms.NMSVersion;
 import org.bukkit.Bukkit;

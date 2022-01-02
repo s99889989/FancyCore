@@ -8,12 +8,15 @@ import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.lang.reflect.Method;
 
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.minecraft.server.v1_16_R1.MojangsonParser;
 import net.minecraft.server.v1_16_R1.NBTTagCompound;
 
 import net.minecraft.server.v1_16_R1.NBTBase;
 import net.minecraft.server.v1_16_R1.NBTCompressedStreamTools;
 import net.minecraft.server.v1_16_R1.NBTReadLimiter;
 import net.minecraft.server.v1_16_R1.NBTTagList;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -23,6 +26,18 @@ public class NMSItem {
 
 	public static Method Write_NBT;
 	public static Method Read_NBT;
+
+	//把Json字串轉成NBT再轉成物品
+	public static ItemStack jsonStringToItemStack(@NotNull String itemString){
+		try {
+			net.minecraft.server.v1_16_R1.NBTTagCompound compound = MojangsonParser.parse(itemString);
+			net.minecraft.server.v1_16_R1.ItemStack nmsItemStack = net.minecraft.server.v1_16_R1.ItemStack.a(compound);
+			return org.bukkit.craftbukkit.v1_16_R1.inventory.CraftItemStack.asBukkitCopy(nmsItemStack);
+		} catch (CommandSyntaxException exception) {
+			exception.printStackTrace();
+		}
+		return new ItemStack(Material.STONE);
+	}
 
 	//把物品NBT轉成String
 	public static String itemNBTtoString(@NotNull ItemStack itemStack){

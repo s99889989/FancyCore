@@ -1,5 +1,6 @@
 package com.daxton.fancycore.listener;
 
+import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.gui.GUI;
 import com.daxton.fancycore.manager.PlayerManagerCore;
 import org.bukkit.entity.Player;
@@ -23,7 +24,6 @@ public class InventoryListener implements Listener {
         //新監聽
         ClickType clickType = event.getClick();
         InventoryAction action = event.getAction();
-
         Player player = (Player) event.getWhoClicked();
         UUID uuid = player.getUniqueId();
         GUI gui = PlayerManagerCore.player_Gui_Map.get(uuid);

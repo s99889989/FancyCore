@@ -5,7 +5,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class ItemDropMetadata {
 
-
+	//掉落物數據
 	public static void send(int entityID, ItemStack itemStack, Location inputLocation){
 
 		String nmsVersion = NMSVersion.getNMSVersion();
@@ -33,6 +33,9 @@ public class ItemDropMetadata {
 				break;
 			case "v1_17_R1":
 				com.daxton.fancycore.nms.v1_17_R1.ItemDropMetadata.send(entityID, itemStack, inputLocation);
+				break;
+			case "v1_18_R1":
+				com.daxton.fancycore.nms.v1_18_R1.ItemDropMetadata.send(entityID, itemStack, inputLocation);
 				break;
 		}
 

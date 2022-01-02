@@ -104,6 +104,7 @@ public class PlayerDataFancy extends PlayerDataMod{
 	//檢測玩家版本，並記錄
 	public void setPlayer_version(){
 		client_version = SetClientVersion.toMap(player);
+
 	}
 	//清除屬性
 	public void removeAllAttribute(){

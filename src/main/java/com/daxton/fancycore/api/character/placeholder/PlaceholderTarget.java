@@ -1,12 +1,16 @@
 package com.daxton.fancycore.api.character.placeholder;
 
 import com.daxton.fancyclasses.api.placeholder.ClassPlaceholder;
-import com.daxton.fancygui.api.placeholder.ModPlaceholder;
+import com.daxton.fancycore.manager.PlayerManagerCore;
+import com.daxton.fancycore.other.playerdata.PlayerDataFancy;
+
 import com.daxton.fancymobs.api.placeholder.BasePlaceholder;
 import com.daxton.fancymobs.api.placeholder.FancyMobsPlaceholder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 public class PlaceholderTarget {
 
@@ -32,8 +36,12 @@ public class PlaceholderTarget {
             if(key.toLowerCase().contains("<fc_class_") && Bukkit.getPluginManager().isPluginEnabled("FancyClasses")){
                 return ClassPlaceholder.valueOf(entity, key);
             }
-            if(key.toLowerCase().contains("<fc_gui_") && Bukkit.getPluginManager().isPluginEnabled("FancyGui")){
-                return ModPlaceholder.valueOf(entity, key);
+            if(key.toLowerCase().contains("<fc_gui_")){
+                UUID uuid = entity.getUniqueId();
+                PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(uuid);
+                if(playerDataFancy != null){
+                    playerDataFancy.getGuiValue(key);
+                }
             }
         }else {
 

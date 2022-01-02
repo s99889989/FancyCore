@@ -2,10 +2,10 @@ package com.daxton.fancycore.api.fancyclient.build.hub;
 
 import com.daxton.fancycore.api.fancyclient.ClientConnect;
 
-import com.daxton.fancycore.api.fancyclient.build.gui.ModComponent;
-import com.daxton.fancycore.api.fancyclient.build.gui.ModImage;
-import com.daxton.fancycore.api.fancyclient.build.gui.ModItem;
-import com.daxton.fancycore.api.fancyclient.build.gui.ModText;
+import com.daxton.fancycore.api.fancyclient.build.module.ModComponent;
+import com.daxton.fancycore.api.fancyclient.build.module.ImageModule;
+import com.daxton.fancycore.api.fancyclient.build.module.ItemModule;
+import com.daxton.fancycore.api.fancyclient.build.module.TextModule;
 import com.daxton.fancycore.api.fancyclient.json.JsonCtrl;
 import com.daxton.fancycore.api.fancyclient.json.hub.HubJson;
 import com.daxton.fancycore.api.fancyclient.json.menu_object.image.ImageShowJson;
@@ -58,16 +58,16 @@ public class ModHub {
 
 		modComponentList.forEach(modComponent -> {
 
-			if(modComponent instanceof ModText){
-				TextLabelJson textLabelJson = ((ModText) modComponent).toObject(self, target);
+			if(modComponent instanceof TextModule){
+				TextLabelJson textLabelJson = ((TextModule) modComponent).toObject(self, target);
 				object_list.put(textLabelJson.getType()+textLabelJson.getObject_name(), JsonCtrl.writeJSON(textLabelJson));
 			}
-			if(modComponent instanceof ModImage){
-				ImageShowJson imageShowJson = ((ModImage) modComponent).toObject(self, target);
+			if(modComponent instanceof ImageModule){
+				ImageShowJson imageShowJson = ((ImageModule) modComponent).toObject(self, target);
 				object_list.put(imageShowJson.getType()+imageShowJson.getObject_name(), JsonCtrl.writeJSON(imageShowJson));
 			}
-			if(modComponent instanceof ModItem){
-				ItemShowJson itemShowJson = ((ModItem) modComponent).toObject();
+			if(modComponent instanceof ItemModule){
+				ItemShowJson itemShowJson = ((ItemModule) modComponent).toObject();
 				object_list.put(itemShowJson.getType()+itemShowJson.getObject_name(), JsonCtrl.writeJSON(itemShowJson));
 			}
 		});
@@ -77,16 +77,16 @@ public class ModHub {
 //---------------------------------------------------------------------------------------------------//
 
 
-	public static class ModHubBuilder{
+	public static class Builder {
 
 		//原物件表
 		List<ModComponent> modComponentList = new ArrayList<>();
 
-		public static ModHubBuilder getInstance(){
-			return new ModHubBuilder();
+		public static Builder getInstance(){
+			return new Builder();
 		}
 
-		public ModHubBuilder addComponent(ModComponent modComponent){
+		public Builder addComponent(ModComponent modComponent){
 			modComponentList.add(modComponent);
 			return this;
 		}

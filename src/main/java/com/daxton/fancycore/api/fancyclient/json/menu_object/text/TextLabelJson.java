@@ -70,13 +70,13 @@ public class TextLabelJson {
 		this.reverse_sort = reverse_sort;
 		this.text_list = StringConversion.getStringList(self, target, text_list);
 	}
-
+	//GUI
 	public TextLabelJson(Player player, FileConfiguration config, FileConfiguration object_config, String key, String button_configKey, String button_key){
 		this.object_name = key+"."+button_configKey+"."+button_key;
 		this.position = config.getInt("ObjectList."+key+".Position");
 		this.x = config.getInt("ObjectList."+key+".X");
 		this.y = config.getInt("ObjectList."+key+".Y");
-		this.scale = object_config.getInt(button_key+".Scale");
+		this.scale = (float) object_config.getDouble(button_key+".Scale");
 		this.vertical = object_config.getBoolean(button_key+".Vertical");
 		this.row_height = object_config.getInt(button_key+".RowHeight");
 		this.line_spacing = object_config.getInt(button_key+".LineSpacing");
@@ -85,7 +85,22 @@ public class TextLabelJson {
 		for(String messageString : object_config.getStringList(button_key+".Text")){
 			this.text_list.add(StringConversion.getString(player, null, messageString));
 		}
-		this.text_list.forEach(s -> FancyCore.sendLogger(s));
+	}
+	//PullPanel
+	public TextLabelJson(Player player, FileConfiguration config, FileConfiguration object_config, String key, String button_configKey, String button_key, String pullKey){
+		this.object_name = key+"."+button_configKey+"."+button_key;
+		this.position = config.getInt(pullKey+".ObjectList."+key+".Position");
+		this.x = config.getInt(pullKey+".ObjectList."+key+".X");
+		this.y = config.getInt(pullKey+".ObjectList."+key+".Y");
+		this.scale = (float) object_config.getDouble(button_key+".Scale");
+		this.vertical = object_config.getBoolean(button_key+".Vertical");
+		this.row_height = object_config.getInt(button_key+".RowHeight");
+		this.line_spacing = object_config.getInt(button_key+".LineSpacing");
+		this.align = object_config.getInt(button_key+".Align");
+		this.reverse_sort = object_config.getBoolean(button_key+".ReverseSort");
+		for(String messageString : object_config.getStringList(button_key+".Text")){
+			this.text_list.add(StringConversion.getString(player, null, messageString));
+		}
 	}
 
 	//把字串轉成Text

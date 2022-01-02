@@ -7,7 +7,11 @@ import com.daxton.fancycore.config.FileConfig;
 import com.daxton.fancycore.listener.*;
 import com.daxton.fancycore.server.Start;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -18,13 +22,11 @@ public class FancyCore extends JavaPlugin implements Listener {
 
     public static FancyCore fancyCore;
 
-    private static final int IDX = 233;
-    private final String channel = "msgtutor:test";
-
     @Override
     public void onEnable() {
         fancyCore = this;
         //建立設定檔
+
         FileConfig.execute();
         //前置插件
         if(!DependPlugins.depend()){
@@ -56,7 +58,7 @@ public class FancyCore extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable() {
-        fancyCore.getLogger().info(languageConfig.getString("LogMessage.Disable"));
+        FancyCore.sendLogger(languageConfig.getString("LogMessage.Disable"));
     }
 
 }

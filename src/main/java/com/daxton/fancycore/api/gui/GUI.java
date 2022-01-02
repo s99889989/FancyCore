@@ -100,6 +100,8 @@ public final class GUI {
 
 		GUI oGui = PlayerManagerCore.player_Gui_Map.get(player.getUniqueId());
 
+		player.closeInventory();
+		gui.setOpen(false);
 
 		if(oGui != null && oGui.isOpen()){
 			oGui.close();

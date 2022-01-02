@@ -1,7 +1,6 @@
 package com.daxton.fancycore.nms.v1_17_R1;
 
-import com.daxton.fancycore.other.task.PackEntity;
-import net.minecraft.world.item.EntityItem;
+import net.minecraft.world.entity.item.EntityItem;
 import net.minecraft.network.protocol.game.PacketPlayOutEntityMetadata;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -19,7 +18,8 @@ public class ItemDropMetadata {
 
 	public static void send(int entityID, ItemStack itemStack, Location inputLocation){
 		try {
-			EntityItem item = new EntityItem(((CraftWorld)inputLocation.getWorld()).getHandle(), 0,0,0);
+
+			EntityItem item = new EntityItem(((CraftWorld)inputLocation.getWorld()).getHandle(), 0,0,0, CraftItemStack.asNMSCopy(itemStack));
 			item.setLocation(inputLocation.getX(), inputLocation.getY(), inputLocation.getZ(), 0, 0);
 			item.setItemStack(CraftItemStack.asNMSCopy(itemStack));
 			item.setNoGravity(true);

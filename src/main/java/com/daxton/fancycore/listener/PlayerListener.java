@@ -48,11 +48,22 @@ public class PlayerListener implements Listener {
 
     }
 
-    @EventHandler//玩家登出
+    @EventHandler(priority = EventPriority.MONITOR)//玩家登出
     public void onPlayerQuit(PlayerQuitEvent event){
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
-        PlayerManagerCore.player_Data_Map.remove(uuid);
+
+        //儲存物品欄
+        PlayerManagerCore.player_Data_Map.get(uuid).saveSlotItem();
+        //從Map移除玩家資料
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                PlayerManagerCore.player_Data_Map.remove(uuid);
+            }
+        }.runTaskLater(FancyCore.fancyCore, 2);
+
+
 
     }
 

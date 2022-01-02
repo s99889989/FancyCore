@@ -223,7 +223,7 @@ public class StringConversion {
             try {
                 output = new ItemStack(Enum.valueOf(Material.class ,inputString.toUpperCase()));
             }catch (IllegalArgumentException exception){
-
+                //
             }
         }
 

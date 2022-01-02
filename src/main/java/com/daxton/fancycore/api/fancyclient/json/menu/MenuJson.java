@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class MenuJson {
@@ -23,7 +24,7 @@ public class MenuJson {
 	//Y偏移
 	private int y;
 	//物件表
-	private Map<String, String> object_list = new HashMap<>();
+	private Map<String, String> object_list = new LinkedHashMap<>();
 
 	public MenuJson(FileConfiguration config, String path){
 		this.menu_name = path.replace("mod_menu/", "").replace(".yml", "");

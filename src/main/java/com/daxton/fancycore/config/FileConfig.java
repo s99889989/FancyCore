@@ -23,6 +23,7 @@ public class FileConfig {
 
         //設置語言設定檔
         FileConfiguration resourcePackConfig = FileConfig.config_Map.get("config.yml");
+
         String nowLanguage = resourcePackConfig.getString("Language");
         languageConfig = FileConfig.config_Map.get("Language/"+nowLanguage+".yml");
         if(languageConfig == null){

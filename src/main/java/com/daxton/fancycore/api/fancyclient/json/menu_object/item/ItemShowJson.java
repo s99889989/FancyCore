@@ -1,8 +1,14 @@
 package com.daxton.fancycore.api.fancyclient.json.menu_object.item;
 
+import com.daxton.fancycore.api.character.conversion.StringConversion;
+import com.daxton.fancycore.api.item.CItem;
 import com.daxton.fancycore.nms.NMSItem;
+import com.daxton.fancyitmes.item.CustomItem;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -40,7 +46,45 @@ public class ItemShowJson {
 		this.x = x;
 		this.y = y;
 	}
+	//GUI
+	public ItemShowJson(Player player, FileConfiguration config, FileConfiguration object_config, String key, String button_configKey, String button_key){
+		this.object_name = key+"."+button_configKey+"."+button_key;
+		this.position = config.getInt("ObjectList."+key+".Position");
+		this.x = config.getInt("ObjectList."+key+".X");
+		this.y = config.getInt("ObjectList."+key+".Y");
 
+		setCommon(player, object_config, button_key);
+	}
+	//PullPanel
+	public ItemShowJson(Player player, FileConfiguration config, FileConfiguration object_config, String key, String button_configKey, String button_key, String pullKey){
+		this.object_name = key+"."+button_configKey+"."+button_key;
+		this.position = config.getInt(pullKey+".ObjectList."+key+".Position");
+		this.x = config.getInt(pullKey+".ObjectList."+key+".X");
+		this.y = config.getInt(pullKey+".ObjectList."+key+".Y");
+
+		setCommon(player, object_config, button_key);
+	}
+	//共通設置
+	public void setCommon(Player player, FileConfiguration object_config, String button_key){
+		this.scale = (float) object_config.getDouble(button_key+".Scale");
+
+		ItemStack itemStack = new ItemStack(Material.STONE);
+
+		String itemID = object_config.getString(button_key+".Item");
+		if(itemID != null){
+			String[] itemArray = itemID.split("\\.");
+			if(itemArray.length == 1){
+				CItem cItem = new CItem(itemArray[0]);
+				itemStack = cItem.getItemStack();
+			}
+			if(itemArray.length == 2){
+				if(Bukkit.getPluginManager().isPluginEnabled("FancyItems")){
+					itemStack = CustomItem.valueOf(player, itemArray[0], itemArray[1], 1);
+				}
+			}
+		}
+		this.item = NMSItem.itemNBTtoStringClient(itemStack, player);
+	}
 	//把字串轉成Item
 	public static ItemShowJson readJSON(String string) {
 		GsonBuilder builder = new GsonBuilder();

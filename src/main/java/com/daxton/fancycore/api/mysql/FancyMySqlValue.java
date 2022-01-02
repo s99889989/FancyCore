@@ -25,7 +25,7 @@ public class FancyMySqlValue {
 		if(enable){
 			Connection connection = DriverManager.getConnection(data_base_url, user_name, pass_word);
 
-			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"="+mySqlComponent.mainValue;
+			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"='"+mySqlComponent.mainValue+"'";
 			PreparedStatement preparedStatement = connection.prepareStatement(executeString);
 
 			ResultSet rs = preparedStatement.executeQuery();
@@ -44,7 +44,7 @@ public class FancyMySqlValue {
 		if(enable){
 			Connection connection = DriverManager.getConnection(data_base_url, user_name, pass_word);
 
-			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"="+mySqlComponent.mainValue;
+			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"='"+mySqlComponent.mainValue+"'";
 			PreparedStatement preparedStatement = connection.prepareStatement(executeString);
 
 			ResultSet rs = preparedStatement.executeQuery();
@@ -63,7 +63,7 @@ public class FancyMySqlValue {
 		if(enable){
 			Connection connection = DriverManager.getConnection(data_base_url, user_name, pass_word);
 
-			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"="+mySqlComponent.mainValue;
+			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"='"+mySqlComponent.mainValue+"'";
 			PreparedStatement preparedStatement = connection.prepareStatement(executeString);
 
 			ResultSet rs = preparedStatement.executeQuery();
@@ -82,7 +82,7 @@ public class FancyMySqlValue {
 		if(enable){
 			Connection connection = DriverManager.getConnection(data_base_url, user_name, pass_word);
 
-			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"="+mySqlComponent.mainValue;
+			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"='"+mySqlComponent.mainValue+"'";
 			PreparedStatement preparedStatement = connection.prepareStatement(executeString);
 
 			ResultSet rs = preparedStatement.executeQuery();
@@ -101,7 +101,7 @@ public class FancyMySqlValue {
 		if(enable){
 			Connection connection = DriverManager.getConnection(data_base_url, user_name, pass_word);
 
-			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"="+mySqlComponent.mainValue;
+			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"='"+mySqlComponent.mainValue+"'";
 			PreparedStatement preparedStatement = connection.prepareStatement(executeString);
 
 			ResultSet rs = preparedStatement.executeQuery();
@@ -120,7 +120,7 @@ public class FancyMySqlValue {
 		if(enable){
 			Connection connection = DriverManager.getConnection(data_base_url, user_name, pass_word);
 
-			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"="+mySqlComponent.mainValue;
+			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"='"+mySqlComponent.mainValue+"'";
 			PreparedStatement preparedStatement = connection.prepareStatement(executeString);
 
 			ResultSet rs = preparedStatement.executeQuery();
@@ -139,7 +139,7 @@ public class FancyMySqlValue {
 		if(enable){
 			Connection connection = DriverManager.getConnection(data_base_url, user_name, pass_word);
 
-			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"="+mySqlComponent.mainValue;
+			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"='"+mySqlComponent.mainValue+"'";
 			PreparedStatement preparedStatement = connection.prepareStatement(executeString);
 
 			ResultSet rs = preparedStatement.executeQuery();
@@ -158,7 +158,7 @@ public class FancyMySqlValue {
 		if(enable){
 			Connection connection = DriverManager.getConnection(data_base_url, user_name, pass_word);
 
-			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"="+mySqlComponent.mainValue;
+			String executeString = "Select "+key+" From "+mySqlComponent.table+" Where "+mySqlComponent.mainKey+"='"+mySqlComponent.mainValue+"'";
 			PreparedStatement preparedStatement = connection.prepareStatement(executeString);
 
 			ResultSet rs = preparedStatement.executeQuery();

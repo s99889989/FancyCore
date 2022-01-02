@@ -51,6 +51,7 @@ public class FancyMySql extends FancyMySqlValue {
 		}
 		Connection connection = DriverManager.getConnection(data_base_url, user_name, pass_word);
 
+		//PreparedStatement preparedStatement = mySqlComponent.getInsertPreparedStatement(connection);
 		PreparedStatement preparedStatement = connection.prepareStatement(mySqlComponent.getInsertString());
 
 		preparedStatement.execute();
@@ -69,9 +70,20 @@ public class FancyMySql extends FancyMySqlValue {
 		preparedStatement.execute();
 
 		connection.close();
-		FancyCore.sendLogger("更新資料庫!");
 	}
 
+	public void sendCustom(String customString) throws SQLException {
+		if(!enable){
+			return;
+		}
+		Connection connection = DriverManager.getConnection(data_base_url, user_name, pass_word);
+
+		PreparedStatement preparedStatement = connection.prepareStatement(customString);
+
+		preparedStatement.execute();
+
+		connection.close();
+	}
 	//建立
 	public static class FancyMySqlBuilder{
 

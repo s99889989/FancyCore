@@ -8,12 +8,10 @@ import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.lang.reflect.Method;
 
-import net.minecraft.server.v1_16_R3.NBTBase;
-import net.minecraft.server.v1_16_R3.NBTCompressedStreamTools;
-import net.minecraft.server.v1_16_R3.NBTReadLimiter;
-import net.minecraft.server.v1_16_R3.NBTTagCompound;
-import net.minecraft.server.v1_16_R3.NBTTagList;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.minecraft.server.v1_16_R3.*;
 
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -23,6 +21,19 @@ public class NMSItem {
 
 	public static Method Write_NBT;
 	public static Method Read_NBT;
+
+	//把Json字串轉成NBT再轉成物品
+	public static ItemStack jsonStringToItemStack(@NotNull String itemString){
+		try {
+			NBTTagCompound compound = MojangsonParser.parse(itemString);
+			net.minecraft.server.v1_16_R3.ItemStack nmsItemStack = net.minecraft.server.v1_16_R3.ItemStack.a(compound);
+			return CraftItemStack.asBukkitCopy(nmsItemStack);
+		} catch (CommandSyntaxException exception) {
+			exception.printStackTrace();
+		}
+		return new ItemStack(Material.STONE);
+	}
+
 
 	//把物品NBT轉成String
 	public static String itemNBTtoString(@NotNull ItemStack itemStack){
@@ -38,7 +49,6 @@ public class NMSItem {
 		NBTTagCompound compound = new NBTTagCompound();
 		nmsItemStack.save(compound);
 		NBTTagCompound compound2 = compound.getCompound("tag");
-		//FancyCore.fancyCore.getLogger().info(compound2.toString());
 		return compound2.getString(key);
 	}
 	//把物品轉成Base64字串

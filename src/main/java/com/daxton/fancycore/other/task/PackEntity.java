@@ -32,7 +32,6 @@ public class PackEntity {
         packet.getModifier().writeDefaults();
         packet.getIntegers().write(0, entityID);
         packet.getUUIDs().write(0, uuid);
-
         EntityType entityType;
         try {
             entityType = Enum.valueOf(EntityType.class , entityTypeString.toUpperCase());
@@ -41,11 +40,9 @@ public class PackEntity {
             entityType = EntityType.ARMOR_STAND;
             packet.getEntityTypeModifier().write(0, entityType);
         }
-
         packet.getDoubles().write(0, inputLocation.getX());
         packet.getDoubles().write(1, inputLocation.getY());
         packet.getDoubles().write(2, inputLocation.getZ());
-
         if(pitch){
             packet.getIntegers().write(4, (int) (inputLocation.getPitch() * 256.0F / 360.0F));
         }
@@ -53,16 +50,13 @@ public class PackEntity {
             packet.getIntegers().write(5, (int) (inputLocation.getYaw() * 256.0F / 360.0F));
         }
         sendPack(packet);
-
         velocity(entityID, new Vector());
-
         if(entityType == EntityType.DROPPED_ITEM){
             if(itemStack == null){
                 itemStack = new ItemStack(Material.PLAYER_HEAD);
             }
             ItemDropMetadata.send(entityID, itemStack, inputLocation);
         }
-
         return entityType;
     }
 

@@ -17,6 +17,13 @@ public class ClickButtonJson {
 	public String type = "Button";
 	//物件名稱
 	private String object_name = "";
+	//基礎位置
+	private int position;
+	//X偏移
+	private int x;
+	//Y偏移
+	private int y;
+
 	//顯示名稱
 	public String display_name = "";
 	//顯示文字大小
@@ -32,16 +39,12 @@ public class ClickButtonJson {
 	private int width_off;
 	//關閉高度
 	private int height_off;
-	//基礎位置
-	private int position;
-	//X偏移
-	private int x;
-	//Y偏移
-	private int y;
 	//按下是否要關閉
 	private boolean close;
 	//開另外一個介面
 	private String to_menu;
+	//子GUI
+	private String subMenu;
 	//執行動作
 	private List<String> leftList = new ArrayList<>();
 	private List<String> rightList = new ArrayList<>();
@@ -49,10 +52,6 @@ public class ClickButtonJson {
 	private List<String> rightShiftList = new ArrayList<>();
 	//自訂動作
 	private List<String> custom_action_list = new ArrayList<>();
-
-	public ClickButtonJson(){
-
-	}
 
 	public ClickButtonJson(String object_name, String display_name, int font_size, String image_on, String image_off, int width_on, int height_on, int width_off, int height_off, int position, int x, int y, boolean close, String to_menu, List<String> action_list){
 		this.object_name = object_name;
@@ -90,11 +89,29 @@ public class ClickButtonJson {
 		this.custom_action_list = action_list;
 	}
 
+	//GUI
 	public ClickButtonJson(Player player, FileConfiguration config, FileConfiguration object_config, String key, String button_configKey, String button_key){
 		this.object_name = key+"."+button_configKey+"."+button_key;
 		this.position = config.getInt("ObjectList."+key+".Position");
 		this.x = config.getInt("ObjectList."+key+".X");
 		this.y = config.getInt("ObjectList."+key+".Y");
+
+		setCommon(player, object_config, button_key);
+
+	}
+
+	//PullPanel
+	public ClickButtonJson(Player player, FileConfiguration config, FileConfiguration object_config, String key, String button_configKey, String button_key, String pullKey){
+		this.object_name = key+"."+button_configKey+"."+button_key;
+		this.position = config.getInt(pullKey+".ObjectList."+key+".Position");
+		this.x = config.getInt(pullKey+".ObjectList."+key+".X");
+		this.y = config.getInt(pullKey+".ObjectList."+key+".Y");
+
+		setCommon(player, object_config, button_key);
+	}
+
+	//共通設置
+	public void setCommon(Player player, FileConfiguration object_config, String button_key){
 		this.display_name = object_config.getString(button_key+".DisplayName");
 		this.image_on = object_config.getString(button_key+".ImageOn");
 		this.image_off = object_config.getString(button_key+".ImageOff");
@@ -104,6 +121,7 @@ public class ClickButtonJson {
 		this.height_off = object_config.getInt(button_key+".HeightOff");
 		this.close = object_config.getBoolean(button_key+".Close");
 		this.to_menu = object_config.getString(button_key+".ToMenu");
+		this.subMenu = object_config.getString(button_key+".SubMenu");
 		this.leftList = object_config.getStringList(button_key+".Action.Left");
 		this.rightList = object_config.getStringList(button_key+".Action.Right");
 		this.leftShiftList = object_config.getStringList(button_key+".Action.Left_Shift");
@@ -275,5 +293,13 @@ public class ClickButtonJson {
 
 	public void setCustom_action_list(List<String> custom_action_list) {
 		this.custom_action_list = custom_action_list;
+	}
+
+	public String getSubMenu() {
+		return subMenu;
+	}
+
+	public void setSubMenu(String subMenu) {
+		this.subMenu = subMenu;
 	}
 }

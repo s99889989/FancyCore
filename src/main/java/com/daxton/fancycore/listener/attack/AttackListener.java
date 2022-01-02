@@ -3,7 +3,9 @@ package com.daxton.fancycore.listener.attack;
 
 import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.aims.entity.Convert;
+import com.daxton.fancycore.api.fancyclient.ClientConnect;
 import com.daxton.fancycore.manager.PlayerManagerCore;
+import com.daxton.fancycore.nms.NMSEntity;
 import com.daxton.fancycore.other.playerdata.ItemCD;
 import com.daxton.fancycore.other.playerdata.PlayerDataFancy;
 import net.citizensnpcs.api.CitizensAPI;
@@ -40,6 +42,7 @@ public class AttackListener implements Listener {
 		String targetUUIDString = event.getEntity().getUniqueId().toString();
 		UUID killerUUID = killer.getUniqueId();
 		double damageNumber = event.getFinalDamage();
+
 		//玩家攻擊數字
 		PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(killerUUID);
 		if (event.isCancelled()) {

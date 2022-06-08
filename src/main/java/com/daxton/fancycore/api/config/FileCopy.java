@@ -15,7 +15,9 @@ public class FileCopy {
 
 		if(savePath.contains(".")){
 			File outFile = new File(plugin.getDataFolder(), savePath);
+
 			InputStream in = plugin.getResource(resourcePath);
+
 			try {
 				if (!outFile.exists() || replace) {
 					File outFileF = new File(plugin.getDataFolder(), savePath);

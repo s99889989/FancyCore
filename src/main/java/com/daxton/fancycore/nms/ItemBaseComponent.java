@@ -27,6 +27,8 @@ public class ItemBaseComponent {
                 return com.daxton.fancycore.nms.v1_17_R1.ItemToBaseComponent.to(itemStack);
             case "v1_18_R1":
                 return com.daxton.fancycore.nms.v1_18_R1.ItemToBaseComponent.to(itemStack);
+            case "v1_18_R2":
+                return com.daxton.fancycore.nms.v1_18_R2.ItemToBaseComponent.to(itemStack);
         }
         return null;
     }

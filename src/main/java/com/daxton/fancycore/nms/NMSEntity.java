@@ -37,6 +37,8 @@ public class NMSEntity {
 				return com.daxton.fancycore.nms.v1_17_R1.NMSEntity.entityNBTtoString(entity);
 			case "v1_18_R1":
 				return com.daxton.fancycore.nms.v1_18_R1.NMSEntity.entityNBTtoString(entity);
+			case "v1_18_R2":
+				return com.daxton.fancycore.nms.v1_18_R2.NMSEntity.entityNBTtoString(entity);
 		}
 
 		return "";
@@ -64,6 +66,8 @@ public class NMSEntity {
 				return com.daxton.fancycore.nms.v1_17_R1.NMSEntity.entityNBTtoString(entity);
 			case "v1_18_R1":
 				return com.daxton.fancycore.nms.v1_18_R1.NMSEntity.entityNBTtoString(entity);
+			case "v1_18_R2":
+				return com.daxton.fancycore.nms.v1_18_R2.NMSEntity.entityNBTtoString(entity);
 		}
 
 		return "";
@@ -91,6 +95,8 @@ public class NMSEntity {
 				return com.daxton.fancycore.nms.v1_17_R1.NMSEntity.getEntityID(entityTypeString);
 			case "v1_18_R1":
 				return com.daxton.fancycore.nms.v1_18_R1.NMSEntity.getEntityID(entityTypeString);
+			case "v1_18_R2":
+				return com.daxton.fancycore.nms.v1_18_R2.NMSEntity.getEntityID(entityTypeString);
 		}
 
 		return 0;
@@ -119,6 +125,8 @@ public class NMSEntity {
 				return com.daxton.fancycore.nms.v1_17_R1.NMSEntity.getEntityID(entityType);
 			case "v1_18_R1":
 				return com.daxton.fancycore.nms.v1_18_R1.NMSEntity.getEntityID(entityType);
+			case "v1_18_R2":
+				return com.daxton.fancycore.nms.v1_18_R2.NMSEntity.getEntityID(entityType);
 		}
 		
 		return 0;

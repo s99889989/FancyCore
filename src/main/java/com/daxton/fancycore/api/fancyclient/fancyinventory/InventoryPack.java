@@ -8,11 +8,15 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Map;
 import java.util.UUID;
 
 public class InventoryPack {
 
 	public static void slotAction(Player player, String receivedString){
+		UUID uuid = player.getUniqueId();
+		PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(uuid);
+
 		if(receivedString.startsWith("Delete")){
 			player.getOpenInventory().getTopInventory().setItem(1, null);
 		}
@@ -46,13 +50,35 @@ public class InventoryPack {
 				player.getInventory().setItemInOffHand(itemStack);
 			}
 		}
+
+		//從自訂格子拿起(全部)
+		if(receivedString.startsWith("CustomPickUpAll")){
+			String[] placeItem = receivedString.split("\\|");
+			String objectID = placeItem[1];
+			playerDataFancy.mouseItemStack = playerDataFancy.itemStackMap.get(objectID);
+			playerDataFancy.itemStackMap.put(objectID, new ItemStack(Material.AIR));
+		}
+		//從自訂格子拿起(一半)
+		if(receivedString.startsWith("CustomPickUpHalf")){
+			String[] placeItem = receivedString.split("\\|");
+			String objectID = placeItem[1];
+			ItemStack slotItem = playerDataFancy.itemStackMap.get(objectID);
+
+
+		}
+		//從自訂格子拿起(1個)
+		if(receivedString.startsWith("CustomPickUpOne")){
+			String[] placeItem = receivedString.split("\\|");
+			String objectID = placeItem[1];
+			ItemStack slotItem = playerDataFancy.itemStackMap.get(objectID);
+
+		}
 		//放置到自訂格子
 		if(receivedString.startsWith("CustomPlace")){
 			String[] placeItem = receivedString.split("\\|");
 			String objectID = placeItem[1];
 			ItemStack itemStack = NMSItem.jsonStringToItemStack(placeItem[2], player);
-			UUID uuid = player.getUniqueId();
-			PlayerDataFancy playerDataFancy = PlayerManagerCore.player_Data_Map.get(uuid);
+
 			playerDataFancy.itemStackMap.put(objectID, itemStack);
 
 		}

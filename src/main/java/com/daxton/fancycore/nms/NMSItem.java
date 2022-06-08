@@ -36,6 +36,8 @@ public class NMSItem {
 				return com.daxton.fancycore.nms.v1_17_R1.NMSItem.jsonStringToItemStack(itemJson);
 			case "v1_18_R1":
 				return com.daxton.fancycore.nms.v1_18_R1.NMSItem.jsonStringToItemStack(itemJson);
+			case "v1_18_R2":
+				return com.daxton.fancycore.nms.v1_18_R2.NMSItem.jsonStringToItemStack(itemJson);
 		}
 		return new ItemStack(Material.STONE);
 	}
@@ -61,6 +63,8 @@ public class NMSItem {
 				return com.daxton.fancycore.nms.v1_17_R1.NMSItem.itemNBTtoString(itemStack);
 			case "v1_18_R1":
 				return com.daxton.fancycore.nms.v1_18_R1.NMSItem.itemNBTtoString(itemStack);
+			case "v1_18_R2":
+				return com.daxton.fancycore.nms.v1_18_R2.NMSItem.itemNBTtoString(itemStack);
 		}
 		return "";
 	}
@@ -89,6 +93,8 @@ public class NMSItem {
 				return com.daxton.fancycore.nms.v1_17_R1.NMSItem.itemNBTtoString(itemStack);
 			case "v1_18_R1":
 				return com.daxton.fancycore.nms.v1_18_R1.NMSItem.itemNBTtoString(itemStack);
+			case "v1_18_R2":
+				return com.daxton.fancycore.nms.v1_18_R2.NMSItem.itemNBTtoString(itemStack);
 		}
 		return "";
 	}
@@ -115,6 +121,8 @@ public class NMSItem {
 				return com.daxton.fancycore.nms.v1_17_R1.NMSItem.itemNBTtoString(itemStack);
 			case "v1_18_R1":
 				return com.daxton.fancycore.nms.v1_18_R1.NMSItem.itemNBTtoString(itemStack);
+			case "v1_18_R2":
+				return com.daxton.fancycore.nms.v1_18_R2.NMSItem.itemNBTtoString(itemStack);
 		}
 		return "";
 	}
@@ -145,6 +153,8 @@ public class NMSItem {
 				return com.daxton.fancycore.nms.v1_17_R1.NMSItem.getNBTTagString(itemStack, key);
 			case "v1_18_R1":
 				return com.daxton.fancycore.nms.v1_18_R1.NMSItem.getNBTTagString(itemStack, key);
+			case "v1_18_R2":
+				return com.daxton.fancycore.nms.v1_18_R2.NMSItem.getNBTTagString(itemStack, key);
 		}
 
 		return "";
@@ -177,6 +187,8 @@ public class NMSItem {
 				return com.daxton.fancycore.nms.v1_17_R1.NMSItem.itemStackToBase64(itemStacks);
 			case "v1_18_R1":
 				return com.daxton.fancycore.nms.v1_18_R1.NMSItem.itemStackToBase64(itemStacks);
+			case "v1_18_R2":
+				return com.daxton.fancycore.nms.v1_18_R2.NMSItem.itemStackToBase64(itemStacks);
 		}
 
 		return "";
@@ -209,6 +221,8 @@ public class NMSItem {
 				return com.daxton.fancycore.nms.v1_17_R1.NMSItem.base64toItemStack(itemString);
 			case "v1_18_R1":
 				return com.daxton.fancycore.nms.v1_18_R1.NMSItem.base64toItemStack(itemString);
+			case "v1_18_R2":
+				return com.daxton.fancycore.nms.v1_18_R2.NMSItem.base64toItemStack(itemString);
 		}
 
 		return new ItemStack[]{};

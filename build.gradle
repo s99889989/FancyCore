@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.daxton'
-version '1.3.0'
+version '1.3.1'
 
 repositories {
     mavenCentral()
@@ -63,6 +63,7 @@ dependencies {
 
     //compileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
+
     compileOnly group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.7.0";
     compileOnly 'me.clip:placeholderapi:2.10.9'
 
@@ -134,9 +135,9 @@ task copyJar2(type: Copy) {
 }
 
 task multiIntoCopy {
-    finalizedBy copyJar
+    //finalizedBy copyJar
     finalizedBy copyJar1
-    finalizedBy copyJar2
+    //finalizedBy copyJar2
 }
 
 build.finalizedBy multiIntoCopy

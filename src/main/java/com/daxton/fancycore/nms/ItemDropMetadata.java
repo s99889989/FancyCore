@@ -37,6 +37,9 @@ public class ItemDropMetadata {
 			case "v1_18_R1":
 				com.daxton.fancycore.nms.v1_18_R1.ItemDropMetadata.send(entityID, itemStack, inputLocation);
 				break;
+			case "v1_18_R2":
+				com.daxton.fancycore.nms.v1_18_R2.ItemDropMetadata.send(entityID, itemStack, inputLocation);
+				break;
 		}
 
 

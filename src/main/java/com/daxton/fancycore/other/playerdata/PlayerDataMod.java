@@ -4,6 +4,7 @@ import com.daxton.fancycore.FancyCore;
 import com.daxton.fancycore.api.fancyclient.ClientConnect;
 
 import com.daxton.fancycore.config.FileConfig;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -34,7 +35,7 @@ public class PlayerDataMod {
 	//模組GUI顯示的值
 	public Map<String, String> guiValueMap = new HashMap<>();
 	//拿起的物品
-	public ItemStack mouseItemStack = null;
+	public ItemStack mouseItemStack = new ItemStack(Material.AIR);
 
 	public PlayerDataMod(Player player) {
 		this.player = player;

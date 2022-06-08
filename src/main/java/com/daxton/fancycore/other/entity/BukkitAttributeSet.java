@@ -24,6 +24,10 @@ public class BukkitAttributeSet {
         }catch (IllegalArgumentException exception){
 
         }
+//        AttributeInstance attributeInstance = livingEntity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+//        AttributeModifier healthModifier = new AttributeModifier("abc123456", 10, AttributeModifier.Operation.ADD_NUMBER);
+//        attributeInstance.addModifier(healthModifier);
+
     }
     //清除指定標籤屬性。(生命實體、屬性名稱、屬性標籤)
     public static void removeAttribute(LivingEntity player, String inherit, String label){
